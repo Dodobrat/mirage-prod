@@ -11,7 +11,6 @@ use Charlotte\Administration\Helpers\AdministrationForm;
 use Charlotte\Administration\Http\Controllers\BaseAdministrationController;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Illuminate\Http\Request;
-
 use Illuminate\Http\Response;
 use Yajra\DataTables\DataTables;
 

@@ -2,6 +2,7 @@
 
 namespace App\Modules\Types\Forms;
 
+use App\Modules\Filters\Models\Filter;
 use Charlotte\Administration\Helpers\AdministrationSeo;
 use Kris\LaravelFormBuilder\Form;
 
@@ -14,26 +15,22 @@ class TypeForm extends Form {
             'model' => @$this->model
         ]);
 
-//        $filters = Filter::active()->pluck('title','id')->toArray();
-//
-//        $this->add('filters', 'select', [
-//            'label' => trans('types::admin.categories'),
-//            'choices' => $filters,
-//            'selected' => (!empty($this->model) && !empty($this->model->categories)) ? $this->model->categories->pluck('id')->toArray() : null,
-//            'attr' => [
-//                'multiple' => 'multiple',
-//                'class' => 'select2',
-//                'id' => 'categories-exist2',
-//                'style' => 'width: 100%;'
-//            ],
-//            'empty_value' => trans('products::admin.empty_value'),
+        $filters = Filter::all()->pluck('title','id')->toArray();
+
+        $this->add('filters', 'select', [
+            'title' => trans('types::admin.filters'),
+            'choices' => $filters,
+            'selected' => (!empty($this->model) && !empty($this->model->filters)) ? $this->model->filters->pluck('id')->toArray() : null,
+            'helper_box' => trans('types::admin.choose_filters'),
+        ]);
+
+//        $this->add('meta_title', 'text',[
+//            'title' => trans('administration::admin.title'),
+//            'translate' => true,
+//            'model' => @$this->model,
 //        ]);
 
-//        $this->add('filters', 'multiple', [
-//            'title' => trans('types::admin.filters'),
-//        ]);
-
-        AdministrationSeo::seoFields($this, $this->model);
+//        AdministrationSeo::seoFields($this, $this->model);
 
         $this->add('active', 'switch', [
             'title' => trans('administration::admin.active'),
