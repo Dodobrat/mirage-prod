@@ -1,6 +1,6 @@
 @extends('layouts.app')
-
 @section('content')
 
-    asdasd
+   INDEX PAGE
+
 @endsection

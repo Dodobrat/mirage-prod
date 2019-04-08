@@ -46,14 +46,17 @@
             "Tests\\": "tests/"
         }
     },
-    "repositories": {
-        "administration": {
-            "type": "path",
-            "url": "../../packages/charlotte/administration",
-            "options": {
-                "symlink": true
-            }
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "http://git.bubrek.com/gogbog/administration.git"
         }
+    ],
+    "config": {
+        "preferred-install": "dist",
+        "secure-http": false,
+        "sort-packages": true,
+        "optimize-autoloader": true
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

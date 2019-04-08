@@ -1,0 +1,19 @@
+@media screen and (max-width: 992px){
+    .nav-container{
+        display: none;
+    }
+    .mobile-nav-container{
+        display: block;
+    }
+    footer{
+        padding: 50px 10vw;
+        .content-container{
+            .footer-field{
+                .footer-social-link{
+                    padding: 8px 16px 8px 0;
+                    display: inline;
+                }
+            }
+        }
+    }
+}

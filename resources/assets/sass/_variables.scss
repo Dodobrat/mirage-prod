@@ -1,11 +1,26 @@
 
 // Body
-$body-bg: #f8fafc;
+$body-bg: #f6f6f6;
+
+$navbar-toggler-color: #595959;
+$secondary-bg: #323232;
+$mobile-collapsed-text: #4e4d4d;
+
+$footer-bg: #141414;
+$footer-text: #bcbcbc;
 
 // Typography
-$font-family-sans-serif: "Nunito", sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+@import url('https://fonts.googleapis.com/css?family=Overpass:100,200,300,400,600,700,800,900&subset=latin-ext');
+$font-family: 'Overpass', sans-serif;
+$thin: 100;
+$extra-light: 200;
+$light: 300;
+$regular: 400;
+$semi-bold: 600;
+$bold: 700;
+$extra-bold: 800;
+$black: 900;
+$primary-font-color: #191919;
 
 // Colors
 $blue: #3490dc;
