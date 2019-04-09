@@ -4,6 +4,7 @@
     width: 100%;
     background-color: $body-bg;
     position: fixed;
+    z-index: 9999;
     .main-nav{
         position: relative;
         height: 123px;

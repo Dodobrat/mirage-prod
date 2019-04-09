@@ -15,15 +15,54 @@
 {{--FILTERS TABS--}}
 
 
+
+<ul id="test">
+    <li data-filter="1">OP1</li>
+    <li data-filter="2">OP2</li>
+    <li data-filter="3">OP3</li>
+    <li data-filter="4">OP4</li>
+</ul>
+
+<div class="test-text 2">
+    askjnladsc
+</div>
+
+<div class="test-text 1">
+    az
+</div>
+
+<div class="test-text 4">
+    ti
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {{--CUSTOM PROJECTS CONTAINER--}}
     <div class="custom-projects-container">
         <div class="row align-items-center">
 
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 p-0 gallery-item">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-6 p-1 gallery-item">
 
                 <div class="gallery-card">
                     <a id="modal-btn" class="project-modal-btn">
-                        <img src="https://via.placeholder.com/150" alt="" class="gallery-item-img w-100">
+                        <img data-tags="Animators,Illustrators" src="https://via.placeholder.com/150" alt="" class="gallery-item-img w-100">
                     </a>
                     <div class="overlay">
                         <div class="row">

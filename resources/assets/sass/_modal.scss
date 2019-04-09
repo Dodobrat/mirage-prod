@@ -1,0 +1,75 @@
+.project-modal {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: $body-bg;
+    .project-modal-content {
+        display: none;
+        background-color: $white;
+        margin: 0;
+        width: 100%;
+        min-height: 100vh;
+        .project-modal-header{
+            height: 60px;
+            overflow: hidden;
+            padding: 0 3vw;
+            .project-modal-title{
+                color: $primary-font-color;
+                font-weight: $bold;
+                margin: 0;
+                .project-modal-project{
+                    font-size: 16px;
+                    color: $mobile-collapsed-text;
+                    font-weight: $regular;
+                }
+            }
+            .project-modal-close-btn{
+                height: 60px;
+                opacity: 0.7;
+                padding: 0 16px 0 0;
+                background-color: transparent;
+                border: none;
+                img{
+                    width: 20px;
+                    height: 20px;
+                }
+                &:focus{
+                    outline: none;
+                }
+                &:hover{
+                    opacity: 1;
+                }
+            }
+        }
+        .project-modal-body{
+            .carousel{
+                .carousel-indicators{
+                    li{
+                        background-color: $secondary-bg;
+                    }
+                }
+                .carousel-inner{
+                    .carousel-item{
+                        img{
+                            width: 100%;
+                            height: calc(100vh - 60px);
+                            object-fit: contain;
+                        }
+                    }
+                }
+                .carousel-control-next-icon{
+                    transform: rotate(180deg);
+                    background-image: url('../img/chevron.svg');
+                }
+                .carousel-control-prev-icon{
+                    background-image: url('../img/chevron.svg');
+                }
+            }
+        }
+    }
+}

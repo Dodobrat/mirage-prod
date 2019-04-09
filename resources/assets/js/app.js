@@ -59,6 +59,55 @@ function hasScrolled() {
 }
 
 // -----------------------------------------
+//             FILTER GALLERY
+// -----------------------------------------
+
+
+$(document).ready(function () {
+    $("#test li").click(function () {
+
+        let category = $(this).attr('data-filter');
+        $('#test li').removeClass('active');
+        $(this).addClass('active');
+        if (category === '') {
+            $('.test-text:hidden').show().removeClass('hidden');
+        }
+        else {
+            $('.test-text').each(function () {
+                if (!$(this).hasClass(category) && !$(this).hasClass('without')) {
+                    $(this).hide().addClass('hidden');
+                } else {
+                    $(this).show().removeClass('hidden');
+                }
+            });
+        }
+        return false
+    });
+    $("#test li:first").trigger("click").addClass('active');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// -----------------------------------------
 //             PROJECT MODAL
 // -----------------------------------------
 
