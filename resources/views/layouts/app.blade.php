@@ -6,17 +6,17 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ config('app.name', 'Mirage Visualisation') }}</title>
-    {{--    <link rel="icon" href="{{ asset('img/dark-logo.png') }}">--}}
+        <link rel="icon" href="{{ asset('/img/mvTab.png') }}">
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 <body>
 
-<div class="nav-container">
+<div class="nav-container nav-down">
     <nav class="main-nav">
         <div class="nav-logo-container">
             <a href="#" class="nav-logo">
-asdasd
-                <img src="#" alt="">
+                <img id="main-logo" src="{{ asset('/img/MV.png') }}" alt="">
+                <img id="text-logo" src="{{ asset('/img/miragevis.png') }}" alt="">
             </a>
         </div>
         <div class="nav-links-container">
@@ -36,8 +36,10 @@ asdasd
 </div>
 
 <div class="mobile-nav-container">
-    <nav class="navbar navbar-expand-xl navbar-light">
-        <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar fixed-top navbar-expand-xl navbar-light">
+        <a class="navbar-brand" href="#">
+            <img id="mobile-main-logo" src="{{ asset('/img/MV.png') }}" alt="">
+        </a>
         <button class="navbar-toggler collapsed"
                 id="mobile-nav-toggler"
                 type="button"
@@ -86,9 +88,11 @@ asdasd
     </nav>
 </div>
 
-@yield('content')
+<div id="content">
+    @yield('content')
+</div>
 
-<footer>
+<footer class="mt-5">
     <div class="content-container">
         <div class="row">
             <div class="col-lg-4 col-md-12 footer-field">

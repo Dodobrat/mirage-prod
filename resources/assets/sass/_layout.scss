@@ -1,0 +1,163 @@
+//DESKTOP NAVBAR
+.nav-container{
+    height: 180px;
+    width: 100%;
+    background-color: $body-bg;
+    position: fixed;
+    .main-nav{
+        position: relative;
+        height: 123px;
+        width: 100%;
+        background-color: $white;
+        padding: 0 5vw;
+        .nav-logo-container{
+            float: left;
+            .nav-logo{
+                position: absolute;
+                top: 50%;
+                left: 5vw;
+                transform: translateY(-50%);
+                #main-logo{
+                    height: 47px;
+                }
+                #text-logo{
+                    height: 47px;
+                }
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+        }
+        .nav-links-container{
+            float: right;
+            position: absolute;
+            top: 50%;
+            right: 5vw;
+            transform: translateY(-50%);
+            .nav-link{
+                display: inline;
+                font-size: 17px;
+                font-weight: $bold;
+                text-transform: uppercase;
+                color: $primary-font-color;
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+    }
+    .secondary-nav{
+        position: relative;
+        height: 57px;
+        width: 100%;
+        background-color: $secondary-bg;
+        padding: 0 5vw;
+        #secondary-nav{
+            float: right;
+            position: absolute;
+            top: 50%;
+            right: 5vw;
+            transform: translateY(-50%);
+            .nav-link{
+                display: inline;
+                font-size: 17px;
+                font-weight: $bold;
+                text-transform: uppercase;
+                color: $white;
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+    }
+}
+
+.nav-up{
+    top: -190px;
+    transition: 0.3s ease-in-out;
+}
+
+.nav-down{
+    top: 0;
+    transition: 0.3s ease-in-out;
+}
+
+.mobile-nav-container{
+    display: none;
+    .navbar{
+        background: $white;
+        box-shadow: 0 10px 30px 0 rgba(0,0,0,0.1);
+        .navbar-brand{
+            #mobile-main-logo{
+                height: 27px;
+            }
+        }
+        .navbar-toggler{
+            border: none;
+            margin-right: -0.75rem;
+            #hamburger{
+                .line{
+                    width: 25px;
+                    height: 2px;
+                    background-color: $navbar-toggler-color;
+                    display: block;
+                    margin: 10px auto;
+                    transition: all 0.2s ease-in-out;
+                }
+                &.is-active .line:nth-child(1){
+                    transform: translateY(6px) rotate(45deg);
+                }
+                &.is-active .line:nth-child(2){
+                    transform: translateY(-6px) rotate(-45deg);
+                }
+            }
+            &:focus{
+                outline: none;
+            }
+        }
+        #navbarExpand{
+            .navbar-nav{
+                .nav-item{
+                    .nav-link{
+                        color: $mobile-collapsed-text;
+                    }
+                }
+                #homeOptions{
+                    background-color: $secondary-bg;
+                    .home-options{
+                        .navbar-nav{
+                            .nav-item{
+                                .nav-link{
+                                    color: $white;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//FOOTER
+footer{
+    height: auto;
+    background-color: $footer-bg;
+    padding: 100px 5vw;
+    .content-container{
+        .footer-field{
+            color: $footer-text;
+            .footer-company-name{
+                color: $white;
+            }
+            a{
+                display: block;
+                color: $footer-text;
+                text-transform: capitalize;
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
