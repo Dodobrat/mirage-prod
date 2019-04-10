@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ config('app.name', 'Mirage Visualisation') }}</title>
-        <link rel="icon" href="{{ asset('/img/mvTab.png') }}">
+    <link rel="icon" href="{{ asset('/img/mvTab.png') }}">
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 <body>
@@ -14,7 +14,7 @@
 <div class="nav-container nav-down">
     <nav class="main-nav">
         <div class="nav-logo-container">
-            <a href="#" class="nav-logo">
+            <a href="{{ route('index') }}" class="nav-logo">
                 <img id="main-logo" src="{{ asset('/img/MV.png') }}" alt="">
                 <img id="text-logo" src="{{ asset('/img/miragevis.png') }}" alt="">
             </a>
@@ -23,21 +23,24 @@
             <a data-toggle="collapse" href="#secondary-nav" role="button" aria-expanded="true" aria-controls="secondary-nav" class="nav-link">Home</a>
             <a href="#" class="nav-link">Team</a>
             <a href="#" class="nav-link">Contact</a>
-            <a href="#" class="nav-link">EN</a>
-            <a href="#" class="nav-link">FR</a>
+            <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="nav-link @if(App::isLocale('en')) active @endif">EN</a>
+            <a href="{{ LaravelLocalization::getLocalizedURL('fr') }}" class="nav-link @if(App::isLocale('fr')) active @endif">FR</a>
         </div>
     </nav>
-    <div class="secondary-nav">
-        <div class="collapse show" id="secondary-nav">
-            <a href="#" class="nav-link">Architecture</a>
-            <a href="#" class="nav-link">Real Estate</a>
+    @if(Route::currentRouteName() != 'index')
+        <div class="secondary-nav">
+            <div class="collapse show" id="secondary-nav">
+                @foreach($types as $type)
+                    <a href="{{ route('type', [$type->slug] ) }}" class="nav-link">{{ $type->title }}</a>
+                @endforeach
+            </div>
         </div>
-    </div>
+    @endif
 </div>
 
 <div class="mobile-nav-container">
     <nav class="navbar fixed-top navbar-expand-xl navbar-light">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{ route('index') }}">
             <img id="mobile-main-logo" src="{{ asset('/img/MV.png') }}" alt="">
         </a>
         <button class="navbar-toggler collapsed"
@@ -62,12 +65,11 @@
                 <div class="collapse mx-n3" id="homeOptions">
                     <div class="home-options px-3">
                         <ul class="navbar-nav mr-auto my-2">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Architecture</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Real Estate</a>
-                            </li>
+                            @foreach($types as $type)
+                                <li class="nav-item">
+                                    <a href="{{ route('type', [$type->slug] ) }}" class="nav-link">{{ $type->title }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -111,7 +113,7 @@
             <div class="col-lg-3 col-md-12 footer-field">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 footer-field">
-                        <a href="#" class="footer-link">Home</a>
+                        <a href="{{ route('index') }}" class="footer-link">Home</a>
                         <a href="#" class="footer-link">The team</a>
                         <a href="#" class="footer-link">Contact</a>
                     </div>

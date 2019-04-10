@@ -11,8 +11,12 @@
 |
 */
 
-Route::group(['prefix' => 'types'], function () {
-    Route::get('/', function () {
-        dd('This is the Types module index page. Build something great!');
-    });
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+], function () {
+
+    Route::get('/{slug}', [
+        'as' => 'type',
+        'uses' => 'TypesController@index'
+    ]);
 });

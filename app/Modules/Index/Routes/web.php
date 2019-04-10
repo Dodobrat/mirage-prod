@@ -11,8 +11,13 @@
 |
 */
 
-Route::group(['prefix' => 'index'], function () {
-    Route::get('/', function () {
-        dd('This is the Index module index page. Build something great!');
-    });
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+], function () {
+
+    Route::get('/', [
+        'as' => 'index',
+        'uses' => 'IndexController@index',
+    ]);
+
 });
