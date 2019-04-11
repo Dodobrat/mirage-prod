@@ -13,10 +13,11 @@
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
+    'as' => 'type.',
 ], function () {
 
     Route::get('/{slug}', [
-        'as' => 'type',
+        'as' => 'index',
         'uses' => 'TypesController@index'
     ]);
 });

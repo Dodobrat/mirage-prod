@@ -25,4 +25,9 @@ class Administration implements Structure {
         $menu->get('types')->add(trans('administration::admin.add'), ['url' => \Charlotte\Administration\Helpers\Administration::route('types.create') ,'icon' => 'ti-plus']);
         $menu->get('types')->add(trans('administration::admin.view_all'), ['url' => \Charlotte\Administration\Helpers\Administration::route('types.index'), 'icon' => 'ti-list']);
     }
+
+    public function settings($model, $form, $form_model)
+    {
+        // TODO: Implement settings() method.
+    }
 }

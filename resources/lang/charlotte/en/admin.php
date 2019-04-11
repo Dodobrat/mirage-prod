@@ -33,6 +33,7 @@ return [
     'monthly_log' => 'Monthly Log',
     'see_details' => 'See Details',
     'administrators' => 'Administrators',
+    'settings_menu' => 'Global Settings',
 
     //EXAMPLE MODULES
     'add' => 'Add',
@@ -72,10 +73,16 @@ return [
     //VALIDATION
     'success_create_admin' => 'Administrator created successfully',
     'success_update_admin' => 'Administrator updated successfully',
+    'settings_updated' => 'Settings updated successfully',
+
 
     //LANGUAGES
     'en' => 'English',
     'bg' => 'Bulgarian',
     'fr' => 'French',
 
+
+
+    //GENERAL
+    'website_name' => 'Website name'
 ];

@@ -11,8 +11,8 @@
 |
 */
 
-Route::group(['prefix' => 'filters'], function () {
+Route::group(['prefix' => 'categories'], function () {
     Route::get('/', function () {
-        dd('This is the Filters module index page. Build something great!');
+        dd('This is the Categories module index page. Build something great!');
     });
 });

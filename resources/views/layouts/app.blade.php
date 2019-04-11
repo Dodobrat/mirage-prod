@@ -27,15 +27,15 @@
             <a href="{{ LaravelLocalization::getLocalizedURL('fr') }}" class="nav-link @if(App::isLocale('fr')) active @endif">FR</a>
         </div>
     </nav>
-    @if(Route::currentRouteName() != 'index')
-        <div class="secondary-nav">
+    <div class="secondary-nav">
+        @if(Route::currentRouteName() != 'index')
             <div class="collapse show" id="secondary-nav">
                 @foreach($types as $type)
-                    <a href="{{ route('type', [$type->slug] ) }}" class="nav-link">{{ $type->title }}</a>
+                    <a href="{{ route('type.index', [$type->slug] ) }}" class="nav-link">{{ $type->title }}</a>
                 @endforeach
             </div>
-        </div>
-    @endif
+        @endif
+    </div>
 </div>
 
 <div class="mobile-nav-container">
@@ -67,7 +67,7 @@
                         <ul class="navbar-nav mr-auto my-2">
                             @foreach($types as $type)
                                 <li class="nav-item">
-                                    <a href="{{ route('type', [$type->slug] ) }}" class="nav-link">{{ $type->title }}</a>
+                                    <a href="{{ route('type.index', [$type->slug] ) }}" class="nav-link">{{ $type->title }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -90,11 +90,11 @@
     </nav>
 </div>
 
-<div id="content">
+<div id="content" @if(Route::currentRouteName() == 'index') class="condensed-layout" @endif>
     @yield('content')
 </div>
 
-<footer class="mt-5">
+<footer class="@if(Route::currentRouteName() != 'index') mt-5 @endif">
     <div class="content-container">
         <div class="row">
             <div class="col-lg-4 col-md-12 footer-field">

@@ -5,7 +5,7 @@ return [
     /*
      * Package version
      */
-    'package_version' => '0.9.0',
+    'package_version' => '1.0.0',
     /*
      * URL Prefix
      */
@@ -23,7 +23,14 @@ return [
      */
     'guard' => 'administrator',
 
-    'file_prefix' => 'charlotte/administration/'
+    'file_prefix' => 'charlotte/administration/',
 
+    /*
+     * Supported Languages
+     */
+    'admin_supported_locales' => [
+        'en',
+        'bg'
+    ]
 
 ];

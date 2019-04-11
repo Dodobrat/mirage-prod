@@ -1,6 +1,12 @@
 @media screen and (max-width: 992px){
+    .landing-container{
+        height: calc(80vh - 58px);
+    }
     #content{
         margin-top: 58px;
+    }
+    .placement{
+        display: none;
     }
     .nav-container{
         display: none;

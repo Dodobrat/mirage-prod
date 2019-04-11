@@ -20,6 +20,8 @@ class Type extends Model
         'slug',
     ];
 
+    protected $with = ['translations'];
+
     protected $fillable = [
         'active'
     ];

@@ -15,7 +15,7 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $types = Type::with(['translations'])->reversed()->get();
+        $types = Type::reversed()->get();
         View::share('types', $types);
     }
 }

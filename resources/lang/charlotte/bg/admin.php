@@ -33,6 +33,7 @@ return [
     'monthly_log' => 'Месечен Лог',
     'see_details' => 'Виж Повече',
     'administrators' => 'Администратори',
+    'settings_menu' => 'Глобални настройки',
 
     //EXAMPLE MODULES
     'add' => 'Добави',
@@ -72,10 +73,15 @@ return [
     //VALIDATION
     'success_create_admin' => 'Успешно създадохте администратор',
     'success_update_admin' => 'Успешно променихте администратор',
+    'settings_updated' => 'Успешно променихте настройките',
 
     //LANGUAGES
     'en' => 'Английски',
     'bg' => 'Български',
     'fr' => 'Френски',
+
+
+    //GENERAL
+    'website_name' => 'Име на сайта'
 
 ];

@@ -44,6 +44,7 @@ class StoreTypeRequest extends FormRequest
             }
         }
 
+        $trans['categories'] = 'required';
         $trans['active'] = 'boolean';
 
         return $trans;

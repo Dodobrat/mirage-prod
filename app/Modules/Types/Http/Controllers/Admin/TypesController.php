@@ -85,6 +85,7 @@ class TypesController extends BaseAdministrationController
     public function store(StoreTypeRequest $request)
     {
         $data = $request->validated();
+        dd($data);
         $type = new Type();
         $type->fill($data);
         $type->save();

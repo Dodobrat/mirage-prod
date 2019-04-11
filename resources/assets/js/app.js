@@ -94,21 +94,21 @@ $(document).ready(function () {
 //             PROJECT MODAL
 // -----------------------------------------
 
-const modal = document.querySelector('#my-modal');
-const modalContent = document.querySelector('.project-modal-content');
-const modalBtn = document.querySelector('#modal-btn');
-const closeBtn = document.querySelector('.project-modal-close-btn');
+let $modal = $('#my-modal');
+let $modalContent = $('.project-modal-content');
+let $modalBtn = $('#modal-btn');
+let $closeBtn = $('.project-modal-close-btn');
 
 // Events
-modalBtn.addEventListener('click', openModal);
-closeBtn.addEventListener('click', closeModal);
+$modalBtn.on('click', openModal);
+$closeBtn.on('click', closeModal);
 
 // Open
 function openModal() {
-    $(modal).slideDown(300);
-    document.querySelector('body').style.overflowY = 'hidden';
+    $modal.slideDown(300);
+    $('body').css('overflowY','hidden');
     setTimeout(function () {
-        $(modalContent).fadeIn(200);
+        $modalContent.fadeIn(200);
     }, 300);
     $(document).keyup(function(e) {
         if (e.keyCode === 27){
@@ -126,10 +126,10 @@ function openModal() {
 
 // Close
 function closeModal() {
-    $(modalContent).fadeOut(200);
-    document.querySelector('body').style.overflowY = 'auto';
+    $modalContent.fadeOut(200);
+    $('body').css('overflowY','auto');
     setTimeout(function () {
-        $(modal).slideUp(300);
+        $modal.slideUp(300);
     }, 200);
 }
 

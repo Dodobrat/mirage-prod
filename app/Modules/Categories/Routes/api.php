@@ -13,6 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/filters', function (Request $request) {
-    // return $request->filters();
+Route::get('/categories', function (Request $request) {
+    // return $request->categories();
 })->middleware('auth:api');
