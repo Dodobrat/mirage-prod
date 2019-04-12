@@ -2,6 +2,8 @@
 
 namespace App\Modules\Types\Http\Controllers;
 
+use App\Modules\Categories\Models\Category;
+use App\Modules\Projects\Models\Project;
 use App\Modules\Types\Models\Type;
 use App\Http\Controllers\Controller;
 use App\Modules\Types\Models\TypeTranslation;
@@ -38,6 +40,9 @@ class TypesController extends Controller
                 ]);
         }
 
-        return view('types::front.index', compact('selected_type'));
+        $categories = Category::active()->reversed()->get();
+        $projects = Project::active()->reversed()->with(['media'])->get();
+
+        return view('types::front.index', compact('selected_type','categories','projects'));
     }
 }

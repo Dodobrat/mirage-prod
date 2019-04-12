@@ -3,6 +3,8 @@
 namespace App\Modules\Types;
 
 use App\Modules\Types\Http\Controllers\Admin\TypesController;
+use App\Modules\Types\Models\Type;
+use Charlotte\Administration\Helpers\Dashboard;
 use Charlotte\Administration\Interfaces\Structure;
 use Illuminate\Support\Facades\Route;
 
@@ -10,6 +12,12 @@ class Administration implements Structure {
 
     public function dashboard()
     {
+
+        $dashboard = new Dashboard();
+
+        $dashboard->linkBox(trans('types::admin.module_name'), Type::count() , \Charlotte\Administration\Helpers\Administration::route('types.index'), 'ti-bookmark-alt', 'text-danger','col-lg-4 col-md-12 col-sm-12');
+
+        return $dashboard->generate();
 
     }
 

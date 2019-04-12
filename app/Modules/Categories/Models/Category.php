@@ -1,22 +1,20 @@
 <?php
 
-namespace App\Modules\Types\Models;
+namespace App\Modules\Categories\Models;
 
+use App\Modules\Projects\Models\Project;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
 
-class Type extends Model
+class Category extends Model
 {
     use Translatable, NodeTrait;
 
-    protected $table = 'types';
+    protected $table = 'categories';
 
     public $translatedAttributes = [
         'title',
-        'meta_title',
-        'meta_description',
-        'meta_keywords',
         'slug',
     ];
 
@@ -34,4 +32,10 @@ class Type extends Model
     {
         return $query->where($this->table . '.active', 1);
     }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
 }

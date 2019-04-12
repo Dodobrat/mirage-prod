@@ -1,38 +1,39 @@
 <?php
 
-namespace App\Modules\Types\Http\Controllers\Admin;
+namespace App\Modules\Categories\Http\Controllers\Admin;
 
-use App\Modules\Types\Forms\TypeForm;
-use App\Modules\Types\Models\Type;
-use App\Modules\Types\Http\Requests\StoreTypeRequest;
+use App\Modules\Categories\Http\Requests\StoreCategoryRequest;
+use App\Modules\Categories\Models\Category;
+use App\Modules\Categories\Forms\CategoryForm;
 use Charlotte\Administration\Helpers\Administration;
 use Charlotte\Administration\Helpers\AdministrationDatatable;
 use Charlotte\Administration\Helpers\AdministrationField;
 use Charlotte\Administration\Helpers\AdministrationForm;
 use Charlotte\Administration\Http\Controllers\BaseAdministrationController;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
+use Illuminate\Http\Response;
 use Yajra\DataTables\DataTables;
 
-class TypesController extends BaseAdministrationController
+class CategoriesController extends BaseAdministrationController
 {
     /**
      * Display a listing of the resource.
      *
      * @param DataTables $datatable
-     * @return void
+     * @return Response
      */
     public function index(DataTables $datatable)
     {
         $columns = ['id', 'title', 'active', 'created_at', 'action'];
         $table = new AdministrationDatatable($datatable);
-        $table->query(Type::reversed());
+        $table->query(Category::reversed());
         $table->columns($columns);
-        $table->addColumn('active', function ($type) {
-            return AdministrationField::switch('active', $type);
+        $table->addColumn('active', function ($category) {
+            return AdministrationField::switch('active', $category);
         });
-        $table->addColumn('action', function ($type) {
-            $action = AdministrationField::edit(Administration::route('types.edit', $type->id));
-            $action .= AdministrationField::delete(Administration::route('types.destroy', $type->id));
+        $table->addColumn('action', function ($category) {
+            $action = AdministrationField::edit(Administration::route('categories.edit', $category->id));
+            $action .= AdministrationField::delete(Administration::route('categories.destroy', $category->id));
             return $action;
         });
 
@@ -44,11 +45,11 @@ class TypesController extends BaseAdministrationController
         });
         $table->rawColumns(['active', 'action']);
 
-        Administration::setTitle(trans('types::admin.module_name'));
+        Administration::setTitle(trans('categories::admin.module_name'));
 
         Breadcrumbs::register('administration', function ($breadcrumbs) {
             $breadcrumbs->parent('base');
-            $breadcrumbs->push(trans('types::admin.module_name'), Administration::route('types.index'));
+            $breadcrumbs->push(trans('categories::admin.module_name'), Administration::route('categories.index'));
         });
 
         return $table->generate();
@@ -62,16 +63,16 @@ class TypesController extends BaseAdministrationController
     public function create()
     {
         $form = new AdministrationForm();
-        $form->route(Administration::route('types.store'));
-        $form->form(TypeForm::class);
+        $form->route(Administration::route('categories.store'));
+        $form->form(CategoryForm::class);
 
         Breadcrumbs::register('administration', function ($breadcrumbs) {
             $breadcrumbs->parent('base');
-            $breadcrumbs->push(trans('types::admin.module_name'), Administration::route('types.index'));
+            $breadcrumbs->push(trans('categories::admin.module_name'), Administration::route('categories.index'));
             $breadcrumbs->push(trans('administration::admin.create'));
         });
 
-        Administration::setTitle(trans('types::admin.module_name') . ' - ' . trans('administration::admin.create'));
+        Administration::setTitle(trans('categories::admin.module_name') . ' - ' . trans('administration::admin.create'));
 
         return $form->generate();
     }
@@ -79,17 +80,17 @@ class TypesController extends BaseAdministrationController
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreTypeRequest $request
-     * @return void
+     * @param StoreCategoryRequest $request
+     * @return Response
      */
-    public function store(StoreTypeRequest $request)
+    public function store(StoreCategoryRequest $request)
     {
         $data = $request->validated();
-        $type = new Type();
-        $type->fill($data);
-        $type->save();
+        $category = new Category();
+        $category->fill($data);
+        $category->save();
 
-        return redirect(Administration::route('types.index'));
+        return redirect(Administration::route('categories.index'));
     }
 
     /**
@@ -111,20 +112,20 @@ class TypesController extends BaseAdministrationController
      */
     public function edit($id)
     {
-        $type = Type::where('id', $id)->first();
+        $category = Category::where('id', $id)->first();
         $form = new AdministrationForm();
-        $form->route(Administration::route('types.update', $type->id));
-        $form->form(TypeForm::class);
-        $form->model($type);
+        $form->route(Administration::route('categories.update', $category->id));
+        $form->form(CategoryForm::class);
+        $form->model($category);
         $form->method('PUT');
 
         Breadcrumbs::register('administration', function ($breadcrumbs) {
             $breadcrumbs->parent('base');
-            $breadcrumbs->push(trans('types::admin.module_name'), Administration::route('types.index'));
+            $breadcrumbs->push(trans('categories::admin.module_name'), Administration::route('categories.index'));
             $breadcrumbs->push(trans('administration::admin.edit'));
         });
 
-        Administration::setTitle(trans('types::admin.module_name') . ' - ' . trans('administration::admin.edit'));
+        Administration::setTitle(trans('categories::admin.module_name') . ' - ' . trans('administration::admin.edit'));
 
         return $form->generate();
     }
@@ -132,18 +133,18 @@ class TypesController extends BaseAdministrationController
     /**
      * Update the specified resource in storage.
      *
-     * @param StoreTypeRequest $request
+     * @param StoreCategoryRequest $request
      * @param int $id
      * @return Response
      */
-    public function update(StoreTypeRequest $request, $id)
+    public function update(StoreCategoryRequest $request, $id)
     {
-        $type = Type::where('id', $id)->first();
+        $category = Category::where('id', $id)->first();
         $data = $request->validated();
-        $type->fill($data);
-        $type->save();
+        $category->fill($data);
+        $category->save();
 
-        return redirect(Administration::route('types.index'));
+        return redirect(Administration::route('categories.index'));
     }
 
     /**
@@ -154,7 +155,7 @@ class TypesController extends BaseAdministrationController
      */
     public function destroy($id)
     {
-        $model = Type::where('id', $id)->first();
+        $model = Category::where('id', $id)->first();
         $model->delete();
         return response()->json(['ok'], 200);
     }
