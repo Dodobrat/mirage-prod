@@ -11,8 +11,18 @@
 |
 */
 
-Route::group(['prefix' => 'projects'], function () {
-    Route::get('/', function () {
-        dd('This is the Projects module index page. Build something great!');
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    //'middleware' => \Administration::routeMiddleware()
+], function () {
+    Route::group([
+        'prefix' => 'projects',
+        'as' => 'projects.'
+    ], function () {
+
+        Route::post('/ajax/getProject', [
+            'as' => 'getProject',
+            'uses' => 'ProjectsController@getProject'
+        ]);
     });
 });

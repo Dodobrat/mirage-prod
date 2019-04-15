@@ -15,12 +15,15 @@
 
     {{--FILTERS TABS--}}
 
-    <ul id="test">
-        <li data-filter="1">OP1</li>
-        <li data-filter="2">OP2</li>
-        <li data-filter="3">OP3</li>
-        <li data-filter="4">OP4</li>
-    </ul>
+    {{--    <ul id="test">--}}
+    {{--        <li data-filter="">All</li>--}}
+    {{--        @foreach($selected_type->categories as $category)--}}
+
+    {{--            <li data-filter="{{ $category->slug }}">{{ $category->title }}</li>--}}
+
+    {{--        @endforeach--}}
+    {{--    </ul>--}}
+
 
 
 
@@ -29,32 +32,55 @@
 
 
     <div class="custom-projects-container">
+
+        <ul class="categories-items">
+            <li data-filter="" class="categories-item">
+                <a class="categories-item-link">{{ trans('types::front.all') }}</a>
+            </li>
+            @foreach($selected_type->categories as $category)
+                <li data-filter="{{ $category->slug }}" class="categories-item">
+                    <a class="categories-item-link">{{ $category->title }}</a>
+                </li>
+            @endforeach
+        </ul>
+
+        <div class="divider">
+            <div class="line"></div>
+        </div>
+
+
         <div class="row align-items-center">
             @foreach($projects as $project)
-            <div class="col-lg-3 col-md-4 col-sm-6 col-6 p-1 gallery-item 1">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 p-1 gallery-item 1">
 
-                <div class="gallery-card">
-                    <a id="modal-btn" class="project-modal-btn">
-                        <img data-tags="Animators,Illustrators" src="{{ $project->getFirstMedia('media')->getUrl('thumb') }}" alt="" class="gallery-item-img">
-                    </a>
-                    <div class="overlay">
-                        <div class="row">
-                            <div class="col-12">
-                                <h4 class="overlay-title">
-                                    {{ $project->title }}
-                                </h4>
-                            </div>
-                            <div class="col-12">
-                                <p class="overlay-text">
-                                    {{ $project->architect }}
-                                </p>
+                    <div class="gallery-card">
+                        <a id="modal-btn"
+                           class="project-modal-btn">
+                            @if(!empty($project->getFirstMedia('media')))
+                                <img data-tags="smth" src="{{ $project->getFirstMedia('media')->getUrl('thumb') }}"
+                                     alt="" class="gallery-item-img">
+                            @else
+                                <img data-tags="sad" src="#" alt="ghjkjk" class="gallery-item-img">
+                            @endif
+                        </a>
+                        <div class="overlay">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="overlay-title">
+                                        {{ $project->title }}
+                                    </h4>
+                                </div>
+                                <div class="col-12">
+                                    <p class="overlay-text">
+                                        {{ $project->architect }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
+
                     </div>
 
                 </div>
-
-            </div>
             @endforeach
 
         </div>

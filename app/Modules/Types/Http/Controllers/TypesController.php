@@ -16,7 +16,7 @@ class TypesController extends Controller
             $query
                 ->where('locale', \App::getLocale())
                 ->where('slug', $slug);
-        })->first();
+        })->with(['categories'])->first();
 
         if (empty($selected_type)) {
             $translation = TypeTranslation::where('slug', $slug)->first();
@@ -40,7 +40,7 @@ class TypesController extends Controller
                 ]);
         }
 
-        $categories = Category::active()->reversed()->get();
+//        $categories = Category::active()->reversed()->get();
         $projects = Project::active()->reversed()->with(['media'])->get();
 
         return view('types::front.index', compact('selected_type','categories','projects'));

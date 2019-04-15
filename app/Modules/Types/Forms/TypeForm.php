@@ -2,6 +2,7 @@
 
 namespace App\Modules\Types\Forms;
 
+use App\Modules\Categories\Models\Category;
 use Charlotte\Administration\Helpers\AdministrationSeo;
 use Kris\LaravelFormBuilder\Form;
 
@@ -12,6 +13,15 @@ class TypeForm extends Form {
             'title' => trans('administration::admin.title'),
             'translate' => true,
             'model' => @$this->model
+        ]);
+
+        $categories = Category::get()->pluck('title', 'id')->toArray();
+
+        $this->add('categories', 'multiple',[
+            'title' => trans('administration::admin.title'),
+            'choices' => [
+                $categories
+            ]
         ]);
 
         AdministrationSeo::seoFields($this, $this->model);

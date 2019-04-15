@@ -1,20 +1,24 @@
 <?php
 
-namespace App\Modules\Types\Models;
+namespace App\Modules\Contacts\Models;
 
-use App\Modules\Categories\Models\Category;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
 
-class Type extends Model
+class Contact extends Model
 {
     use Translatable, NodeTrait;
 
-    protected $table = 'types';
+    protected $table = 'contacts';
 
     public $translatedAttributes = [
         'title',
+        'description',
+        'working_time',
+        'address',
+        'email',
+        'phone',
         'meta_title',
         'meta_description',
         'meta_keywords',
@@ -24,21 +28,19 @@ class Type extends Model
     protected $with = ['translations'];
 
     protected $fillable = [
-        'active'
+        'active',
+        'lat',
+        'lng',
+        'show_map'
     ];
 
     protected $casts = [
         'active' => 'boolean',
+        'show_map' => 'boolean',
     ];
 
     public function scopeActive($query)
     {
         return $query->where($this->table . '.active', 1);
-    }
-
-    public function categories() {
-
-        return $this->belongsToMany(Category::class,'types_categories','type_id','category_id');
-
     }
 }

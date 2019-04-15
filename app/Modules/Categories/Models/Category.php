@@ -3,6 +3,7 @@
 namespace App\Modules\Categories\Models;
 
 use App\Modules\Projects\Models\Project;
+use App\Modules\Types\Models\Type;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Kalnoy\Nestedset\NodeTrait;
@@ -38,4 +39,9 @@ class Category extends Model
         return $this->hasMany(Project::class);
     }
 
+    public function types() {
+
+        return $this->belongsToMany(Type::class,'types_categories','category_id','type_id');
+
+    }
 }

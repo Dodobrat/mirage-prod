@@ -22,7 +22,7 @@
         <div class="nav-links-container">
             <a data-toggle="collapse" href="#secondary-nav" role="button" aria-expanded="true" aria-controls="secondary-nav" class="nav-link">Home</a>
             <a href="#" class="nav-link">Team</a>
-            <a href="#" class="nav-link">Contact</a>
+            <a href="{{ route('contacts.index') }}" class="nav-link">{{ trans('contacts::front.contact') }}</a>
             <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="nav-link @if(App::isLocale('en')) active @endif">EN</a>
             <a href="{{ LaravelLocalization::getLocalizedURL('fr') }}" class="nav-link @if(App::isLocale('fr')) active @endif">FR</a>
         </div>
@@ -77,13 +77,13 @@
                     <a class="nav-link" href="#">Team</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="{{ route('contacts.index') }}">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">EN</a>
+                    <a class="nav-link @if(App::isLocale('en')) active @endif" href="{{ LaravelLocalization::getLocalizedURL('en') }}">EN</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">FR</a>
+                    <a class="nav-link @if(App::isLocale('fr')) active @endif" href="{{ LaravelLocalization::getLocalizedURL('fr') }}">FR</a>
                 </li>
             </ul>
         </div>

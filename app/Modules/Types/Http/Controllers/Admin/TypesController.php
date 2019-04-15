@@ -89,14 +89,18 @@ class TypesController extends BaseAdministrationController
         $type->fill($data);
         $type->save();
 
+        if (!empty($data['categories'])) {
+            $type->categories()->attach($data['categories']);
+        }
+
         return redirect(Administration::route('types.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return void
      */
     public function show($id)
     {
@@ -142,6 +146,11 @@ class TypesController extends BaseAdministrationController
         $data = $request->validated();
         $type->fill($data);
         $type->save();
+
+        $type->categories()->detach();
+        if (!empty($data['categories'])) {
+            $type->categories()->attach($data['categories']);
+        }
 
         return redirect(Administration::route('types.index'));
     }

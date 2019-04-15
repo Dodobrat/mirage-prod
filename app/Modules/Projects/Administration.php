@@ -15,7 +15,7 @@ class Administration implements Structure {
 
         $dashboard = new Dashboard();
 
-        $dashboard->linkBox(trans('projects::admin.module_name'), Project::count() , \Charlotte\Administration\Helpers\Administration::route('projects.index'), 'ti-book', 'text-danger','col-lg-4 col-md-12 col-sm-12');
+        $dashboard->linkBox(trans('projects::admin.module_name'), Project::count() , \Charlotte\Administration\Helpers\Administration::route('projects.index'), 'ti-book', 'text-danger','col-lg-3 col-md-6 col-sm-12');
 
         return $dashboard->generate();
 

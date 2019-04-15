@@ -15,7 +15,7 @@ class Administration implements Structure {
 
         $dashboard = new Dashboard();
 
-        $dashboard->linkBox(trans('categories::admin.module_name'), Category::count() , \Charlotte\Administration\Helpers\Administration::route('categories.index'), 'fa-filter', 'text-danger','col-lg-4 col-md-12 col-sm-12');
+        $dashboard->linkBox(trans('categories::admin.module_name'), Category::count() , \Charlotte\Administration\Helpers\Administration::route('categories.index'), 'fa-filter', 'text-danger','col-lg-3 col-md-6 col-sm-12');
 
         return $dashboard->generate();
 
