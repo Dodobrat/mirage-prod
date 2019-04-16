@@ -33,7 +33,7 @@ return [
     'monthly_log' => 'Monthly Log',
     'see_details' => 'See Details',
     'administrators' => 'Administrators',
-    'settings_menu' => 'Global Settings',
+    'settings_menu' => 'Settings',
 
     //EXAMPLE MODULES
     'add' => 'Add',

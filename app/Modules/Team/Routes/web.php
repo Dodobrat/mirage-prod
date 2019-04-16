@@ -4,18 +4,12 @@ Route::group([
     //'middleware' => \Administration::routeMiddleware()
 ], function () {
     Route::group([
-        'prefix' => 'contacts',
-        'as' => 'contacts.'
+        'prefix' => 'team',
+        'as' => 'team.'
     ], function () {
         Route::get('/', [
             'as' => 'index',
-            'uses' => 'ContactsController@index'
-        ]);
-
-        Route::post('/', [
-            'as' => 'store',
-            'uses' => 'ContactsController@store'
+            'uses' => 'TeamController@index'
         ]);
     });
 });
-

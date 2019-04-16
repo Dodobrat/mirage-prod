@@ -47,7 +47,6 @@ class ContactForm extends Form
 
 
         $this->add('location', 'map', [
-            'title' => trans('contacts::admin.map'),
             'default_values' => [
                 'lat' => @$this->model->lat,
                 'lng' => @$this->model->lng
@@ -66,7 +65,7 @@ class ContactForm extends Form
         ]);
 
         $this->add('submit', 'button', [
-            'title' => trans('types::admin.submit')
+            'title' => trans('contacts::admin.submit')
         ]);
 
     }

@@ -33,7 +33,7 @@ return [
     'monthly_log' => 'Месечен Лог',
     'see_details' => 'Виж Повече',
     'administrators' => 'Администратори',
-    'settings_menu' => 'Глобални настройки',
+    'settings_menu' => 'Настройки',
 
     //EXAMPLE MODULES
     'add' => 'Добави',

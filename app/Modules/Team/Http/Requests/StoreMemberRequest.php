@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Modules\Contacts\Http\Requests;
+namespace App\Modules\Team\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SendRequestContact extends FormRequest
+class StoreMemberRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,16 @@ class SendRequestContact extends FormRequest
      */
     public function rules()
     {
+        $locales = config('translatable.locales');
+
         $trans = [];
+
+        foreach ($locales as $locale) {
+            $trans[$locale . '.name'] = 'required|string';
+            $trans[$locale . '.position'] = 'required|string';
+        }
+
+        $trans['active'] = 'boolean';
 
         return $trans;
     }

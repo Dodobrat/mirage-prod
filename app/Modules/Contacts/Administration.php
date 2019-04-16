@@ -12,11 +12,7 @@ class Administration implements Structure {
 
     public function dashboard()
     {
-        $dashboard = new Dashboard();
 
-        $dashboard->linkBox(trans('contacts::admin.module_name'), Contact::count() , \Charlotte\Administration\Helpers\Administration::route('contacts.index'), 'ti-email', 'text-danger','col-lg-3 col-md-6 col-sm-12');
-
-        return $dashboard->generate();
     }
 
     public function routes()

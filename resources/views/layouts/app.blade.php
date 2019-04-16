@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Mirage Visualisation') }}</title>
     <link rel="icon" href="{{ asset('/img/mvTab.png') }}">
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
@@ -20,21 +21,21 @@
             </a>
         </div>
         <div class="nav-links-container">
-            <a data-toggle="collapse" href="#secondary-nav" role="button" aria-expanded="true" aria-controls="secondary-nav" class="nav-link">Home</a>
-            <a href="#" class="nav-link">Team</a>
+            <a data-toggle="collapse" href="#secondary-nav" role="button" aria-expanded="@if(Route::currentRouteName() == 'type.index') true @endif" aria-controls="secondary-nav" class="nav-link">Home</a>
+            <a href="{{ route('team.index') }}" class="nav-link">Team</a>
             <a href="{{ route('contacts.index') }}" class="nav-link">{{ trans('contacts::front.contact') }}</a>
             <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="nav-link @if(App::isLocale('en')) active @endif">EN</a>
             <a href="{{ LaravelLocalization::getLocalizedURL('fr') }}" class="nav-link @if(App::isLocale('fr')) active @endif">FR</a>
         </div>
     </nav>
     <div class="secondary-nav">
-        @if(Route::currentRouteName() != 'index')
-            <div class="collapse show" id="secondary-nav">
+
+            <div class="collapse @if(Route::currentRouteName() == 'type.index') show @endif" id="secondary-nav">
                 @foreach($types as $type)
                     <a href="{{ route('type.index', [$type->slug] ) }}" class="nav-link">{{ $type->title }}</a>
                 @endforeach
             </div>
-        @endif
+
     </div>
 </div>
 
@@ -74,7 +75,7 @@
                     </div>
                 </div>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Team</a>
+                    <a class="nav-link" href="{{ route('team.index') }}">Team</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('contacts.index') }}">Contact</a>
@@ -101,6 +102,9 @@
                 <h4 class="footer-company-name">{{ config('app.name', 'Mirage Visualisation') }}.</h4>
                 <p class="copyright mb-0 mt-3">
                     &copy; {{ date('Y') }} {{ config('app.name', 'Mirage Visualisation') }}.
+                </p>
+                <p class="copyright mb-0">
+                    Website By &copy; Charlotte Web Solutions.
                 </p>
                 <p class="copyright-second">
                     All rights reserved.
@@ -133,6 +137,16 @@
         </div>
     </div>
 </footer>
+
+<div class="errors">
+    <ol class="errors-list">
+        <li>error</li>
+    </ol>
+</div>
+
+<div class="success">
+    <h5 class="text-center text-white m-0"></h5>
+</div>
 
 <script src="{{ mix('/js/app.js') }}"></script>
 </body>
