@@ -62,33 +62,28 @@ function hasScrolled() {
 //             FILTER GALLERY
 // -----------------------------------------
 
-
 $(document).ready(function () {
-    $("#test li").click(function () {
+    $(".categories-items li").click(function () {
 
         let category = $(this).attr('data-filter');
-        $('#test li').removeClass('active');
+        $('.categories-items li').removeClass('active');
         $(this).addClass('active');
         if (category === '') {
-            $('.gallery-item:hidden').show().removeClass('hidden');
+            $('.gallery-item:hidden').fadeIn(200).removeClass('hidden');
         }
         else {
             $('.gallery-item').each(function () {
-                if (!$(this).hasClass(category) && !$(this).hasClass('without')) {
-                    $(this).hide().addClass('hidden');
+                if (!$(this).hasClass(category)) {
+                    $(this).fadeOut(200).addClass('hidden');
                 } else {
-                    $(this).show().removeClass('hidden');
+                    $(this).fadeIn(200).removeClass('hidden');
                 }
             });
         }
         return false
     });
-    $("#test li:first").trigger("click").addClass('active');
+    $(".categories-items li:first").trigger("click").addClass('active');
 });
-
-
-
-
 
 // -----------------------------------------
 //             PROJECT MODAL
@@ -134,8 +129,9 @@ function closeModal() {
 }
 
 // ---------------------------------------------------
-//         CONTENT - ADDED CUSTOM TOUCH SUPPORT FOR CAROUSEL
+// CONTENT - ADDED CUSTOM TOUCH SUPPORT FOR CAROUSEL
 // ---------------------------------------------------
+
 let pageWidth = window.innerWidth || document.body.clientWidth;
 let treshold = Math.max(1,Math.floor(0.01 * (pageWidth)));
 let touchstartX = 0;
@@ -179,6 +175,7 @@ function handleGesture(e) {
 // -----------------------------------------
 //             AJAX EMAIL
 // -----------------------------------------
+
 let contactForm = document.querySelector('.contact-email-form');
 if (document.body.contains(contactForm)) {
 // -----------------------------------------

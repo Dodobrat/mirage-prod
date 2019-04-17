@@ -27,7 +27,7 @@
                     </h6>
                 @endforeach
             </div>
-            <div class="col-lg-7 col-md-12 col-sm-12 col-12 contact-form-section pl-lg-5 px-3">
+            <div class="col-lg-7 col-md-12 col-sm-12 col-12 contact-form-section pl-lg-5 px-3 pt-lg-0 pt-5">
                 @foreach($contacts as $contact)
                     <form class="contact-email-form"
                           method="POST"
@@ -93,6 +93,72 @@
             @if(!empty($contacts->first()) && $contacts->first()->show_map == 1)
                 <div class="col-12 contact-map mt-5 pt-lg-5 pt-0">
                     <div id="map"></div>
+                    <script>
+                        function initMap() {
+                            let destination = {lat: parseFloat("{{ $contact->first()->lat }}") , lng: parseFloat("{{ $contact->first()->lng }}")};
+                            let options = {
+                                zoom: 16,
+                                center: destination,
+                                styles: [
+                                    {"elementType": "geometry", "stylers": [{"color": "#f5f5f5"}]},
+                                    {"elementType": "labels.icon", "stylers": [{"visibility": "off"}]},
+                                    {"elementType": "labels.text.fill", "stylers": [{"color": "#616161"}]},
+                                    {"elementType": "labels.text.stroke", "stylers": [{"color": "#f5f5f5"}]},
+                                    {
+                                        "featureType": "administrative.land_parcel",
+                                        "elementType": "labels.text.fill",
+                                        "stylers": [{"color": "#bdbdbd"}]
+                                    },
+                                    {"featureType": "poi", "elementType": "geometry", "stylers": [{"color": "#eeeeee"}]},
+                                    {"featureType": "poi", "elementType": "labels.text.fill", "stylers": [{"color": "#757575"}]},
+                                    {"featureType": "poi.park", "elementType": "geometry", "stylers": [{"color": "#e5e5e5"}]},
+                                    {"featureType": "poi.park", "elementType": "labels.text.fill", "stylers": [{"color": "#9e9e9e"}]},
+                                    {"featureType": "road", "elementType": "geometry", "stylers": [{"color": "#ffffff"}]},
+                                    {
+                                        "featureType": "road.arterial",
+                                        "elementType": "labels.text.fill",
+                                        "stylers": [{"color": "#757575"}]
+                                    },
+                                    {"featureType": "road.highway", "elementType": "geometry", "stylers": [{"color": "#dadada"}]},
+                                    {
+                                        "featureType": "road.highway",
+                                        "elementType": "labels.text.fill",
+                                        "stylers": [{"color": "#616161"}]
+                                    },
+                                    {"featureType": "road.local", "elementType": "labels.text.fill", "stylers": [{"color": "#9e9e9e"}]},
+                                    {"featureType": "transit.line", "elementType": "geometry", "stylers": [{"color": "#e5e5e5"}]},
+                                    {"featureType": "transit.station", "elementType": "geometry", "stylers": [{"color": "#eeeeee"}]},
+                                    {"featureType": "water", "elementType": "geometry", "stylers": [{"color": "#c9c9c9"}]},
+                                    {"featureType": "water", "elementType": "labels.text.fill", "stylers": [{"color": "#9e9e9e"}]}
+                                ],
+                                mapTypeControlOptions: {
+                                    mapTypeIds: ['roadmap', 'styled_map']
+                                },
+                            };
+                            map = new google.maps.Map(document.getElementById('map'),options);
+                            let marker = new google.maps.Marker({
+                                position:{lat: parseFloat("{{ $contact->first()->lat }}") , lng: parseFloat("{{ $contact->first()->lng }}")},
+                                map: map,
+                            });
+
+                            let infoWindow = new google.maps.InfoWindow({
+                                content: `
+               <p style="padding: 10px;
+                        margin: 0;
+                        font-size: 18px;
+                        text-transform: uppercase;
+                        font-weight: 400;">
+                    {!! $contact->first()->working_time  !!}
+                                    </p>
+`
+                            });
+
+                            marker.addListener('click', function () {
+                                infoWindow.open(map, marker);
+                            })
+                        }
+                    </script>
+                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKhdWL4CSF76doFX87HniGdtw53XExa34&callback=initMap" type="text/javascript"></script>
                 </div>
             @endif
         </div>

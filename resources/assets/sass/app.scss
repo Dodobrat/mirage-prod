@@ -3,16 +3,16 @@
 @import 'variables';
 
 //GLOBAL
-body{
+body {
     background: $body-bg;
     font-family: $font-family;
 }
 
-#content{
+#content {
     margin-top: 180px;
 }
 
-.errors{
+.errors {
     display: none;
     position: fixed;
     bottom: 0;
@@ -21,17 +21,19 @@ body{
     width: 100%;
     padding: 15px 5vw;
     background-color: $red;
-    ol{
+
+    ol {
         margin: 0;
         list-style-type: none;
         padding: 0;
-        li{
+
+        li {
             color: $white;
         }
     }
 }
 
-.success{
+.success {
     display: none;
     position: fixed;
     bottom: 0;
@@ -44,86 +46,16 @@ body{
 
 @import 'layout';
 
-//CONTENT
-.landing-container{
-    height: calc(80vh - 180px);
-    background-color: #000;
-    position: relative;
-    overflow: hidden;
-    .overlay-grid{
-        height: 100%;
-        position: absolute;
-        top: -9999px;
-        bottom: -9999px;
-        left: -9999px;
-        right: -9999px;
-        margin: auto;
-    }
-}
-
-$size: 0.7;
-$measurement: 80px;
-$color: #333;
-
-.placement{
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    .containment{
-        transform: scale($size);
-        height: $measurement;
-        width: $measurement;
-        .block{
-            display: inline-block;
-            width: calc(100% / 2 - 6px);
-            height: calc(100% / 2 - 6px);
-            margin: 0 5px -3px 0;
-            padding: calc(6px / 2);
-            .inner-color{
-                background: $color;
-                width: 100%;
-                height: 100%;
-            }
-        }
-        .right{
-            float: right;
-        }
-    }
-}
-
-.type-selection-container{
-    padding: 0 5vw;
-    background: $white;
-    min-height: 20vh;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    .type-btn-link{
-        .type-btn{
-            border: 2px solid #000;
-            background: transparent;
-            color: #000;
-            text-transform: uppercase;
-            font-size: 20px;
-            font-weight: $bold;
-            padding: 10px 15px;
-            margin: 15px;
-            max-width: 300px;
-            min-width: 275px;
-        }
-    }
-}
+@import 'landing';
 
 
-.selected-type{
+.selected-type {
     border: 1px solid #000;
     padding: 5px;
-    p{
+    p {
         margin: 0;
-        font-size: 25px;
-        font-weight: $bold;
+        font-size: 35px;
+        font-weight: $black;
         text-transform: uppercase;
         text-align: center;
     }
@@ -135,77 +67,8 @@ $color: #333;
 
 @import 'modal';
 
-.custom-wide-container{
-    padding: 0 5vw;
-    margin: 0 auto;
-    .contact-details{
-        .contact-heading{
-            font-weight: $bold;
-            margin-bottom: 30px;
-            width: 65%;
-        }
-        .contact-description{
-            font-size: 18px;
-            margin-bottom: 30px;
-            width: 80%;
-        }
-        .contact-detail{
-            font-weight: $bold;
-            font-size: 18px;
-            margin-bottom: 18px;
-            span{
-                font-size: 16px;
-                font-weight: $regular;
-            }
-        }
-    }
-    .contact-form-section{
-        .contact-email-form{
-            .field{
-                width: 100%;
-                height: 50px;
-                padding: 0 15px;
-                margin: 15px 0;
-                border: none;
-                background: $white;
-                &:focus{
-                    outline: none;
-                }
-            }
-            .comment{
-                width: 100%;
-                height: 250px;
-                padding: 15px;
-                margin: 15px 0;
-                border: none;
-                background: $white;
-                resize: none;
-                &:focus{
-                    outline: none;
-                }
-            }
-            .submit-btn{
-                border: none;
-                background: $bluish;
-                padding: 15px 25px;
-                color: $white;
-                text-transform: uppercase;
-                font-size: 14px;
-                font-weight: $bold;
-                letter-spacing: 1px;
-                &:focus{
-                    outline: none;
-                }
-            }
-        }
-    }
-    .contact-map{
-        #map{
-            height: 50vh;
-            width: 100%;
-            background-color: $bluish;
-        }
-    }
-}
+@import 'team';
+
+@import 'contact';
 
 @import 'responsive';

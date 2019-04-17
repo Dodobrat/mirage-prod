@@ -40,8 +40,15 @@ class TypesController extends Controller
                 ]);
         }
 
-//        $categories = Category::active()->reversed()->get();
-        $projects = Project::active()->reversed()->with(['media'])->get();
+//        $categories = Category::active()->with(['projects','types'])->reversed()->get();
+
+        //TRQBVA DA SE SETUPNE ajax kato se klikne kategoriq i da se vzima id-to na kategoriqta
+        // Trqbva da se vidi kak da se vzemat vs proekti ot kategoriite na tipa
+
+        $projects = Project::active()
+            ->reversed()
+            ->with(['media'])
+            ->get();
 
         return view('types::front.index', compact('selected_type','categories','projects'));
     }
