@@ -25,7 +25,7 @@ class ProjectsController extends Controller
 
         return response()->json([
             'errors' => $errors,
-            'project_modal' => view('projects::front.boxes.project', compact('project'))->render(),
+            'project_modal' => view('projects::boxes.project', compact('project'))->render(),
         ]);
     }
 }

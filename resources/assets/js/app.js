@@ -85,49 +85,6 @@ $(document).ready(function () {
     $(".categories-items li:first").trigger("click").addClass('active');
 });
 
-// -----------------------------------------
-//             PROJECT MODAL
-// -----------------------------------------
-
-let $modal = $('#my-modal');
-let $modalContent = $('.project-modal-content');
-let $modalBtn = $('#modal-btn');
-let $closeBtn = $('.project-modal-close-btn');
-
-// Events
-$modalBtn.on('click', openModal);
-$closeBtn.on('click', closeModal);
-
-// Open
-function openModal() {
-    $modal.slideDown(300);
-    $('body').css('overflowY','hidden');
-    setTimeout(function () {
-        $modalContent.fadeIn(200);
-    }, 300);
-    $(document).keyup(function(e) {
-        if (e.keyCode === 27){
-            closeModal();
-        }
-        if (e.keyCode === 37){
-            $('a.carousel-control-prev').trigger('click');
-        }
-        if (e.keyCode === 39){
-            $('a.carousel-control-next').trigger('click');
-        }
-
-    });
-}
-
-// Close
-function closeModal() {
-    $modalContent.fadeOut(200);
-    $('body').css('overflowY','auto');
-    setTimeout(function () {
-        $modal.slideUp(300);
-    }, 200);
-}
-
 // ---------------------------------------------------
 // CONTENT - ADDED CUSTOM TOUCH SUPPORT FOR CAROUSEL
 // ---------------------------------------------------

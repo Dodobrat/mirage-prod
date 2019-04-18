@@ -2,7 +2,6 @@
 
 namespace App\Modules\Types\Http\Controllers;
 
-use App\Modules\Categories\Models\Category;
 use App\Modules\Projects\Models\Project;
 use App\Modules\Types\Models\Type;
 use App\Http\Controllers\Controller;
@@ -40,16 +39,15 @@ class TypesController extends Controller
                 ]);
         }
 
-//        $categories = Category::active()->with(['projects','types'])->reversed()->get();
-
-        //TRQBVA DA SE SETUPNE ajax kato se klikne kategoriq i da se vzima id-to na kategoriqta
-        // Trqbva da se vidi kak da se vzemat vs proekti ot kategoriite na tipa
+        $available_categories = $selected_type->categories->pluck('id')->toArray();
 
         $projects = Project::active()
-            ->reversed()
             ->with(['media'])
+            ->whereIn('category_id', $available_categories)
+            ->reversed()
             ->get();
 
-        return view('types::front.index', compact('selected_type','categories','projects'));
+
+        return view('types::front.index', compact('selected_type','projects'));
     }
 }

@@ -12,25 +12,7 @@
         </div>
     </div>
 
-
-    {{--FILTERS TABS--}}
-
-    {{--    <ul id="test">--}}
-    {{--        <li data-filter="">All</li>--}}
-    {{--        @foreach($selected_type->categories as $category)--}}
-
-    {{--            <li data-filter="{{ $category->slug }}">{{ $category->title }}</li>--}}
-
-    {{--        @endforeach--}}
-    {{--    </ul>--}}
-
-
-
-
-
     {{--CUSTOM PROJECTS CONTAINER--}}
-
-
     <div class="custom-projects-container">
 
         <ul class="categories-items">
@@ -50,17 +32,19 @@
 
 
         <div class="row align-items-center">
+{{--            <div class="cover-up"></div>--}}
             @foreach($projects as $project)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6 p-1 gallery-item {{ $project->category->slug }}">
 
                     <div class="gallery-card">
                         <a id="modal-btn"
+                           onclick="openModal( '{{ $project->id }}','{{ route('projects.getProject') }}','{{ $project->slug }}')"
                            class="project-modal-btn">
                             @if(!empty($project->getFirstMedia('media')))
-                                <img data-tags="smth" src="{{ $project->getFirstMedia('media')->getUrl('thumb') }}"
+                                <img src="{{ $project->getFirstMedia('media')->getUrl('thumb') }}"
                                      alt="" class="gallery-item-img">
                             @else
-                                <img data-tags="sad" src="#" alt="ghjkjk" class="gallery-item-img">
+                                <img src="#" alt="" class="gallery-item-img">
                             @endif
                         </a>
                         <div class="overlay">
@@ -84,6 +68,7 @@
             @endforeach
 
         </div>
+{{--        {{ $projects->links() }}--}}
     </div>
 
 
@@ -94,4 +79,76 @@
 
 
 
+@endsection
+
+@section('project')
+    <script>
+        // -----------------------------------------
+        //             PROJECT MODAL
+        // -----------------------------------------
+
+        let $modal = $('#my-modal');
+        let $modalContent = $('.project-modal-content');
+        let $modalBtn = $('#modal-btn');
+        let $closeBtn = $('.project-modal-close-btn');
+
+        // Open
+        function openModal(id, url, slug) {
+            let projectId = id;
+            let projectUrl = url;
+            $.ajaxSetup({
+                cache: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: projectUrl,
+                method: 'post',
+                data: {
+                    project_id: projectId,
+                },
+                beforeSend: function () {
+                    // $(".aspin").show();
+                },
+
+                success: function (result) {
+                    if (result.errors.length != 0) {
+                        // $(".aspin").hide();
+                        $(".errors").fadeIn(200);
+                        $('.errors .errors-list').empty();
+                        $.each(result.errors, function (key, value) {
+                            $('.errors .errors-list').append('<li>' + value + '</li>');
+                        });
+                        setTimeout(function(){
+                            $(".errors").fadeOut(200);
+                        }, 5000);
+                    } else {
+                        // $(".aspin").hide();
+                        $modal.fadeIn(300);
+                        $('body').css('overflowY','hidden');
+                        $modal.html(result.project_modal);
+                        $(document).keyup(function(e) {
+                            if (e.keyCode === 27){
+                                closeModal();
+                            }
+                            if (e.keyCode === 37){
+                                $('a.carousel-control-prev').trigger('click');
+                            }
+                            if (e.keyCode === 39){
+                                $('a.carousel-control-next').trigger('click');
+                            }
+
+                        });
+                    }
+                }
+            });
+        }
+
+        // Close
+        function closeModal() {
+            $modal.fadeOut(300);
+            $('body').css('overflowY','auto');
+        }
+    </script>
 @endsection
