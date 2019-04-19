@@ -28,6 +28,9 @@
 
 @media screen and (max-width: 992px) {
 
+    .preloader{
+        margin-top: -58px;
+    }
     .landing-container {
         height: calc(80vh - 58px);
     }

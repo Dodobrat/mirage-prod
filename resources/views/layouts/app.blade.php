@@ -11,49 +11,59 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 <body>
-<div class="preloader">
-    <div class="loader">
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
-        <span class="loader-block"></span>
+    <div class="preloader">
+        <div class="loader">
+            <span class="loader-block"></span>
+            <span class="loader-block"></span>
+            <span class="loader-block"></span>
+            <span class="loader-block"></span>
+            <span class="loader-block"></span>
+            <span class="loader-block"></span>
+            <span class="loader-block"></span>
+            <span class="loader-block"></span>
+            <span class="loader-block"></span>
+        </div>
     </div>
-</div>
 <div class="nav-container nav-down">
     <nav class="main-nav">
         <div class="nav-logo-container">
-            <a href="{{ route('index') }}" class="nav-logo">
+            <a href="{{ route('index') }}" class="nav-logo redirect">
                 <img id="main-logo" src="{{ asset('/img/MV.png') }}" alt="">
                 <img id="text-logo" src="{{ asset('/img/miragevis.png') }}" alt="">
             </a>
         </div>
         <div class="nav-links-container">
-            <a data-toggle="collapse" href="#secondary-nav" role="button" aria-expanded="@if(Route::currentRouteName() == 'type.index') true @endif" aria-controls="secondary-nav" class="nav-link">{{ trans('front.home') }}</a>
-            <a href="{{ route('team.index') }}" class="nav-link">{{ trans('front.team') }}</a>
-            <a href="{{ route('contacts.index') }}" class="nav-link">{{ trans('front.contact') }}</a>
-            <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="nav-link @if(App::isLocale('en')) active @endif">{{ trans('front.en') }}</a>
-            <a href="{{ LaravelLocalization::getLocalizedURL('fr') }}" class="nav-link @if(App::isLocale('fr')) active @endif">{{ trans('front.fr') }}</a>
+            <button data-toggle="collapse"
+                    type="button"
+                    data-target="#secondary-nav"
+                    role="button"
+                    aria-expanded="@if(Route::currentRouteName() == 'type.index') true @endif"
+                    aria-controls="secondary-nav"
+                    class="nav-link">
+                {{ trans('front.home') }}
+            </button>
+            <a href="{{ route('team.index') }}" class="nav-link redirect">{{ trans('front.team') }}</a>
+            <a href="{{ route('contacts.index') }}" class="nav-link redirect">{{ trans('front.contact') }}</a>
+            <a href="{{ LaravelLocalization::getLocalizedURL('en') }}"
+               class="redirect nav-link @if(App::isLocale('en')) active @endif">{{ trans('front.en') }}</a>
+            <a href="{{ LaravelLocalization::getLocalizedURL('fr') }}"
+               class="redirect nav-link @if(App::isLocale('fr')) active @endif">{{ trans('front.fr') }}</a>
         </div>
     </nav>
     <div class="secondary-nav">
 
-            <div class="collapse @if(Route::currentRouteName() == 'type.index') show @endif" id="secondary-nav">
-                @foreach($types as $type)
-                    <a href="{{ route('type.index', [$type->slug] ) }}" class="nav-link">{{ $type->title }}</a>
-                @endforeach
-            </div>
+        <div class="collapse @if(Route::currentRouteName() == 'type.index') show @endif" id="secondary-nav">
+            @foreach($types as $type)
+                <a href="{{ route('type.index', [$type->slug] ) }}" class="nav-link redirect">{{ $type->title }}</a>
+            @endforeach
+        </div>
 
     </div>
 </div>
 
 <div class="mobile-nav-container">
     <nav class="navbar fixed-top navbar-expand-xl navbar-light">
-        <a class="navbar-brand" href="{{ route('index') }}">
+        <a class="navbar-brand redirect" href="{{ route('index') }}">
             <img id="mobile-main-logo" src="{{ asset('/img/MV.png') }}" alt="">
         </a>
         <button class="navbar-toggler collapsed"
@@ -73,30 +83,40 @@
         <div class="collapse navbar-collapse" id="navbarExpand">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#homeOptions" role="button" aria-expanded="false" aria-controls="homeOptions">{{ trans('front.home') }}</a>
+                    <button class="nav-link"
+                            data-toggle="collapse"
+                            data-target="#homeOptions"
+                            type="button"
+                            aria-expanded="false"
+                            aria-controls="homeOptions">
+                        {{ trans('front.home') }}
+                    </button>
                 </li>
                 <div class="collapse mx-n3" id="homeOptions">
                     <div class="home-options px-3">
                         <ul class="navbar-nav mr-auto my-2">
                             @foreach($types as $type)
                                 <li class="nav-item">
-                                    <a href="{{ route('type.index', [$type->slug] ) }}" class="nav-link">{{ $type->title }}</a>
+                                    <a href="{{ route('type.index', [$type->slug] ) }}"
+                                       class="nav-link redirect">{{ $type->title }}</a>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('team.index') }}">{{ trans('front.team') }}</a>
+                    <a class="nav-link redirect" href="{{ route('team.index') }}">{{ trans('front.team') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('contacts.index') }}">{{ trans('front.contact') }}</a>
+                    <a class="nav-link redirect" href="{{ route('contacts.index') }}">{{ trans('front.contact') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @if(App::isLocale('en')) active @endif" href="{{ LaravelLocalization::getLocalizedURL('en') }}">{{ trans('front.en') }}</a>
+                    <a class="nav-link redirect @if(App::isLocale('en')) active @endif"
+                       href="{{ LaravelLocalization::getLocalizedURL('en') }}">{{ trans('front.en') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @if(App::isLocale('fr')) active @endif" href="{{ LaravelLocalization::getLocalizedURL('fr') }}">{{ trans('front.fr') }}</a>
+                    <a class="nav-link redirect @if(App::isLocale('fr')) active @endif"
+                       href="{{ LaravelLocalization::getLocalizedURL('fr') }}">{{ trans('front.fr') }}</a>
                 </li>
             </ul>
         </div>
@@ -129,14 +149,14 @@
             <div class="col-lg-3 col-md-12 footer-field">
                 <div class="row">
                     <div class="col-lg-6 col-md-12 footer-field">
-                        <a href="{{ route('index') }}" class="footer-link">{{ trans('front.home') }}</a>
-                        <a href="{{ route('team.index') }}" class="footer-link">{{ trans('front.team') }}</a>
-                        <a href="{{ route('contacts.index') }}" class="footer-link">{{ trans('front.contact') }}</a>
+                        <a href="{{ route('index') }}" class="footer-link redirect">{{ trans('front.home') }}</a>
+                        <a href="{{ route('team.index') }}" class="footer-link redirect">{{ trans('front.team') }}</a>
+                        <a href="{{ route('contacts.index') }}" class="footer-link redirect">{{ trans('front.contact') }}</a>
                     </div>
                     <div class="col-lg-6 col-md-12 footer-field">
-                        <a href="{{ route('index') }}" class="footer-link">{{ trans('front.architecture') }}</a>
-                        <a href="{{ route('index') }}" class="footer-link">{{ trans('front.real_estate') }}</a>
-                        <a href="{{ route('index') }}" class="footer-link">{{ trans('front.projects') }}</a>
+                        <a href="{{ route('index') }}" class="footer-link redirect">{{ trans('front.architecture') }}</a>
+                        <a href="{{ route('index') }}" class="footer-link redirect">{{ trans('front.real_estate') }}</a>
+                        <a href="{{ route('index') }}" class="footer-link redirect">{{ trans('front.projects') }}</a>
                     </div>
                 </div>
             </div>

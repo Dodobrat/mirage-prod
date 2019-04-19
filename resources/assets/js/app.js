@@ -7,6 +7,31 @@ require('bootstrap/dist/js/bootstrap.js');
 global.$ = global.jQuery = require('jquery');
 
 // -----------------------------------------
+//             PAGE PRELOAD
+// -----------------------------------------
+let redirectors = document.querySelectorAll('.redirect');
+
+redirectors.forEach(function (redirector) {
+    redirector.addEventListener('click', function (e) {
+        e.preventDefault();
+        let url = redirector.getAttribute('href');
+        $preloader.slideDown(200);
+        $('body').css('overflow','hidden');
+        setTimeout(() => {
+            window.location.href = url;
+        }, 200);
+    })
+});
+
+$preloader = $('.preloader');
+window.addEventListener('load', function(){
+    setTimeout(() => {
+        $preloader.slideUp(300);
+        $('body').css('overflow','unset');
+    }, 1);
+});
+
+// -----------------------------------------
 //             MOBILE NAV TOGGLER
 // -----------------------------------------
 

@@ -8,6 +8,8 @@ body {
     font-family: $font-family;
 }
 
+@import 'preloader';
+
 #content {
     margin-top: 180px;
 }

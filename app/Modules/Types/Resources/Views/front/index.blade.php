@@ -17,11 +17,11 @@
 
         <ul class="categories-items">
             <li data-filter="" class="categories-item">
-                <a class="categories-item-link">{{ trans('types::front.all') }}</a>
+                <button class="categories-item-link">{{ trans('types::front.all') }}</button>
             </li>
             @foreach($selected_type->categories as $category)
                 <li data-filter="{{ $category->slug }}" class="categories-item">
-                    <a class="categories-item-link">{{ $category->title }}</a>
+                    <button class="categories-item-link">{{ $category->title }}</button>
                 </li>
             @endforeach
         </ul>
@@ -37,7 +37,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6 p-1 gallery-item {{ $project->category->slug }}">
 
                     <div class="gallery-card">
-                        <a id="modal-btn"
+                        <button id="modal-btn"
                            onclick="openModal( '{{ $project->id }}','{{ route('projects.getProject') }}','{{ $project->slug }}')"
                            class="project-modal-btn">
                             @if(!empty($project->getFirstMedia('media')))
@@ -46,7 +46,7 @@
                             @else
                                 <img src="#" alt="" class="gallery-item-img">
                             @endif
-                        </a>
+                        </button>
                         <div class="overlay">
                             <div class="row">
                                 <div class="col-12">

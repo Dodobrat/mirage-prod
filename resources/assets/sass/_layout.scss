@@ -41,6 +41,8 @@
                 font-weight: $bold;
                 text-transform: uppercase;
                 color: $primary-font-color;
+                background-color: transparent;
+                border: none;
                 &:focus{
                     outline: none;
                 }
@@ -121,6 +123,11 @@
                 .nav-item{
                     .nav-link{
                         color: $mobile-collapsed-text;
+                        background-color: transparent;
+                        border: none;
+                        &:focus{
+                            outline: none;
+                        }
                     }
                 }
                 #homeOptions{
