@@ -9,13 +9,24 @@ global.$ = global.jQuery = require('jquery');
 // -----------------------------------------
 //             PAGE PRELOAD
 // -----------------------------------------
+
+function isIE() {
+    let ua = navigator.userAgent;
+    /* MSIE used to detect old browsers and Trident used to newer ones*/
+    return ua.indexOf("MSIE ") > -1 || ua.indexOf("Trident/") > -1;
+}
+/* Create an alert to show if the browser is IE or not */
+if (isIE()){
+    document.querySelector('.preloader').style.display = 'none';
+}
+
 let redirectors = document.querySelectorAll('.redirect');
 
 redirectors.forEach(function (redirector) {
     redirector.addEventListener('click', function (e) {
         e.preventDefault();
         let url = redirector.getAttribute('href');
-        $preloader.slideDown(200);
+        $preloader.fadeIn(200);
         $('body').css('overflow','hidden');
         setTimeout(() => {
             window.location.href = url;
@@ -24,12 +35,13 @@ redirectors.forEach(function (redirector) {
 });
 
 $preloader = $('.preloader');
-window.addEventListener('load', function(){
+document.addEventListener('DOMContentLoaded', (event) => {
     setTimeout(() => {
-        $preloader.slideUp(300);
+        $preloader.fadeOut(300);
         $('body').css('overflow','unset');
     }, 1);
 });
+
 
 // -----------------------------------------
 //             MOBILE NAV TOGGLER
@@ -94,16 +106,24 @@ $(document).ready(function () {
         $('.categories-items li').removeClass('active');
         $(this).addClass('active');
         if (category === '') {
-            $('.gallery-item:hidden').fadeIn(200).removeClass('hidden');
+            $('.cover-up').fadeIn(200);
+            setTimeout(() => {
+                $('.gallery-item:hidden').show().removeClass('hidden');
+            }, 200);
+            $('.cover-up').fadeOut(200);
         }
         else {
-            $('.gallery-item').each(function () {
-                if (!$(this).hasClass(category)) {
-                    $(this).fadeOut(200).addClass('hidden');
-                } else {
-                    $(this).fadeIn(200).removeClass('hidden');
-                }
-            });
+            $('.cover-up').fadeIn(200);
+            setTimeout(() => {
+                $('.gallery-item').each(function () {
+                    if (!$(this).hasClass(category)) {
+                        $(this).hide().addClass('hidden');
+                    } else {
+                        $(this).show().removeClass('hidden');
+                    }
+                });
+            }, 200);
+            $('.cover-up').fadeOut(200);
         }
         return false
     });
@@ -231,6 +251,7 @@ function validateComment(){
 let url = contactForm.dataset.url;
 
 $(document).ready(function () {
+    $('.loader-container').hide();
     $('.submit-btn').on('click', function (e) {
         let self = $(this);
         e.preventDefault();
@@ -251,12 +272,12 @@ $(document).ready(function () {
 
             },
             beforeSend: function() {
-                // $('.submit-btn').addClass('loading');
+                $('.loader-container').show();
             },
 
             success: function(result) {
                 if (result.errors) {
-                    // $('.submit-btn').removeClass('loading');
+                    $('.loader-container').hide();
                     $(".errors").fadeIn(200);
                     $('.errors .errors-list').empty();
                     $.each(result.errors, function (key, value) {
@@ -266,7 +287,7 @@ $(document).ready(function () {
                         $(".errors").fadeOut(200);
                     }, 5000);
                 } else {
-                    // $('.submit-btn').removeClass('loading');
+                    $('.loader-container').hide();
                     $(".success").fadeIn(200);
                     $.each(result, function (key, value) {
                         $('.success h5').html(result.success);

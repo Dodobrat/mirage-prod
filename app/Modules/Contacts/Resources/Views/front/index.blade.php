@@ -56,8 +56,7 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div
-                                    class="contact-subject-field {{ $errors->has('subject') ? ' has-error' : '' }}">
+                                <div class="contact-subject-field {{ $errors->has('subject') ? ' has-error' : '' }}">
                                     <input class="field subject"
                                            id="subject_{{ $contact->id }}"
                                            type="text"
@@ -67,8 +66,7 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div
-                                    class="contact-comment-field {{ $errors->has('comment') ? ' has-error' : '' }}">
+                                <div class="contact-comment-field {{ $errors->has('comment') ? ' has-error' : '' }}">
                             <textarea class="comment"
                                       id="comment_{{ $contact->id }}"
                                       type="text"
@@ -86,7 +84,9 @@
                                 id="ajaxSubmitCon_{{$contact->id}}">
                             {{trans('contacts::front.send')}}
                         </button>
-
+                        <div class="loader-container">
+                            <div class="loader"></div>
+                        </div>
                     </form>
                 @endforeach
             </div>
@@ -95,7 +95,10 @@
                     <div id="map"></div>
                     <script>
                         function initMap() {
-                            let destination = {lat: parseFloat("{{ $contact->first()->lat }}") , lng: parseFloat("{{ $contact->first()->lng }}")};
+                            let destination = {
+                                lat: parseFloat("{{ $contact->first()->lat }}"),
+                                lng: parseFloat("{{ $contact->first()->lng }}")
+                            };
                             let options = {
                                 zoom: 16,
                                 center: destination,
@@ -335,9 +338,12 @@
                                     mapTypeIds: ['roadmap', 'styled_map']
                                 },
                             };
-                            map = new google.maps.Map(document.getElementById('map'),options);
+                            map = new google.maps.Map(document.getElementById('map'), options);
                             let marker = new google.maps.Marker({
-                                position:{lat: parseFloat("{{ $contact->first()->lat }}") , lng: parseFloat("{{ $contact->first()->lng }}")},
+                                position: {
+                                    lat: parseFloat("{{ $contact->first()->lat }}"),
+                                    lng: parseFloat("{{ $contact->first()->lng }}")
+                                },
                                 map: map,
                             });
 
@@ -358,7 +364,9 @@
                             })
                         }
                     </script>
-                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKhdWL4CSF76doFX87HniGdtw53XExa34&callback=initMap" type="text/javascript"></script>
+                    <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKhdWL4CSF76doFX87HniGdtw53XExa34&callback=initMap"
+                            type="text/javascript"></script>
                 </div>
             @endif
         </div>
