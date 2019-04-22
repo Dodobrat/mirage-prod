@@ -11,19 +11,13 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 <body>
-    <div class="preloader">
-        <div class="loader">
-            <span class="loader-block"></span>
-            <span class="loader-block"></span>
-            <span class="loader-block"></span>
-            <span class="loader-block"></span>
-            <span class="loader-block"></span>
-            <span class="loader-block"></span>
-            <span class="loader-block"></span>
-            <span class="loader-block"></span>
-            <span class="loader-block"></span>
-        </div>
-    </div>
+<div class="preloader">
+    <img class="load-logo" src="{{ asset('/img/MV.png') }}" alt="">
+</div>
+<div class="pageloader">
+    <img class="load-logo" src="{{ asset('/img/MV.png') }}" alt="">
+    <div class="load-spinner"></div>
+</div>
 <div class="nav-container nav-down">
     <nav class="main-nav">
         <div class="nav-logo-container">

@@ -90,6 +90,10 @@
                     </form>
                 @endforeach
             </div>
+            <div class="col-12">
+                <p class="curr-time">current time in your country <span class="clock"></span></p>
+                <p class="our-time">current time in our country <span class="our-clock"></span></p>
+            </div>
             @if(!empty($contacts->first()) && $contacts->first()->show_map == 1)
                 <div class="col-12 contact-map mt-5 pt-lg-5 pt-0">
                     <div id="map"></div>
@@ -361,7 +365,12 @@
 
                             marker.addListener('click', function () {
                                 infoWindow.open(map, marker);
+                            });
+                            window.addEventListener('load',function () {
+                                infoWindow.open(map, marker);
                             })
+
+
                         }
                     </script>
                     <script async defer

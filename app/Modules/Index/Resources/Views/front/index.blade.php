@@ -8,7 +8,7 @@
     <div class="type-selection-container">
         @foreach($types as $type)
 
-            <a class="type-btn-link" href="{{ route('type.index', [$type->slug] ) }}">
+            <a class="type-btn-link redirect" href="{{ route('type.index', [$type->slug] ) }}">
                 <button class="type-btn">
                     {{ $type->title }}
                 </button>
