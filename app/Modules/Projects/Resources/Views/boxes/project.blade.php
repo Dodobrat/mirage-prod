@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-2 col-2 text-right">
                     <button class="project-modal-close-btn" onclick="closeModal()">
-                        <img src="{{ asset('/img/x.svg') }}" alt="">
+                        <img class="lazy-load" data-src="{{ asset('/img/x.svg') }}" alt="">
                     </button>
                 </div>
             </div>
@@ -31,9 +31,9 @@
                     @foreach($project->getMedia('media') as $media)
                         <div class="carousel-item @if($loop->first) active @endif">
                             @if(!empty($media))
-                                <img src="{{ $media->getUrl() }}" alt="">
+                                <img class="lazy-load" data-src="{{ $media->getUrl() }}" alt="">
                             @else
-                                <img src="https://via.placeholder.com/300C/O https://placeholder.com/" alt="">
+                                <img class="lazy-load" data-src="https://via.placeholder.com/300C/O https://placeholder.com/" alt="">
                             @endif
                         </div>
                     @endforeach

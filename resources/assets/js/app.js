@@ -259,7 +259,6 @@ if (document.body.contains(contactForm)) {
     let url = contactForm.dataset.url;
 
     $(document).ready(function () {
-        $('.loader-container').hide();
         $('.submit-btn').on('click', function (e) {
             let self = $(this);
             e.preventDefault();
@@ -311,40 +310,44 @@ if (document.body.contains(contactForm)) {
 
 }
 
+if (document.body.contains(document.querySelector('.clock')) && document.body.contains(document.querySelector('.our-clock'))) {
 
-function clock() {
-    let time = new Date(),
-    hours = time.getHours(),
-    minutes = time.getMinutes(),
-    seconds = time.getSeconds();
-    document.querySelectorAll('.clock')[0].innerHTML = harold(hours) + ":" + harold(minutes) + ":" + harold(seconds);
+    function clock() {
+        let time = new Date(),
+            hours = time.getHours(),
+            minutes = time.getMinutes(),
+            seconds = time.getSeconds();
+        document.querySelectorAll('.clock')[0].innerHTML = harold(hours) + ":" + harold(minutes) + ":" + harold(seconds);
 
-    function harold(standIn) {
-        if (standIn < 10) {
-            standIn = '0' + standIn
+        function harold(standIn) {
+            if (standIn < 10) {
+                standIn = '0' + standIn
+            }
+            return standIn;
         }
-        return standIn;
     }
+
+    setInterval(clock, 1000);
+
+    function ourclock() {
+        let date = new Date();
+        let offset = date.getTimezoneOffset();
+
+        date.setMinutes(date.getMinutes() + offset);
+        let sofiaOffset = 3*60;
+        date.setMinutes(date.getMinutes() + sofiaOffset);
+
+        document.querySelectorAll('.our-clock')[0].innerHTML = harold(date.getHours()) + ":" + harold(date.getMinutes()) + ":" + harold(date.getSeconds());
+        function harold(standIn) {
+            if (standIn < 10) {
+                standIn = '0' + standIn
+            }
+            return standIn;
+        }
+    }
+
+    setInterval(ourclock, 1000);
+
 }
 
-setInterval(clock, 1000);
-
-function ourclock() {
-    let date = new Date();
-    let offset = date.getTimezoneOffset();
-
-    date.setMinutes(date.getMinutes() + offset);
-    let sofiaOffset = 3*60;
-    date.setMinutes(date.getMinutes() + sofiaOffset);
-
-    document.querySelectorAll('.our-clock')[0].innerHTML = harold(date.getHours()) + ":" + harold(date.getMinutes()) + ":" + harold(date.getSeconds());
-    function harold(standIn) {
-        if (standIn < 10) {
-            standIn = '0' + standIn
-        }
-        return standIn;
-    }
-}
-
-setInterval(ourclock, 1000);
 

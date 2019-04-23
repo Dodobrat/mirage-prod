@@ -20,10 +20,18 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-1">
                     <div class="member-card-container">
                         <div class="member-img-container">
-                            <img src="{{ $member->getFirstMedia('photo')->getUrl('thumb') }}" alt=""
-                                 class="member-photo">
-                            <img src="{{ $member->getFirstMedia('illustration')->getUrl('thumb') }}" alt=""
-                                 class="member-illustration">
+                            @if(!empty($member->getFirstMedia('photo')))
+                                <img src="{{ $member->getFirstMedia('photo')->getUrl() }}" alt=""
+                                     class="member-photo">
+                            @else
+                                <img src="#" alt="" class="member-photo">
+                            @endif
+                            @if(!empty($member->getFirstMedia('illustration')))
+                                <img src="{{ $member->getFirstMedia('illustration')->getUrl() }}" alt=""
+                                     class="member-illustration">
+                            @else
+                                <img src="#" alt="" class="member-illustration">
+                            @endif
                         </div>
                         <div class="member-info px-2">
                             <h6 class="member-name">{{ $member->name }}</h6>
@@ -48,9 +56,9 @@
                 </p>
             </div>
             <div class="col-12 text-center">
-                <button class="talk">
+                <a href="{{ route('contacts.index') }}" class="talk redirect">
                     {{ trans('team::front.talk') }}
-                </button>
+                </a>
             </div>
         </div>
     </div>

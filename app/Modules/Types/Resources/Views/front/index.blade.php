@@ -44,7 +44,7 @@
                                 <img src="{{ $project->getFirstMedia('media')->getUrl('thumb') }}"
                                      alt="" class="gallery-item-img">
                             @else
-                                <img src="#" alt="" class="gallery-item-img">
+                                <img src="" alt="{{ $project->title }}" class="gallery-item-img">
                             @endif
                         </button>
                         <div class="overlay">
@@ -91,7 +91,6 @@
         let $modalContent = $('.project-modal-content');
         let $modalBtn = $('#modal-btn');
         let $closeBtn = $('.project-modal-close-btn');
-
         // Open
         function openModal(id, url, slug) {
             let projectId = id;
@@ -109,12 +108,12 @@
                     project_id: projectId,
                 },
                 beforeSend: function () {
-                    // $(".aspin").show();
+                    $('.loader-container').show();
                 },
 
                 success: function (result) {
                     if (result.errors.length != 0) {
-                        // $(".aspin").hide();
+                        $('.loader-container').hide();
                         $(".errors").fadeIn(200);
                         $('.errors .errors-list').empty();
                         $.each(result.errors, function (key, value) {
@@ -124,10 +123,15 @@
                             $(".errors").fadeOut(200);
                         }, 5000);
                     } else {
-                        // $(".aspin").hide();
+                        $('.loader-container').hide();
                         $modal.fadeIn(300);
                         $('body').css('overflowY','hidden');
                         $modal.html(result.project_modal);
+                        let images = document.querySelectorAll(".lazy-load");
+                        for(let i = 0; i < images.length; i++)
+                        {
+                            images[i].src = images[i].getAttribute('data-src');
+                        }
                         $(document).keyup(function(e) {
                             if (e.keyCode === 27){
                                 closeModal();

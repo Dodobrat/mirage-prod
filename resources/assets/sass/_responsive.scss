@@ -31,12 +31,16 @@
     .preloader{
         margin-top: -58px;
     }
+    .pageloader{
+        margin-top: -58px;
+    }
     .landing-container {
         height: calc(80vh - 58px);
     }
 
     #content {
         margin-top: 58px;
+        min-height: calc(100vh - 106px);
     }
 
     .placement {

@@ -30,7 +30,6 @@
             <button data-toggle="collapse"
                     type="button"
                     data-target="#secondary-nav"
-                    role="button"
                     aria-expanded="@if(Route::currentRouteName() == 'type.index') true @endif"
                     aria-controls="secondary-nav"
                     class="nav-link">
@@ -171,8 +170,11 @@
 <div class="success">
     <h5 class="text-center text-white m-0"></h5>
 </div>
-
+<div class="loader-container">
+    <div class="loader"></div>
+</div>
 <script src="{{ mix('/js/app.js') }}"></script>
 @yield('project')
+@yield('access')
 </body>
 </html>
