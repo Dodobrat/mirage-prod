@@ -34,6 +34,7 @@ class WorkflowController extends BaseAdministrationController
         $table->addColumn('action', function ($flow) {
             $action = AdministrationField::edit(Administration::route('workflow.edit', $flow->id));
             $action .= AdministrationField::delete(Administration::route('workflow.destroy', $flow->id));
+            $action .= AdministrationField::media($flow, ['access']);
             return $action;
         });
 

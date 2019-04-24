@@ -28,11 +28,11 @@ redirectors.forEach(function (redirector) {
     redirector.addEventListener('click', function (e) {
         e.preventDefault();
         let url = redirector.getAttribute('href');
-        $preloader.fadeIn(200);
+        $preloader.fadeIn(300);
         $('body').css('overflow', 'hidden');
         setTimeout(() => {
             window.location.href = url;
-        }, 200);
+        }, 300);
     })
 });
 
@@ -41,11 +41,10 @@ $pageloader = $('.pageloader');
 document.addEventListener('DOMContentLoaded', (event) => {
     $preloader.hide();
     setTimeout(() => {
-        $pageloader.fadeOut(300);
+        $pageloader.fadeOut(500);
     }, 1);
-    setTimeout(() => {
-        $('body').css('overflow', 'unset');
-    }, 300);
+    $('body').css('overflow', 'unset');
+
 });
 
 
@@ -334,10 +333,11 @@ if (document.body.contains(document.querySelector('.clock')) && document.body.co
         let offset = date.getTimezoneOffset();
 
         date.setMinutes(date.getMinutes() + offset);
-        let sofiaOffset = 3*60;
+        let sofiaOffset = 3 * 60;
         date.setMinutes(date.getMinutes() + sofiaOffset);
 
         document.querySelectorAll('.our-clock')[0].innerHTML = harold(date.getHours()) + ":" + harold(date.getMinutes()) + ":" + harold(date.getSeconds());
+
         function harold(standIn) {
             if (standIn < 10) {
                 standIn = '0' + standIn

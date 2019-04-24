@@ -1,7 +1,7 @@
 //CONTENT
 .landing-container{
     height: calc(80vh - 180px);
-    background-color: #000;
+    background-color: $secondary-bg;
     position: relative;
     overflow: hidden;
     .overlay-grid{

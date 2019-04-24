@@ -1,0 +1,43 @@
+.hide-content-container{
+    height: calc(100vh - 180px);
+    position: relative;
+    padding: 15px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: $secondary-bg;
+    .access-box{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $body-bg;
+        padding: 20px;
+        box-shadow: 0 3px 10px -1px rgba(0,0,0,0.1);
+        .access-input{
+            border: none;
+            width: 250px;
+            height: 50px;
+            padding: 0 15px;
+            &:focus{
+                outline: none;
+            }
+        }
+        .access-btn{
+            display: block;
+            height: 50px;
+            margin-top: 10px;
+            width: 100%;
+            background-color: $bluish;
+            color: $white;
+            border: none;
+            &:focus{
+                outline: none;
+            }
+        }
+    }
+}
+
+#workflow_content{
+    display: none;
+}

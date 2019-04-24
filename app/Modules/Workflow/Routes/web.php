@@ -11,6 +11,10 @@ Route::group([
             'as' => 'index',
             'uses' => 'WorkflowController@index'
         ]);
+        Route::post('/ajax/getWorkflow', [
+            'as' => 'getWorkflow',
+            'uses' => 'WorkflowController@getWorkflow'
+        ]);
     });
 });
 

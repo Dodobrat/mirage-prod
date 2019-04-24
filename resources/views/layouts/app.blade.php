@@ -37,6 +37,9 @@
             </button>
             <a href="{{ route('team.index') }}" class="nav-link redirect">{{ trans('front.team') }}</a>
             <a href="{{ route('contacts.index') }}" class="nav-link redirect">{{ trans('front.contact') }}</a>
+            @if(!empty(session('workflow_slug')))
+                <a href="{{ route('workflow.index', session('workflow_slug')) }}" class="nav-link redirect">{{ trans('front.workflow') }}</a>
+            @endif
             <a href="{{ LaravelLocalization::getLocalizedURL('en') }}"
                class="redirect nav-link @if(App::isLocale('en')) active @endif">{{ trans('front.en') }}</a>
             <a href="{{ LaravelLocalization::getLocalizedURL('fr') }}"
@@ -103,6 +106,11 @@
                 <li class="nav-item">
                     <a class="nav-link redirect" href="{{ route('contacts.index') }}">{{ trans('front.contact') }}</a>
                 </li>
+                @if(!empty(session('workflow_slug')))
+                    <li class="nav-item">
+                        <a class="nav-link redirect" href="{{ route('workflow.index', session('workflow_slug')) }}">{{ trans('front.workflow') }}</a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link redirect @if(App::isLocale('en')) active @endif"
                        href="{{ LaravelLocalization::getLocalizedURL('en') }}">{{ trans('front.en') }}</a>
@@ -120,7 +128,7 @@
     @yield('content')
 </div>
 
-<footer class="@if(Route::currentRouteName() != 'index') mt-5 @endif">
+<footer>
     <div class="content-container">
         <div class="row">
             <div class="col-lg-4 col-md-12 footer-field">

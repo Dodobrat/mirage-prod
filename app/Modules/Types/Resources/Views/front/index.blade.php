@@ -74,7 +74,7 @@
 
     {{--PROJECT MODAL--}}
     <div id="my-modal" class="project-modal">
-        @include('projects::boxes.project')
+
     </div>
 
 

@@ -1,10 +1,11 @@
 @media screen and (max-width: 1200px) {
-    .custom-wide-container{
-        .contact-details{
-            .contact-heading{
+    .custom-wide-container {
+        .contact-details {
+            .contact-heading {
                 width: 85%;
             }
-            .contact-description{
+
+            .contact-description {
                 width: 90%;
             }
         }
@@ -28,10 +29,10 @@
 
 @media screen and (max-width: 992px) {
 
-    .preloader{
+    .preloader {
         margin-top: -58px;
     }
-    .pageloader{
+    .pageloader {
         margin-top: -58px;
     }
     .landing-container {
@@ -40,7 +41,11 @@
 
     #content {
         margin-top: 58px;
-        min-height: calc(100vh - 106px);
+        min-height: calc(100vh - 58px);
+    }
+
+    .hide-content-container {
+        height: calc(100vh - 58px);
     }
 
     .placement {
@@ -65,22 +70,25 @@
         }
     }
 
-    .custom-wide-container{
-        .contact-details{
-            .contact-heading{
+    .custom-wide-container {
+        .contact-details {
+            .contact-heading {
                 font-size: 35px;
                 width: 100%;
             }
-            .contact-description{
+
+            .contact-description {
                 width: 100%;
             }
         }
-        .contact-form-section{
-            .contact-email-form{
-                .field{
+
+        .contact-form-section {
+            .contact-email-form {
+                .field {
                     margin: 10px 0;
                 }
-                .comment{
+
+                .comment {
                     margin: 10px 0;
                 }
             }
