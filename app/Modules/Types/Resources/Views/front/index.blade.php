@@ -38,8 +38,8 @@
 
                     <div class="gallery-card">
                         <button id="modal-btn"
-                           onclick="openModal( '{{ $project->id }}','{{ route('projects.getProject') }}','{{ $project->slug }}')"
-                           class="project-modal-btn">
+                                onclick="openModal( '{{ $project->id }}','{{ route('projects.getProject') }}','{{ $project->slug }}')"
+                                class="project-modal-btn">
                             @if(!empty($project->getFirstMedia('media')))
                                 <img src="{{ $project->getFirstMedia('media')->getUrl('thumb') }}"
                                      alt="" class="gallery-item-img">
@@ -66,9 +66,7 @@
 
                 </div>
             @endforeach
-
         </div>
-{{--        {{ $projects->links() }}--}}
     </div>
 
 
@@ -91,6 +89,7 @@
         let $modalContent = $('.project-modal-content');
         let $modalBtn = $('#modal-btn');
         let $closeBtn = $('.project-modal-close-btn');
+
         // Open
         function openModal(id, url, slug) {
             let projectId = id;
@@ -119,27 +118,26 @@
                         $.each(result.errors, function (key, value) {
                             $('.errors .errors-list').append('<li>' + value + '</li>');
                         });
-                        setTimeout(function(){
+                        setTimeout(function () {
                             $(".errors").fadeOut(200);
                         }, 5000);
                     } else {
                         $('.loader-container').hide();
                         $modal.fadeIn(300);
-                        $('body').css('overflowY','hidden');
+                        $('body').css('overflowY', 'hidden');
                         $modal.html(result.project_modal);
                         let images = document.querySelectorAll(".lazy-load");
-                        for(let i = 0; i < images.length; i++)
-                        {
+                        for (let i = 0; i < images.length; i++) {
                             images[i].src = images[i].getAttribute('data-src');
                         }
-                        $(document).keyup(function(e) {
-                            if (e.keyCode === 27){
+                        $(document).keyup(function (e) {
+                            if (e.keyCode === 27) {
                                 closeModal();
                             }
-                            if (e.keyCode === 37){
+                            if (e.keyCode === 37) {
                                 $('a.carousel-control-prev').trigger('click');
                             }
-                            if (e.keyCode === 39){
+                            if (e.keyCode === 39) {
                                 $('a.carousel-control-next').trigger('click');
                             }
 
@@ -152,7 +150,9 @@
         // Close
         function closeModal() {
             $modal.fadeOut(300);
-            $('body').css('overflowY','auto');
+            $('body').css('overflowY', 'auto');
         }
     </script>
 @endsection
+
+

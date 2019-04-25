@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="landing-container">
+    <div class="landing-container"
+         style="background-image: url('{{ asset('/img/miragevis.png') }}')">
         <img class="overlay-grid" src="{{ asset('/img/mirage_grid_smaller.png') }}" alt="">
     </div>
 

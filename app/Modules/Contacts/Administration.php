@@ -30,6 +30,20 @@ class Administration implements Structure {
 
     public function settings($model, $form, $form_model)
     {
-        // TODO: Implement settings() method.
+        $form->add('fb_link', 'text', [
+            'title' => trans('contacts::admin.fb'),
+        ]);
+
+        $form->add('ig_link', 'text', [
+            'title' => trans('contacts::admin.ig'),
+        ]);
+
+        $form->add('pi_link', 'text', [
+            'title' => trans('contacts::admin.pi'),
+        ]);
+
+        $form->add('li_link', 'text', [
+            'title' => trans('contacts::admin.li'),
+        ]);
     }
 }

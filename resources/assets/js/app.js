@@ -29,7 +29,6 @@ redirectors.forEach(function (redirector) {
         e.preventDefault();
         let url = redirector.getAttribute('href');
         $preloader.fadeIn(300);
-        $('body').css('overflow', 'hidden');
         setTimeout(() => {
             window.location.href = url;
         }, 300);
@@ -43,8 +42,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     setTimeout(() => {
         $pageloader.fadeOut(500);
     }, 1);
-    $('body').css('overflow', 'unset');
-
 });
 
 
@@ -275,7 +272,6 @@ if (document.body.contains(contactForm)) {
                     email: self.closest(contactForm).find('input[name="email"]').val(),
                     comment: self.closest(contactForm).find('textarea[name="comment"]').val(),
                     contact_id: self.closest(contactForm).find('input[name="contact_id"]').val(),
-
                 },
                 beforeSend: function () {
                     $('.loader-container').show();
@@ -294,6 +290,8 @@ if (document.body.contains(contactForm)) {
                         }, 5000);
                     } else {
                         $('.loader-container').hide();
+                        $('.submit-btn').css('pointer-events','none');
+                        $('.submit-btn').css('opacity',0.7);
                         $(".success").fadeIn(200);
                         $.each(result, function (key, value) {
                             $('.success h5').html(result.success);
@@ -306,9 +304,11 @@ if (document.body.contains(contactForm)) {
             });
         });
     });
-
 }
 
+// -----------------------------------------
+//             TIMEZONE INFORMATION
+// -----------------------------------------
 if (document.body.contains(document.querySelector('.clock')) && document.body.contains(document.querySelector('.our-clock'))) {
 
     function clock() {
@@ -325,7 +325,6 @@ if (document.body.contains(document.querySelector('.clock')) && document.body.co
             return standIn;
         }
     }
-
     setInterval(clock, 1000);
 
     function ourclock() {
@@ -345,9 +344,24 @@ if (document.body.contains(document.querySelector('.clock')) && document.body.co
             return standIn;
         }
     }
-
     setInterval(ourclock, 1000);
-
 }
 
+// -----------------------------------------
+//             BACK TO TOP
+// -----------------------------------------
+$btn = $('.to-top');
+$btn.hide();
+$(window).scroll(function() {
+    if ($(window).scrollTop() > 300) {
+        $btn.fadeIn(300);
+    } else {
+        $btn.fadeOut(300);
+    }
+});
+
+$btn.on('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({scrollTop:0}, '300');
+});
 

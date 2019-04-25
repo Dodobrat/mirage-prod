@@ -1,3 +1,26 @@
+.to-top{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 55px;
+    height: 50px;
+    z-index: 9999;
+    background-color: $bluish;
+    overflow: hidden;
+    cursor: pointer;
+    .up{
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        margin: -10px 0 0 -10px;
+        width: 20px;
+        height: 20px;
+        border-left: 3px solid $white;
+        border-top: 3px solid $white;
+        transform: rotate(45deg);
+    }
+}
+
 .errors {
     display: none;
     position: fixed;

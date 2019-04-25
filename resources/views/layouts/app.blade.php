@@ -171,6 +171,10 @@
     </div>
 </footer>
 
+<div class="to-top">
+    <div class="up"></div>
+</div>
+
 <div class="errors">
     <ol class="errors-list"></ol>
 </div>
@@ -182,6 +186,7 @@
     <div class="loader"></div>
 </div>
 <script src="{{ mix('/js/app.js') }}"></script>
+@yield('projects')
 @yield('project')
 @yield('access')
 </body>

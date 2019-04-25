@@ -34,9 +34,8 @@
         height: 50px;
         padding: 0 15px;
         margin: 15px 0;
-        border: none;
+        border: 1px solid transparent;
         background: $white;
-
         &:focus {
           outline: none;
         }
