@@ -52,27 +52,21 @@ class WorkflowController extends Controller
             $errors[] = trans('index::errors.no_workflow_selected');
         }
 
-        if (empty($request->get('access_key'))){
-            $errors[] = trans('index::errors.no_access_key');
+        $workflow = Workflow::where('id', $request->workflow_id)->first();
+
+        if (empty($workflow)) {
+            $errors[] = trans('index::errors.no_workflow');
         }
 
-        $access_key = Workflow::where('id', $request->workflow_id)->first()->access_key;
-
-        if (!empty($request->get('access_key')) && $request->get('access_key') != $access_key){
-            $errors[] = trans('index::errors.wrong_access_key');
-        }
-
-        if (!empty($request->get('access_key')) && $request->get('access_key') == $access_key){
-            $workflow = Workflow::active()->where('id', $request->workflow_id)->first();
+        if (empty($errors) && $request->get('access_key') == $workflow->access_key){
 
             session([
                 'access_key' => $request->get('access_key'),
                 'workflow_slug' => $request->get('workflow_slug'),
             ]);
 
-            if (empty($workflow)) {
-                $errors[] = trans('index::errors.no_workflow');
-            }
+        } else {
+            $errors[] = trans('index::errors.wrong_access_key');
         }
 
         return response()->json([

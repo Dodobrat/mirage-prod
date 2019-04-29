@@ -19,9 +19,7 @@ class TypeForm extends Form {
 
         $this->add('categories', 'multiple',[
             'title' => trans('administration::admin.title'),
-            'choices' => [
-                $categories
-            ]
+            'choices' => $categories
         ]);
 
         AdministrationSeo::seoFields($this, $this->model);

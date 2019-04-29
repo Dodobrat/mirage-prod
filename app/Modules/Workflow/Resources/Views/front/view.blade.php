@@ -17,7 +17,7 @@
             <button type="button"
                     class="access-btn"
                     id="access_btn_{{ $accessed_workflow->slug }}"
-                    onclick="getWorkflow( '{{ $accessed_workflow->id }}','{{ route('workflow.getWorkflow') }}','{{ $accessed_workflow->slug }}')">
+                    onclick="getWorkflow( '{{ $accessed_workflow->id }}','{{ $accessed_workflow->slug }}')">
                 {{ trans('front.access') }}
             </button>
         </div>
@@ -36,9 +36,9 @@
         let workflowContent = document.querySelector('#workflow_content');
         let contentHider = document.querySelector('.hide-content-container');
 
-        function getWorkflow(id, url, slug) {
+        function getWorkflow(id, slug) {
             let workflowId = id;
-            let workflowUrl = url;
+            let workflowUrl = '{{ route('workflow.getWorkflow') }}';
             let workflowSlug = slug;
             let accessKey = document.querySelector('#access_input_{{ $accessed_workflow->slug }}').value;
 

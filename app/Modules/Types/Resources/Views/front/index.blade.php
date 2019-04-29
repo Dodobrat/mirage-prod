@@ -38,7 +38,7 @@
 
                     <div class="gallery-card">
                         <button id="modal-btn"
-                                onclick="openModal( '{{ $project->id }}','{{ route('projects.getProject') }}','{{ $project->slug }}')"
+                                onclick="openModal( '{{ $project->id }}','{{ $project->slug }}')"
                                 class="project-modal-btn">
                             @if(!empty($project->getFirstMedia('media')))
                                 <img src="{{ $project->getFirstMedia('media')->getUrl('thumb') }}"
@@ -91,9 +91,9 @@
         let $closeBtn = $('.project-modal-close-btn');
 
         // Open
-        function openModal(id, url, slug) {
+        function openModal(id, slug) {
             let projectId = id;
-            let projectUrl = url;
+            let projectUrl = '{{ route('projects.getProject') }}';
             $.ajaxSetup({
                 cache: false,
                 headers: {
