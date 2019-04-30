@@ -7,15 +7,18 @@
     </div>
 
     <div class="type-selection-container">
-        @foreach($types as $type)
+        <div class="custom-content">
 
-            <a class="type-btn-link redirect" href="{{ route('type.index', [$type->slug] ) }}">
-                <button class="type-btn">
-                    {{ $type->title }}
-                </button>
-            </a>
+            @foreach($types as $type)
 
-        @endforeach
+                <a class="type-btn-link redirect" href="{{ route('type.index', [$type->slug] ) }}">
+                    <button class="type-btn">
+                        {{ $type->title }}
+                    </button>
+                </a>
+
+            @endforeach
+        </div>
 
     </div>
 

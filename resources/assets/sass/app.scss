@@ -26,9 +26,19 @@ body {
 
 @import 'preloader';
 
+.custom-container-nav{
+    max-width: 1620px !important;
+    margin: 0 auto;
+}
+
+.custom-container-content{
+    max-width: 1760px !important;
+    margin: 0 auto;
+}
+
 #content {
-    margin-top: 180px;
     min-height: calc(100vh - 180px);
+    margin-top: 180px;
 }
 
 @import 'dynamic_elements';
@@ -38,9 +48,9 @@ body {
 @import 'landing';
 
 
-.selected-type {
+.selected {
     border: 1px solid #000;
-    padding: 10px 5px 5px 5px;
+    padding: 13px 5px 5px 5px;
     p {
         margin: 0;
         font-size: 35px;

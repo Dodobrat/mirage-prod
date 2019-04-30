@@ -13,4 +13,7 @@ return [
     'mail_subject' => 'Website Contact Forms',
     'module_name' => 'Contacts',
     'email_success' => 'E-mail sent successfully!',
+    'work_time' => 'Working Hours:',
+    'your_time' => 'Your Time:',
+    'our_time' => 'Our Time:',
 ];

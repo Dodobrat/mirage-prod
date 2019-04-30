@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
-
+<div class="custom-container-content">
     {{--    SELECTED PROJECT TYPE--}}
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-12">
-                <div class="selected-type">
+                <div class="selected">
                     <p>{{ $selected_type->title }}</p>
                 </div>
             </div>
@@ -32,42 +32,12 @@
 
 
         <div class="row align-items-center">
-            <div class="cover-up"></div>
-            @foreach($projects as $project)
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 p-1 gallery-item {{ $project->category->slug }}">
-
-                    <div class="gallery-card">
-                        <button id="modal-btn"
-                                onclick="openModal( '{{ $project->id }}','{{ $project->slug }}')"
-                                class="project-modal-btn">
-                            @if(!empty($project->getFirstMedia('media')))
-                                <img src="{{ $project->getFirstMedia('media')->getUrl('thumb') }}"
-                                     alt="" class="gallery-item-img">
-                            @else
-                                <img src="" alt="{{ $project->title }}" class="gallery-item-img">
-                            @endif
-                        </button>
-                        <div class="overlay">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h4 class="overlay-title">
-                                        {{ $project->title }}
-                                    </h4>
-                                </div>
-                                <div class="col-12">
-                                    <p class="overlay-text">
-                                        {{ $project->architect }}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            @endforeach
+            @include('types::boxes.projects')
         </div>
+        {{--        {{ $projects->links() }}--}}
+        {{--        @include('types::boxes.pagination', ['paginator' => $projects, 'type' => $selected_type])--}}
     </div>
+</div>
 
 
     {{--PROJECT MODAL--}}
@@ -77,6 +47,45 @@
 
 
 
+@endsection
+
+@section('projects')
+    <script>
+        // -----------------------------------------
+        //             PROJECTS PAGINATION
+        // -----------------------------------------
+        //
+        // function getCurrentPageNumber(){
+        //     return $('.pagination .active a').attr('href').split('page=')[1];
+        // }
+        //
+        // function getClickedPageNumber(){
+        //     let page = $('.pagination a');
+        //     page.click(function (e) {
+        //         e.preventDefault();
+        //         let current_page = $(this).attr('href').split('page=')[1];
+        //     });
+        //     return current_page;
+        // }
+        //
+        //
+        // console.log(getCurrentPageNumber());
+        //
+        // let category = $(".categories-items li");
+        // let active_category = category.first().trigger("click").addClass('active').data('filter');
+        //
+        // category.click(function () {
+        //     let category_filter = $(this).data('filter');
+        //     category.removeClass('active');
+        //     $(this).addClass('active');
+        // });
+        //
+        // function getData() {
+        //
+        //     console.log();
+        // }
+
+    </script>
 @endsection
 
 @section('project')

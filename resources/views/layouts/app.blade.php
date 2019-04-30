@@ -20,40 +20,42 @@
 </div>
 <div class="nav-container nav-down">
     <nav class="main-nav">
-        <div class="nav-logo-container">
-            <a href="{{ route('index') }}" class="nav-logo redirect">
-                <img id="main-logo" src="{{ asset('/img/MV.png') }}" alt="">
-                <img id="text-logo" src="{{ asset('/img/miragevis.png') }}" alt="">
-            </a>
-        </div>
-        <div class="nav-links-container">
-            <button data-toggle="collapse"
-                    type="button"
-                    data-target="#secondary-nav"
-                    aria-expanded="@if(Route::currentRouteName() == 'type.index') true @endif"
-                    aria-controls="secondary-nav"
-                    class="nav-link">
-                {{ trans('front.home') }}
-            </button>
-            <a href="{{ route('team.index') }}" class="nav-link redirect">{{ trans('front.team') }}</a>
-            <a href="{{ route('contacts.index') }}" class="nav-link redirect">{{ trans('front.contact') }}</a>
-            @if(!empty(session('workflow_slug')))
-                <a href="{{ route('workflow.index', session('workflow_slug')) }}" class="nav-link redirect">{{ trans('front.workflow') }}</a>
-            @endif
-            <a href="{{ LaravelLocalization::getLocalizedURL('en') }}"
-               class="redirect nav-link @if(App::isLocale('en')) active @endif">{{ trans('front.en') }}</a>
-            <a href="{{ LaravelLocalization::getLocalizedURL('fr') }}"
-               class="redirect nav-link @if(App::isLocale('fr')) active @endif">{{ trans('front.fr') }}</a>
+        <div class="custom-container-nav">
+            <div class="nav-logo-container">
+                <a href="{{ route('index') }}" class="nav-logo redirect">
+                    <img id="main-logo" src="{{ asset('/img/MV.png') }}" alt="">
+                    <img id="text-logo" src="{{ asset('/img/miragevis.png') }}" alt="">
+                </a>
+            </div>
+            <div class="nav-links-container">
+                <button data-toggle="collapse"
+                        type="button"
+                        data-target="#secondary-nav"
+                        aria-expanded="@if(Route::currentRouteName() == 'type.index') true @endif"
+                        aria-controls="secondary-nav"
+                        class="nav-link">
+                    {{ trans('front.home') }}
+                </button>
+                <a href="{{ route('team.index') }}" class="nav-link redirect">{{ trans('front.team') }}</a>
+                <a href="{{ route('contacts.index') }}" class="nav-link redirect">{{ trans('front.contact') }}</a>
+                @if(!empty(session('workflow_slug')))
+                    <a href="{{ route('workflow.index', session('workflow_slug')) }}" class="nav-link redirect">{{ trans('front.workflow') }}</a>
+                @endif
+                <a href="{{ LaravelLocalization::getLocalizedURL('en') }}"
+                   class="redirect nav-link @if(App::isLocale('en')) active @endif">{{ trans('front.en') }}</a>
+                <a href="{{ LaravelLocalization::getLocalizedURL('fr') }}"
+                   class="redirect nav-link @if(App::isLocale('fr')) active @endif">{{ trans('front.fr') }}</a>
+            </div>
         </div>
     </nav>
     <div class="secondary-nav">
-
-        <div class="collapse @if(Route::currentRouteName() == 'type.index') show @endif" id="secondary-nav">
-            @foreach($types as $type)
-                <a href="{{ route('type.index', [$type->slug] ) }}" class="nav-link redirect">{{ $type->title }}</a>
-            @endforeach
+        <div class="custom-container-nav">
+            <div class="collapse @if(Route::currentRouteName() == 'type.index') show @endif" id="secondary-nav">
+                @foreach($types as $type)
+                    <a href="{{ route('type.index', [$type->slug] ) }}" class="nav-link redirect">{{ $type->title }}</a>
+                @endforeach
+            </div>
         </div>
-
     </div>
 </div>
 
@@ -129,7 +131,7 @@
 </div>
 
 <footer>
-    <div class="content-container">
+    <div class="content-container custom-container-nav">
         <div class="row">
             <div class="col-lg-4 col-md-12 footer-field">
                 <h4 class="footer-company-name">{{ config('app.name', 'Mirage Visualisation') }}.</h4>

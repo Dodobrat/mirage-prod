@@ -1,41 +1,46 @@
 //DESKTOP NAVBAR
-.nav-container{
+.nav-container {
     height: 180px;
     width: 100%;
     background-color: $body-bg;
     position: fixed;
     z-index: 9999;
-    .main-nav{
+
+    .main-nav {
         position: relative;
         height: 123px;
         width: 100%;
         background-color: $white;
         padding: 0 5vw;
-        .nav-logo-container{
+
+        .nav-logo-container {
             float: left;
-            .nav-logo{
-                position: absolute;
-                top: 50%;
+            margin-top: 38px;
+            .nav-logo {
                 left: 5vw;
                 transform: translateY(-50%);
-                #main-logo{
+
+                #main-logo {
                     height: 47px;
                 }
-                #text-logo{
+
+                #text-logo {
+                    margin-left: 5px;
                     height: 47px;
                 }
-                &:hover{
+
+                &:hover {
                     text-decoration: none;
                 }
             }
         }
-        .nav-links-container{
+
+        .nav-links-container {
             float: right;
-            position: absolute;
-            top: 50%;
+            margin-top: 41px;
             right: 5vw;
-            transform: translateY(-50%);
-            .nav-link{
+
+            .nav-link {
                 display: inline;
                 font-size: 17px;
                 font-weight: $bold;
@@ -43,31 +48,36 @@
                 color: $primary-font-color;
                 background-color: transparent;
                 border: none;
-                &:focus{
+
+                &:focus {
                     outline: none;
                 }
             }
         }
+
     }
-    .secondary-nav{
+
+    .secondary-nav {
         position: relative;
         height: 57px;
         width: 100%;
         background-color: $secondary-bg;
         padding: 0 5vw;
-        #secondary-nav{
+
+        #secondary-nav {
             float: right;
-            position: absolute;
-            top: 50%;
-            right: 5vw;
-            transform: translateY(-50%);
-            .nav-link{
+            //position: absolute;
+            //top: 50%;
+            margin-top: 16px;
+
+            .nav-link {
                 display: inline;
                 font-size: 17px;
                 font-weight: $bold;
                 text-transform: uppercase;
                 color: $white;
-                &:focus{
+
+                &:focus {
                     outline: none;
                 }
             }
@@ -75,31 +85,35 @@
     }
 }
 
-.nav-up{
+.nav-up {
     top: -190px;
     transition: 0.3s ease-in-out;
 }
 
-.nav-down{
+.nav-down {
     top: 0;
     transition: 0.3s ease-in-out;
 }
 
-.mobile-nav-container{
+.mobile-nav-container {
     display: none;
-    .navbar{
+
+    .navbar {
         background: $white;
-        box-shadow: 0 10px 30px 0 rgba(0,0,0,0.1);
-        .navbar-brand{
-            #mobile-main-logo{
+        box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);
+
+        .navbar-brand {
+            #mobile-main-logo {
                 height: 27px;
             }
         }
-        .navbar-toggler{
+
+        .navbar-toggler {
             border: none;
             margin-right: -0.75rem;
-            #hamburger{
-                .line{
+
+            #hamburger {
+                .line {
                     width: 25px;
                     height: 2px;
                     background-color: $navbar-toggler-color;
@@ -107,35 +121,42 @@
                     margin: 10px auto;
                     transition: all 0.2s ease-in-out;
                 }
-                &.is-active .line:nth-child(1){
+
+                &.is-active .line:nth-child(1) {
                     transform: translateY(6px) rotate(45deg);
                 }
-                &.is-active .line:nth-child(2){
+
+                &.is-active .line:nth-child(2) {
                     transform: translateY(-6px) rotate(-45deg);
                 }
             }
-            &:focus{
+
+            &:focus {
                 outline: none;
             }
         }
-        #navbarExpand{
-            .navbar-nav{
-                .nav-item{
-                    .nav-link{
+
+        #navbarExpand {
+            .navbar-nav {
+                .nav-item {
+                    .nav-link {
                         color: $mobile-collapsed-text;
                         background-color: transparent;
                         border: none;
-                        &:focus{
+
+                        &:focus {
                             outline: none;
                         }
                     }
                 }
-                #homeOptions{
+
+                #homeOptions {
                     background-color: $secondary-bg;
-                    .home-options{
-                        .navbar-nav{
-                            .nav-item{
-                                .nav-link{
+
+                    .home-options {
+                        .navbar-nav {
+                            .nav-item {
+                                .nav-link {
                                     color: $white;
                                 }
                             }
@@ -148,21 +169,25 @@
 }
 
 //FOOTER
-footer{
+footer {
     height: auto;
     background-color: $footer-bg;
     padding: 100px 5vw;
-    .content-container{
-        .footer-field{
+
+    .content-container {
+        .footer-field {
             color: $footer-text;
-            .footer-company-name{
+
+            .footer-company-name {
                 color: $white;
             }
-            a{
+
+            a {
                 display: block;
                 color: $footer-text;
                 text-transform: capitalize;
-                &:hover{
+
+                &:hover {
                     text-decoration: none;
                 }
             }

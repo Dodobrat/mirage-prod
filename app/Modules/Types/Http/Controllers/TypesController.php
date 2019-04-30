@@ -47,7 +47,6 @@ class TypesController extends Controller
             ->reversed()
             ->get();
 
-
         return view('types::front.index', compact('selected_type','projects'));
     }
 }

@@ -21,7 +21,7 @@ class ContactForm extends Form
             'model' => @$this->model
         ]);
 
-        $this->add('working_time', 'editor', [
+        $this->add('working_time', 'text', [
             'title' => trans('contacts::admin.working_time'),
             'translate' => true,
             'model' => @$this->model

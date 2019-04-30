@@ -1,4 +1,18 @@
+@media screen and (max-width: 1600px) {
+    .custom-projects-container {
+        .row {
+            .gallery-item {
+                .gallery-card {
+                    height: calc(100vw / 4);
+                }
+            }
+        }
+    }
+
+}
+
 @media screen and (max-width: 1200px) {
+
     .custom-wide-container {
         .contact-details {
             .contact-heading {
@@ -117,8 +131,10 @@
     }
 
     .type-selection-container {
-        min-height: 30vh;
-        justify-content: center;
+        .custom-content {
+            min-height: 30vh;
+            justify-content: center;
+        }
     }
 
     .custom-projects-container {
@@ -126,7 +142,7 @@
             .gallery-item {
                 .gallery-card {
                     height: calc(100vw / 2);
-                    max-height: 200px;
+                    max-height: 225px;
                 }
             }
         }
