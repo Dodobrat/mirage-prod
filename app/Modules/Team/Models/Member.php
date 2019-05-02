@@ -38,8 +38,8 @@ class Member extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')
-            ->width(500)
-            ->height(500)
+            ->width(900)
+            ->height(900)
             ->sharpen(0)
             ->nonOptimized();
     }

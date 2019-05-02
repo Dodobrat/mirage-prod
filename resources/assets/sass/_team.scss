@@ -34,34 +34,16 @@
             position: relative;
             padding: 0 0 15px 0;
             .member-photo {
-                transition: 0.3s ease-in-out;
+                transition: 0.2s ease-in-out;
                 filter: grayscale(1);
-                opacity: 1;
                 width: 100%;
                 height: 350px;
                 object-fit: cover;
             }
-
-            .member-illustration {
-                transition: 0.3s ease-in-out;
-                position: absolute;
-                top: 0;
-                left: 0;
-                opacity: 0;
-                width: 100%;
-                height: 350px;
-                object-fit: cover;
-            }
-
             &:hover {
                 .member-photo {
-                    opacity: 0;
-                    transition: 0.5s ease-in-out;
-                }
-
-                .member-illustration {
-                    opacity: 1;
-                    transition: 0.3s ease-in-out;
+                    filter: grayscale(0);
+                    transition: 0.2s ease-in-out;
                 }
             }
         }

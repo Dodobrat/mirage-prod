@@ -31,6 +31,24 @@ return [
     'admin_supported_locales' => [
         'en',
         'bg'
+    ],
+
+    /*
+   * Settings Images Conversions
+   */
+    'settings_images' => [
+        'thumb' => [
+            'width' => 1920,
+            'height' => 1080,
+        ],
+    ],
+
+    //Default fields for settings
+    'settings_default_fields' => [
+        'website_title' => [
+            'title' => 'administration::admin.website_name',  //this will be converted to trans
+            'type' => 'text'
+        ]
     ]
 
 ];

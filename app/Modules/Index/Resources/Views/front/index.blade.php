@@ -1,10 +1,15 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="landing-container"
-         style="background-image: url('{{ asset('/img/miragevis.png') }}')">
-        <img class="overlay-grid" src="{{ asset('/img/mirage_grid_smaller.png') }}" alt="">
+<section class="images">
+    <div id="scene">
+        <img class="bg" data-depth="0.05" src="{{ \Charlotte\Administration\Helpers\Settings::getFile('index_bg','thumb') }}" alt="">
     </div>
+    <div id="filter"></div>
+    <div id="over">
+        <img class="grid" src="{{ \Charlotte\Administration\Helpers\Settings::getFile('index_grid') }}" alt="">
+    </div>
+</section>
 
     <div class="type-selection-container">
         <div class="custom-content">
@@ -18,8 +23,8 @@
                 </a>
 
             @endforeach
-        </div>
 
+        </div>
     </div>
 
     <div class="placement">

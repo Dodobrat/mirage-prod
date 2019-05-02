@@ -30,12 +30,6 @@
                                 @else
                                     <img src="#" alt="" class="member-photo">
                                 @endif
-                                @if(!empty($member->getFirstMedia('illustration')))
-                                    <img src="{{ $member->getFirstMedia('illustration')->getUrl('thumb') }}" alt=""
-                                         class="member-illustration">
-                                @else
-                                    <img src="#" alt="" class="member-illustration">
-                                @endif
                             </div>
                             <div class="member-info px-3">
                                 <h6 class="member-name">{{ $member->name }}</h6>

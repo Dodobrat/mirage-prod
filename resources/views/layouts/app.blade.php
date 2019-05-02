@@ -11,12 +11,9 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 <body>
-<div class="preloader">
-    <img class="load-logo" src="{{ asset('/img/MV.png') }}" alt="">
-</div>
+<div class="preloader"></div>
 <div class="pageloader">
-    <img class="load-logo" src="{{ asset('/img/MV.png') }}" alt="">
-    <div class="load-spinner"></div>
+    <img class="load-logo" src="{{ \Charlotte\Administration\Helpers\Settings::getFile('pageloader') }}" alt="">
 </div>
 <div class="nav-container nav-down">
     <nav class="main-nav">
@@ -146,8 +143,8 @@
                 </p>
             </div>
             <div class="col-lg-4 col-md-12 footer-field">
-                <p class="footer-email mb-0">contact@miragevisualisation.com</p>
-                <p class="footer-phone">+359897521652</p>
+                <p class="footer-email mb-0">{{ \Charlotte\Administration\Helpers\Settings::get('global_email') }}</p>
+                <p class="footer-phone">{{ \Charlotte\Administration\Helpers\Settings::get('global_phone') }}</p>
             </div>
             <div class="col-lg-3 col-md-12 footer-field">
                 <div class="row">
@@ -164,10 +161,10 @@
                 </div>
             </div>
             <div class="col-lg-1 col-md-12 footer-field mt-lg-0 mt-3">
-                <a href="#" class="footer-social-link mb-0">{{ trans('front.fb') }}</a>
-                <a href="#" class="footer-social-link mb-0">{{ trans('front.ig') }}</a>
-                <a href="#" class="footer-social-link mb-0">{{ trans('front.pin') }}</a>
-                <a href="#" class="footer-social-link mb-0">{{ trans('front.lin') }}</a>
+                <a href="{{ \Charlotte\Administration\Helpers\Settings::get('fb_link') }}" target="_blank" class="footer-social-link mb-0">{{ trans('front.fb') }}</a>
+                <a href="{{ \Charlotte\Administration\Helpers\Settings::get('ig_link') }}" target="_blank" class="footer-social-link mb-0">{{ trans('front.ig') }}</a>
+                <a href="{{ \Charlotte\Administration\Helpers\Settings::get('pi_link') }}" target="_blank" class="footer-social-link mb-0">{{ trans('front.pin') }}</a>
+                <a href="{{ \Charlotte\Administration\Helpers\Settings::get('li_link') }}" target="_blank" class="footer-social-link mb-0">{{ trans('front.lin') }}</a>
             </div>
         </div>
     </div>

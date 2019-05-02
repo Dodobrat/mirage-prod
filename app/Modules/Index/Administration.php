@@ -23,8 +23,16 @@ class Administration implements Structure {
 
     public function settings($model, $form, $form_model)
     {
+        $form->add('pageloader', 'file', [
+            'title' => trans('index::admin.loader'),
+        ]);
+
         $form->add('index_bg', 'file', [
             'title' => trans('index::admin.bg'),
+        ]);
+
+        $form->add('index_grid', 'file', [
+            'title' => trans('index::admin.grid'),
         ]);
     }
 }

@@ -5,6 +5,7 @@ require('../../assets/js/hover.js');
 window.Popper = require('popper.js');
 require('bootstrap/dist/js/bootstrap.js');
 global.$ = global.jQuery = require('jquery');
+global.Parallax = require('parallax-js/dist/parallax.min.js');
 
 // -----------------------------------------
 //             PAGE PRELOAD
@@ -41,9 +42,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
     $preloader.hide();
     setTimeout(() => {
         $pageloader.fadeOut(500);
-    }, 1);
+    }, 500);
 });
 
+
+// -----------------------------------------
+//             PARALLAX EFFECT
+// -----------------------------------------
+
+
+var scene = document.getElementById('scene');
+if(document.body.contains(scene)){
+    var parallaxInstance = new Parallax(scene,{
+        relativeInput: true,
+        hoverOnly: true,
+    });
+}
 
 // -----------------------------------------
 //             MOBILE NAV TOGGLER

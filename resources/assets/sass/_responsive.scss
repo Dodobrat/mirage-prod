@@ -42,15 +42,22 @@
 }
 
 @media screen and (max-width: 992px) {
-
     .preloader {
         margin-top: -58px;
     }
     .pageloader {
         margin-top: -58px;
+        .load-logo {
+            width: 100px;
+        }
     }
-    .landing-container {
-        height: calc(80vh - 58px);
+    .images{
+        #scene{
+            height: calc(80vh - 58px);
+        }
+        #over{
+            height: calc(80vh - 58px);
+        }
     }
 
     #content {
@@ -83,6 +90,32 @@
             }
         }
     }
+
+    .project-modal {
+        .project-modal-content {
+            .project-modal-body{
+                .carousel{
+                    .carousel-indicators{
+                        bottom: -20px;
+                    }
+                    .carousel-inner{
+                        .carousel-item{
+                            img{
+                                padding: 0 20px 15px 20px;
+                            }
+                        }
+                    }
+                    .carousel-control-next{
+                        padding: 0;
+                    }
+                    .carousel-control-prev{
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+
 
     .custom-wide-container {
         .contact-details {
@@ -126,8 +159,13 @@
 
 @media screen and (max-width: 768px) {
 
-    .landing-container {
-        height: calc(70vh - 58px);
+    .images{
+        #scene{
+            height: calc(70vh - 58px);
+        }
+        #over{
+            height: calc(70vh - 58px);
+        }
     }
 
     .type-selection-container {

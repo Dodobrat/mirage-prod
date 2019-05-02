@@ -34,7 +34,7 @@ class TeamController extends BaseAdministrationController
         $table->addColumn('action', function ($member) {
             $action = AdministrationField::edit(Administration::route('team.edit', $member->id));
             $action .= AdministrationField::delete(Administration::route('team.destroy', $member->id));
-            $action .= AdministrationField::media($member, ['photo','illustration']);
+            $action .= AdministrationField::media($member, ['photo']);
             return $action;
         });
 
