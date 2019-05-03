@@ -6,6 +6,7 @@ use App\Modules\Projects\Models\Project;
 use App\Modules\Types\Models\Type;
 use App\Http\Controllers\Controller;
 use App\Modules\Types\Models\TypeTranslation;
+use Illuminate\Http\Request;
 
 class TypesController extends Controller
 {
@@ -45,8 +46,63 @@ class TypesController extends Controller
             ->with(['media'])
             ->whereIn('category_id', $available_categories)
             ->reversed()
-            ->get();
+            ->paginate(1);
 
-        return view('types::front.index', compact('selected_type','projects'));
+        return view('types::front.index', compact('selected_type', 'projects'));
     }
+
+    public function getProjects(Request $request)
+    {
+
+        $errors = [];
+
+        if (empty($request->get('page'))) {
+            $errors[] = trans('types::errors.no_page');
+        }
+
+        if (empty($request->get('category'))) {
+            $errors[] = trans('types::errors.no_category');
+        }
+
+        if (empty($request->get('type'))) {
+            $errors[] = trans('types::errors.no_type_selected');
+        }
+
+        $type_slug = $request->get('type');
+
+        $type = Type::whereHas('translations', function ($query) use ($type_slug) {
+            $query
+                ->where('locale', \App::getLocale())
+                ->where('slug', $type_slug);
+        })->with(['categories'])->first();
+
+        if (!empty($request->get('category')) && $request->get('category') == 'all') {
+            $available_categories = $type->categories->pluck('id')->toArray();
+
+            $projects = Project::active()
+                ->with(['media'])
+                ->whereIn('category_id', $available_categories)
+                ->reversed()
+                ->paginate(1);
+        }
+
+        if (!empty($request->get('category')) && $request->get('category') != 'all') {
+            $category_slug = $request->get('category');
+            $selected_category = $type->categories->where('slug', $category_slug)->pluck('id')->toArray();
+
+            $projects = Project::active()
+                ->with(['media'])
+                ->whereIn('category_id', $selected_category)
+                ->reversed()
+                ->paginate(1);
+        }
+
+
+        return response()->json([
+            'errors' => $errors,
+            'projects_grid' => view('types::boxes.projects', compact('projects'))->render(),
+        ]);
+
+    }
+
 }

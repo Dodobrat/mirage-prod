@@ -21,6 +21,10 @@ Route::group([
             'as' => 'index',
             'uses' => 'TypesController@index'
         ]);
+        Route::get('/ajax/getProjects', [
+            'as' => 'getProjects',
+            'uses' => 'TypesController@getProjects'
+        ]);
     });
 });
 
