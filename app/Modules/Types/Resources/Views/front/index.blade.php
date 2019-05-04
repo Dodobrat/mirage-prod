@@ -33,9 +33,7 @@
 
             {{--PROJECT GRID--}}
             <div class="ajax-parent-overlay">
-                <div class="projects-loader">
-
-                </div>
+                <div class="projects-loader"></div>
                 <div class="ajax-projects">
                     @include('types::boxes.projects')
                 </div>
@@ -65,9 +63,6 @@
             let selected_category = $('.categories-items .categories-item.active').data('filter');
             fetchData(clicked_page, selected_category);
         });
-
-        // $('.cover-up').hide();
-        // $('.gallery-item:hidden').show().removeClass('hidden');
 
         let category = $(".categories-items li");
 
@@ -100,7 +95,7 @@
             });
             $.ajax({
                 url: url,
-                method: 'get',
+                method: 'post',
                 data: {
                     page: page,
                     category: cat,

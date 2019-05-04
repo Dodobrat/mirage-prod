@@ -21,7 +21,7 @@ Route::group([
             'as' => 'index',
             'uses' => 'TypesController@index'
         ]);
-        Route::get('/ajax/getProjects', [
+        Route::post('/ajax/getProjects', [
             'as' => 'getProjects',
             'uses' => 'TypesController@getProjects'
         ]);

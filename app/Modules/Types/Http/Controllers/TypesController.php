@@ -10,9 +10,10 @@ use Illuminate\Http\Request;
 
 class TypesController extends Controller
 {
+    private static $PER_PAGE = 2;
+
     public function index($slug)
     {
-        $projectsPerPage = 12;
 
         $selected_type = Type::whereHas('translations', function ($query) use ($slug) {
             $query
@@ -48,15 +49,13 @@ class TypesController extends Controller
             ->with(['media'])
             ->whereIn('category_id', $available_categories)
             ->reversed()
-            ->paginate($projectsPerPage);
+            ->paginate(self::$PER_PAGE);
 
         return view('types::front.index', compact('selected_type', 'projects'));
     }
 
     public function getProjects(Request $request)
     {
-        $projectsPerPage = 12;
-
         $errors = [];
 
         if (empty($request->get('page'))) {
@@ -81,22 +80,15 @@ class TypesController extends Controller
 
         if ($request->get('category') == 'all') {
             $available_categories = $type->categories->pluck('id')->toArray();
-
-            $projects = Project::active()
-                ->with(['media'])
-                ->whereIn('category_id', $available_categories)
-                ->reversed()
-                ->paginate($projectsPerPage);
-        }else{
-            $category_slug = $request->get('category');
-            $selected_category = $type->categories->where('slug', $category_slug)->pluck('id')->toArray();
-
-            $projects = Project::active()
-                ->with(['media'])
-                ->whereIn('category_id', $selected_category)
-                ->reversed()
-                ->paginate($projectsPerPage);
+        } else {
+            $available_categories = $type->categories->where('slug', $request->get('category'))->pluck('id')->toArray();
         }
+
+        $projects = Project::active()
+            ->with(['media'])
+            ->whereIn('category_id', $available_categories)
+            ->reversed()
+            ->paginate(self::$PER_PAGE);
 
 
         return response()->json([
