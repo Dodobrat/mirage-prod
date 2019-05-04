@@ -92,7 +92,7 @@ class ContactsController extends BaseAdministrationController
         $contact->fill($data);
         $contact->save();
 
-        return redirect(Administration::route('contacts.index'));
+        return redirect(Administration::route('contacts.index'))->withSuccess([trans('index::admin.success_create')]);
     }
 
     /**
@@ -135,7 +135,7 @@ class ContactsController extends BaseAdministrationController
         $contact->fill($data);
         $contact->save();
 
-        return redirect(Administration::route('contacts.index'));
+        return redirect(Administration::route('contacts.index'))->withSuccess([trans('index::admin.success_updated')]);
     }
 
     /**

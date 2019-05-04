@@ -90,7 +90,7 @@ class CategoriesController extends BaseAdministrationController
         $category->fill($data);
         $category->save();
 
-        return redirect(Administration::route('categories.index'));
+        return redirect(Administration::route('categories.index'))->withSuccess([trans('index::admin.success_create')]);
     }
 
     /**
@@ -144,7 +144,7 @@ class CategoriesController extends BaseAdministrationController
         $category->fill($data);
         $category->save();
 
-        return redirect(Administration::route('categories.index'));
+        return redirect(Administration::route('categories.index'))->withSuccess([trans('index::admin.success_updated')]);
     }
 
     /**

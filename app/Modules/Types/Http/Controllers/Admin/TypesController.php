@@ -93,7 +93,7 @@ class TypesController extends BaseAdministrationController
             $type->categories()->attach($data['categories']);
         }
 
-        return redirect(Administration::route('types.index'));
+        return redirect(Administration::route('types.index'))->withSuccess([trans('index::admin.success_create')]);
     }
 
     /**
@@ -152,7 +152,7 @@ class TypesController extends BaseAdministrationController
             $type->categories()->attach($data['categories']);
         }
 
-        return redirect(Administration::route('types.index'));
+        return redirect(Administration::route('types.index'))->withSuccess([trans('index::admin.success_updated')]);
     }
 
     /**

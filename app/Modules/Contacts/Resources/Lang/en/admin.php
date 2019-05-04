@@ -7,6 +7,8 @@ return [
     'address' => 'Address',
     'email' => 'E-Mail',
     'phone' => 'Phone',
+    'global_email' => 'Global E-mail',
+    'global_phone' => 'Global Phone',
     'fb' => 'Facebook Link',
     'ig' => 'Instagram Link',
     'pi' => 'Pinterest Link',

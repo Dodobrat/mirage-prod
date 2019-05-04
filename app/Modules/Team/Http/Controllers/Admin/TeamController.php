@@ -91,7 +91,7 @@ class TeamController extends BaseAdministrationController
         $member->fill($data);
         $member->save();
 
-        return redirect(Administration::route('team.index'));
+        return redirect(Administration::route('team.index'))->withSuccess([trans('index::admin.success_create')]);
     }
 
     /**
@@ -145,7 +145,7 @@ class TeamController extends BaseAdministrationController
         $member->fill($data);
         $member->save();
 
-        return redirect(Administration::route('team.index'));
+        return redirect(Administration::route('team.index'))->withSuccess([trans('index::admin.success_updated')]);
     }
 
     /**

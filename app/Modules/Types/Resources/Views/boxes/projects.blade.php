@@ -1,4 +1,4 @@
-{{--<div class="cover-up"></div>--}}
+<div class="row align-items-center ">
 @foreach($projects as $project)
     <div class="col-lg-3 col-md-4 col-sm-6 col-6 p-1 gallery-item {{ $project->category->slug }}">
 
@@ -32,6 +32,20 @@
 
     </div>
 @endforeach
+</div>
 
-
+<div class="pagination-container">
+    @if ($projects->lastPage() > 1)
+        <ul class="pagination">
+            @for ($i = 1; $i <= $projects->lastPage(); $i++)
+                <li class="page-item">
+                    <a href="{{ $projects->url($i) }}"
+                       class="p-3 page-dir @if($i == $projects->currentPage()) active @endif">
+                        {{ $i }}
+                    </a>
+                </li>
+            @endfor
+        </ul>
+    @endif
+</div>
 

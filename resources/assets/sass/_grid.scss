@@ -40,81 +40,74 @@
             border-bottom: 8px solid #959595;
         }
     }
-    .row{
-        margin: 0 auto;
-        width: 100%;
+    .ajax-projects{
         position: relative;
-        .cover-up{
-            z-index: 9999;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background-color: $body-bg;
+        .row{
+            margin: 0 auto;
             width: 100%;
-            height: 100%;
-        }
-        .gallery-item{
             position: relative;
-            .gallery-card{
+            .gallery-item{
                 position: relative;
-                overflow: hidden;
-                margin: 0;
-                height: 380px;
-                .project-modal-btn{
-                    width: 100%;
-                    height: 100%;
-                    background: transparent;
-                    border: none;
-                    padding: 0;
-                    .gallery-item-img{
+                .gallery-card{
+                    position: relative;
+                    overflow: hidden;
+                    margin: 0;
+                    height: 380px;
+                    .project-modal-btn{
                         width: 100%;
                         height: 100%;
-                        object-fit: cover;
+                        background: transparent;
+                        border: none;
+                        padding: 0;
+                        .gallery-item-img{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                    .overlay{
+                        pointer-events: none;
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        background-color: rgba(255,255,255,0.7);
+                        .overlay-title{
+                            font-weight: $bold;
+                        }
+                        .overlay-text{
+                            font-weight: $semi-bold;
+                        }
                     }
                 }
-                .overlay{
-                    pointer-events: none;
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    text-align: center;
-                    background-color: rgba(255,255,255,0.7);
-                    .overlay-title{
-                        font-weight: $bold;
-                    }
-                    .overlay-text{
-                        font-weight: $semi-bold;
-                    }
+                &:hover{
+                    cursor: pointer;
                 }
-            }
-            &:hover{
-                cursor: pointer;
             }
         }
-    }
-    .pagination-container{
-        padding: 50px 0;
-        position: relative;
-        .pagination{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            .page-item{
-                .page-dir{
-                    pointer-events: auto;
-                    font-size: 19px;
-                    color: $primary-font-color;
-                    &:hover{
-                        text-decoration: none;
+        .pagination-container{
+            padding: 50px 0;
+            position: relative;
+            .pagination{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                .page-item{
+                    .page-dir{
+                        pointer-events: auto;
+                        font-size: 19px;
+                        color: $primary-font-color;
+                        &:hover{
+                            text-decoration: none;
+                        }
                     }
-                }
-                .active{
-                    font-weight: $black;
-                    pointer-events: none;
+                    .active{
+                        font-weight: $black;
+                    }
                 }
             }
         }

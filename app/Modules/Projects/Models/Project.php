@@ -41,8 +41,8 @@ class Project extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null)
     {
         $this->addMediaConversion('thumb')
-            ->width(240)
-            ->height(240)
+            ->width(600)
+            ->height(600)
             ->sharpen(0)
             ->nonOptimized();
     }

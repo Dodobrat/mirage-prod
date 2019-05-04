@@ -91,7 +91,7 @@ class WorkflowController extends BaseAdministrationController
         $type->fill($data);
         $type->save();
 
-        return redirect(Administration::route('workflow.index'));
+        return redirect(Administration::route('workflow.index'))->withSuccess([trans('index::admin.success_create')]);
     }
 
     /**
@@ -145,7 +145,7 @@ class WorkflowController extends BaseAdministrationController
         $flow->fill($data);
         $flow->save();
 
-        return redirect(Administration::route('workflow.index'));
+        return redirect(Administration::route('workflow.index'))->withSuccess([trans('index::admin.success_updated')]);
     }
 
     /**

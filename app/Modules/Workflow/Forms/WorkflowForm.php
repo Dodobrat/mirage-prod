@@ -20,7 +20,7 @@ class WorkflowForm extends Form {
         ]);
 
         $this->add('access_key', 'text', [
-            'title' => trans('administration::admin.access_key'),
+            'title' => trans('workflow::admin.access_key'),
         ]);
 
         $this->add('active', 'switch', [

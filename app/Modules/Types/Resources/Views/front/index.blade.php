@@ -15,6 +15,7 @@
         {{--CUSTOM PROJECTS CONTAINER--}}
         <div class="custom-projects-container">
 
+            {{--PROJECT CATEGORIES--}}
             <ul class="categories-items">
                 <li data-filter="all" class="categories-item active">
                     <button class="categories-item-link">{{ trans('types::front.all') }}</button>
@@ -30,24 +31,20 @@
                 <div class="line"></div>
             </div>
 
+            {{--PROJECT GRID--}}
+            <div class="ajax-parent-overlay">
+                <div class="projects-loader">
 
-            <div class="row align-items-center ajax-projects">
-                @include('types::boxes.projects')
+                </div>
+                <div class="ajax-projects">
+                    @include('types::boxes.projects')
+                </div>
             </div>
-            <div class="pagination-container">
-                @include('types::boxes.pagination', ['projects' => $projects])
-{{--                {{ $projects->links() }}--}}
-            </div>
-
         </div>
     </div>
 
-
     {{--PROJECT MODAL--}}
-    <div id="my-modal" class="project-modal">
-
-    </div>
-
+    <div id="my-modal" class="project-modal"></div>
 
 
 @endsection
@@ -58,82 +55,98 @@
         //             PROJECTS PAGINATION
         // -----------------------------------------
 
-        $(document).ready(function () {
+        let pagination = $('.pagination a');
 
-            let pagination = $('.pagination a');
+        pagination.on('click', function (e) {
+            e.preventDefault();
+            pagination.removeClass('active');
+            let activated_page = $(this).addClass('active');
+            let clicked_page = activated_page.attr('href').split('page=')[1];
+            let selected_category = $('.categories-items .categories-item.active').data('filter');
+            fetchData(clicked_page, selected_category);
+        });
 
-            pagination.on('click',function (e) {
-                e.preventDefault();
-                pagination.removeClass('active');
-                let activated_page = $(this).addClass('active');
-                let clicked_page = activated_page.attr('href').split('page=')[1];
-                let selected_category = $('.categories-items .categories-item.active').data('filter');
-                fetchData(clicked_page, selected_category);
-            });
+        // $('.cover-up').hide();
+        // $('.gallery-item:hidden').show().removeClass('hidden');
 
-            $('.cover-up').hide();
-            $('.gallery-item:hidden').show().removeClass('hidden');
+        let category = $(".categories-items li");
 
-            let category = $(".categories-items li");
-
-            category.on('click',function (e) {
-                e.preventDefault();
-                let category_filter = $(this).data('filter');
-                category.removeClass('active');
-                $(this).addClass('active');
-                let pageNum = $('.pagination .page-item .active').attr('href').split('page=')[1];
+        category.on('click', function (e) {
+            e.preventDefault();
+            let category_filter = $(this).data('filter');
+            category.removeClass('active');
+            $(this).addClass('active');
+            if ($('.pagination .page-item .active').length > 0) {
+                let pageNum = 1;
                 fetchData(pageNum, category_filter);
-            });
-
-            function fetchData(page, cat) {
-
-                let url = '{{ route('type.getProjects') }}';
-                let type = '{{ $selected_type->slug }}';
-                let projects = $('.ajax-projects');
-                let pagination = $('.pagination-container');
-
-
-                $.ajaxSetup({
-                    cache: false,
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    url: url,
-                    method: 'get',
-                    data: {
-                        page: page,
-                        category: cat,
-                        type: type
-                    },
-                    beforeSend: function () {
-                        $('.loader-container').show();
-                    },
-
-                    success: function (result) {
-                        if (result.errors.length != 0) {
-                            $('.loader-container').hide();
-                            $(".errors").fadeIn(200);
-                            $('.errors .errors-list').empty();
-                            $.each(result.errors, function (key, value) {
-                                $('.errors .errors-list').append('<li>' + value + '</li>');
-                            });
-                            setTimeout(function () {
-                                $(".errors").fadeOut(200);
-                            }, 5000);
-                        } else {
-                            $('.loader-container').hide();
-
-                            projects.html(result.projects_grid);
-                            $(function () {
-                                $('.gallery-item > .gallery-card').hoverdir();
-                            });
-                        }
-                    }
-                });
+            } else {
+                let pageNum = 1;
+                fetchData(pageNum, category_filter);
             }
         });
+
+        function fetchData(page, cat) {
+
+            let url = '{{ route('type.getProjects') }}';
+            let type = '{{ $selected_type->slug }}';
+            let projects = $('.ajax-projects');
+            let no_projects = `<div class="w-100"><h2 class="text-center text-muted">{{ trans('types::front.no_projects') }}</h2></div>`;
+
+            $.ajaxSetup({
+                cache: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: url,
+                method: 'get',
+                data: {
+                    page: page,
+                    category: cat,
+                    type: type
+                },
+                beforeSend: function () {
+                    $('.loader-container').show();
+                },
+
+                success: function (result) {
+                    if (result.errors.length != 0) {
+                        $('.loader-container').hide();
+                        $(".errors").fadeIn(200);
+                        $('.errors .errors-list').empty();
+                        $.each(result.errors, function (key, value) {
+                            $('.errors .errors-list').append('<li>' + value + '</li>');
+                        });
+                        setTimeout(function () {
+                            $(".errors").fadeOut(200);
+                        }, 5000);
+                    } else {
+                        $('.loader-container').hide();
+
+                        projects.html(result.projects_grid);
+                        $(function () {
+                            $('.gallery-item > .gallery-card').hoverdir();
+                        });
+
+                        if ($('.ajax-projects .row.align-items-center .gallery-item').length < 1) {
+                            projects.html(no_projects);
+                        }
+
+                        let pagination = $('.pagination a');
+                        pagination.on('click', function (e) {
+                            e.preventDefault();
+                            pagination.removeClass('active');
+                            let activated_page = $(this).addClass('active');
+                            let clicked_page = activated_page.attr('href').split('page=')[1];
+                            let selected_category = $('.categories-items .categories-item.active').data('filter');
+                            fetchData(clicked_page, selected_category);
+                        });
+                    }
+                }
+            });
+        }
+
 
     </script>
 @endsection

@@ -18,7 +18,7 @@ class TypeForm extends Form {
         $categories = Category::get()->pluck('title', 'id')->toArray();
 
         $this->add('categories', 'multiple',[
-            'title' => trans('administration::admin.title'),
+            'title' => trans('types::admin.categories'),
             'choices' => $categories
         ]);
 

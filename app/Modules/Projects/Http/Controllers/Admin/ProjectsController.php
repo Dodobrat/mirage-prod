@@ -95,7 +95,7 @@ class ProjectsController extends BaseAdministrationController
         $project->fill($data);
         $project->save();
 
-        return redirect(Administration::route('projects.index'));
+        return redirect(Administration::route('projects.index'))->withSuccess([trans('index::admin.success_create')]);
     }
 
     /**
@@ -149,7 +149,7 @@ class ProjectsController extends BaseAdministrationController
         $project->fill($data);
         $project->save();
 
-        return redirect(Administration::route('projects.index'));
+        return redirect(Administration::route('projects.index'))->withSuccess([trans('index::admin.success_updated')]);
     }
 
     /**
