@@ -2,5 +2,6 @@
     "name": "Team",
     "slug": "team",
     "version": "1.0",
-    "description": "This is the description for the Team module."
+    "description": "This is the description for the Team module.",
+    "order": 1004
 }

@@ -24,16 +24,24 @@ class TeamController extends BaseAdministrationController
      */
     public function index(DataTables $datatable)
     {
-        $columns = ['id', 'name', 'active', 'created_at', 'action'];
+        $columns = ['id', 'name','position', 'active', 'created_at', 'action'];
         $table = new AdministrationDatatable($datatable);
-        $table->query(Member::reversed());
+        $table->query(Member::withTrashed()->reversed());
         $table->columns($columns);
+        $table->addColumn('position', function ($member) {
+            return $member->position;
+        });
         $table->addColumn('active', function ($member) {
             return AdministrationField::switch('active', $member);
         });
         $table->addColumn('action', function ($member) {
             $action = AdministrationField::edit(Administration::route('team.edit', $member->id));
-            $action .= AdministrationField::delete(Administration::route('team.destroy', $member->id));
+            if (!empty($member->deleted_at)) {
+                $action .= AdministrationField::restore(Administration::route('team.destroy', $member->id));
+            }
+            else{
+                $action .= AdministrationField::delete(Administration::route('team.destroy', $member->id));
+            }
             $action .= AdministrationField::media($member, ['photo']);
             return $action;
         });
@@ -113,7 +121,7 @@ class TeamController extends BaseAdministrationController
      */
     public function edit($id)
     {
-        $member = Member::where('id', $id)->first();
+        $member = Member::withTrashed()->where('id', $id)->first();
         $form = new AdministrationForm();
         $form->route(Administration::route('team.update', $member->id));
         $form->form(MemberForm::class);
@@ -151,13 +159,18 @@ class TeamController extends BaseAdministrationController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        $model = Member::where('id', $id)->first();
-        $model->delete();
+        $model = Member::withTrashed()->where('id', $id)->first();
+        if ($model->trashed()) {
+            $model->restore();
+        } else {
+            $model->delete();
+        }
         return response()->json(['ok'], 200);
     }
 }

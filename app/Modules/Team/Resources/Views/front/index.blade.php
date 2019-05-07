@@ -10,7 +10,9 @@
                     </div>
                 </div>
                 <div class="col-lg-11 col-md-12 page-desc text-center py-5">
-                    <p>{{ trans('team::front.description') }}</p>
+                    @if(!empty($block->where('key','member_about')->first()))
+                        {!! $block->where('key','member_about')->first()->description !!}
+                    @endif
                 </div>
             </div>
         </div>
@@ -28,7 +30,7 @@
                                     <img src="{{ $member->getFirstMedia('photo')->getUrl('thumb') }}" alt=""
                                          class="member-photo">
                                 @else
-                                    <img src="#" alt="" class="member-photo">
+                                    <img src="{{ asset('/img/placeholder.png') }}" alt="" class="member-photo">
                                 @endif
                             </div>
                             <div class="member-info px-3">
@@ -51,9 +53,9 @@
                     </h2>
                 </div>
                 <div class="col-lg-7 col-md-12 page-contact text-center py-4">
-                    <p>
-                        {{ trans('team::front.description') }}
-                    </p>
+                    @if(!empty($block->where('key','need_project')->first()))
+                        {!! $block->where('key','need_project')->first()->description !!}
+                    @endif
                 </div>
                 <div class="col-12 text-center">
                     <a href="{{ route('contacts.index') }}" class="redirect">

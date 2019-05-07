@@ -31,6 +31,10 @@ class Administration implements Structure {
             'title' => trans('index::admin.bg'),
         ]);
 
+        $form->add('index_filter', 'file', [
+            'title' => trans('index::admin.filter'),
+        ]);
+
         $form->add('index_grid', 'file', [
             'title' => trans('index::admin.grid'),
         ]);

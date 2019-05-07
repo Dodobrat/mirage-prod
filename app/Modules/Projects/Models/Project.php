@@ -5,6 +5,7 @@ namespace App\Modules\Projects\Models;
 use App\Modules\Categories\Models\Category;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -12,7 +13,7 @@ use Spatie\MediaLibrary\Models\Media;
 
 class Project extends Model implements HasMedia
 {
-    use Translatable, HasMediaTrait, NodeTrait;
+    use Translatable, HasMediaTrait, NodeTrait, SoftDeletes;
 
     protected $table = 'projects';
 

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class TypesController extends Controller
 {
-    private static $PER_PAGE = 2;
+    private static $PER_PAGE = 12;
 
     public function index($slug)
     {

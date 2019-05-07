@@ -8,9 +8,12 @@
                     class="project-modal-btn">
                 @if(!empty($project->getFirstMedia('media')))
                     <img src="{{ $project->getFirstMedia('media')->getUrl('thumb') }}"
-                         alt="" class="gallery-item-img">
+                         alt="{{ $project->title }}"
+                         class="gallery-item-img">
                 @else
-                    <img src="" alt="{{ $project->title }}" class="gallery-item-img">
+                    <img src="{{ asset('/img/placeholder.png') }}"
+                         alt="{{ $project->title }}"
+                         class="gallery-item-img">
                 @endif
             </button>
             <div class="overlay">

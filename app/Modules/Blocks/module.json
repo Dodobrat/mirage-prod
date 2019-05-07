@@ -1,0 +1,7 @@
+{
+    "name": "Blocks",
+    "slug": "blocks",
+    "version": "1.0",
+    "description": "This is the description for the Blocks module.",
+    "order": 1007
+}

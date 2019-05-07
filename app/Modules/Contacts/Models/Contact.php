@@ -4,11 +4,12 @@ namespace App\Modules\Contacts\Models;
 
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
 
 class Contact extends Model
 {
-    use Translatable, NodeTrait;
+    use Translatable, NodeTrait, SoftDeletes;
 
     protected $table = 'contacts';
 

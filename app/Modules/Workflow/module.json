@@ -2,5 +2,6 @@
     "name": "Workflow",
     "slug": "workflow",
     "version": "1.0",
-    "description": "This is the description for the Workflow module."
+    "description": "This is the description for the Workflow module.",
+    "order": 1006
 }

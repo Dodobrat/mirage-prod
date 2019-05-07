@@ -123,6 +123,7 @@
     </nav>
 </div>
 
+
 <div id="content" class=" @if(Route::currentRouteName() == 'index') condensed-layout @endif ">
     @yield('content')
 </div>
@@ -154,8 +155,8 @@
                         <a href="{{ route('contacts.index') }}" class="footer-link redirect">{{ trans('front.contact') }}</a>
                     </div>
                     <div class="col-lg-6 col-md-12 footer-field">
-                        <a href="{{ route('index') }}" class="footer-link redirect">{{ trans('front.architecture') }}</a>
-                        <a href="{{ route('index') }}" class="footer-link redirect">{{ trans('front.real_estate') }}</a>
+                        <a href="{{ route('type.index', ['architecture']) }}" class="footer-link redirect">{{ trans('front.architecture') }}</a>
+                        <a href="{{ route('type.index', ['real-estate']) }}" class="footer-link redirect">{{ trans('front.real_estate') }}</a>
                         <a href="{{ route('index') }}" class="footer-link redirect">{{ trans('front.projects') }}</a>
                     </div>
                 </div>

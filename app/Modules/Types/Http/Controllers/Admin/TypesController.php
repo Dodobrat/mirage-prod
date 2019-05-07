@@ -25,14 +25,19 @@ class TypesController extends BaseAdministrationController
     {
         $columns = ['id', 'title', 'active', 'created_at', 'action'];
         $table = new AdministrationDatatable($datatable);
-        $table->query(Type::reversed());
+        $table->query(Type::withTrashed()->reversed());
         $table->columns($columns);
         $table->addColumn('active', function ($type) {
             return AdministrationField::switch('active', $type);
         });
         $table->addColumn('action', function ($type) {
             $action = AdministrationField::edit(Administration::route('types.edit', $type->id));
-            $action .= AdministrationField::delete(Administration::route('types.destroy', $type->id));
+            if (!empty($type->deleted_at)) {
+                $action .= AdministrationField::restore(Administration::route('types.destroy', $type->id));
+            }
+            else{
+                $action .= AdministrationField::delete(Administration::route('types.destroy', $type->id));
+            }
             return $action;
         });
 
@@ -115,7 +120,7 @@ class TypesController extends BaseAdministrationController
      */
     public function edit($id)
     {
-        $type = Type::where('id', $id)->first();
+        $type = Type::withTrashed()->where('id', $id)->first();
         $form = new AdministrationForm();
         $form->route(Administration::route('types.update', $type->id));
         $form->form(TypeForm::class);
@@ -158,13 +163,18 @@ class TypesController extends BaseAdministrationController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        $model = Type::where('id', $id)->first();
-        $model->delete();
+        $model = Type::withTrashed()->where('id', $id)->first();
+        if ($model->trashed()) {
+            $model->restore();
+        } else {
+            $model->delete();
+        }
         return response()->json(['ok'], 200);
     }
 }

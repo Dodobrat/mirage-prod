@@ -25,7 +25,7 @@ class ProjectForm extends Form {
         $this->add('category_id', 'select', [
             'title' => trans('projects::admin.category_id'),
             'choices' => $categories,
-            'selected' => @$this->model->category_id
+            'value' => @$this->model->category_id
         ]);
 
         $this->add('active', 'switch', [

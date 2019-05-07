@@ -26,14 +26,19 @@ class WorkflowController extends BaseAdministrationController
     {
         $columns = ['id', 'title', 'active', 'created_at', 'action'];
         $table = new AdministrationDatatable($datatable);
-        $table->query(Workflow::reversed());
+        $table->query(Workflow::withTrashed()->reversed());
         $table->columns($columns);
         $table->addColumn('active', function ($flow) {
             return AdministrationField::switch('active', $flow);
         });
         $table->addColumn('action', function ($flow) {
             $action = AdministrationField::edit(Administration::route('workflow.edit', $flow->id));
-            $action .= AdministrationField::delete(Administration::route('workflow.destroy', $flow->id));
+            if (!empty($flow->deleted_at)) {
+                $action .= AdministrationField::restore(Administration::route('workflow.destroy', $flow->id));
+            }
+            else{
+                $action .= AdministrationField::delete(Administration::route('workflow.destroy', $flow->id));
+            }
             $action .= AdministrationField::media($flow, ['access']);
             return $action;
         });
@@ -113,7 +118,7 @@ class WorkflowController extends BaseAdministrationController
      */
     public function edit($id)
     {
-        $flow = Workflow::where('id', $id)->first();
+        $flow = Workflow::withTrashed()->where('id', $id)->first();
         $form = new AdministrationForm();
         $form->route(Administration::route('workflow.update', $flow->id));
         $form->form(WorkflowForm::class);
@@ -151,13 +156,18 @@ class WorkflowController extends BaseAdministrationController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        $model = Workflow::where('id', $id)->first();
-        $model->delete();
+        $model = Workflow::withTrashed()->where('id', $id)->first();
+        if ($model->trashed()) {
+            $model->restore();
+        } else {
+            $model->delete();
+        }
         return response()->json(['ok'], 200);
     }
 }

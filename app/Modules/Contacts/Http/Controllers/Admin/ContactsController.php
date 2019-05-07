@@ -25,7 +25,7 @@ class ContactsController extends BaseAdministrationController
     {
         $columns = ['id', 'title', 'active', 'show_map', 'created_at', 'action'];
         $table = new AdministrationDatatable($datatable);
-        $table->query(Contact::reversed());
+        $table->query(Contact::withTrashed()->reversed());
         $table->columns($columns);
         $table->addColumn('active', function ($contact) {
             return AdministrationField::switch('active', $contact);
@@ -35,7 +35,12 @@ class ContactsController extends BaseAdministrationController
         });
         $table->addColumn('action', function ($contact) {
             $action = AdministrationField::edit(Administration::route('contacts.edit', $contact->id));
-            $action .= AdministrationField::delete(Administration::route('contacts.destroy', $contact->id));
+            if (!empty($contact->deleted_at)) {
+                $action .= AdministrationField::restore(Administration::route('contacts.destroy', $contact->id));
+            }
+            else{
+                $action .= AdministrationField::delete(Administration::route('contacts.destroy', $contact->id));
+            }
             return $action;
         });
 
@@ -103,7 +108,7 @@ class ContactsController extends BaseAdministrationController
      */
     public function edit($id)
     {
-        $contact = Contact::where('id', $id)->first();
+        $contact = Contact::withTrashed()->where('id', $id)->first();
         $form = new AdministrationForm();
         $form->route(Administration::route('contacts.update', $contact->id));
         $form->form(ContactForm::class);
@@ -141,13 +146,18 @@ class ContactsController extends BaseAdministrationController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        $model = Contact::where('id', $id)->first();
-        $model->delete();
+        $model = Contact::withTrashed()->where('id', $id)->first();
+        if ($model->trashed()) {
+            $model->restore();
+        } else {
+            $model->delete();
+        }
         return response()->json(['ok'], 200);
     }
 }

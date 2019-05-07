@@ -5,11 +5,12 @@ namespace App\Modules\Types\Models;
 use App\Modules\Categories\Models\Category;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
 
 class Type extends Model
 {
-    use Translatable, NodeTrait;
+    use Translatable, NodeTrait, SoftDeletes;
 
     protected $table = 'types';
 

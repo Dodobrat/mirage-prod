@@ -2,5 +2,6 @@
     "name": "Projects",
     "slug": "projects",
     "version": "1.0",
-    "description": "This is the description for the Projects module."
+    "description": "This is the description for the Projects module.",
+    "order": 1003
 }

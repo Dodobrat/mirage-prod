@@ -53,6 +53,8 @@
         //             PROJECTS PAGINATION
         // -----------------------------------------
 
+        let loader = $('.projects-loader');
+
         let pagination = $('.pagination a');
 
         pagination.on('click', function (e) {
@@ -102,12 +104,12 @@
                     type: type
                 },
                 beforeSend: function () {
-                    $('.loader-container').show();
+                    loader.fadeIn();
                 },
 
                 success: function (result) {
                     if (result.errors.length != 0) {
-                        $('.loader-container').hide();
+                        loader.fadeOut();
                         $(".errors").fadeIn(200);
                         $('.errors .errors-list').empty();
                         $.each(result.errors, function (key, value) {
@@ -117,7 +119,7 @@
                             $(".errors").fadeOut(200);
                         }, 5000);
                     } else {
-                        $('.loader-container').hide();
+                        loader.fadeOut();
 
                         projects.html(result.projects_grid);
                         $(function () {

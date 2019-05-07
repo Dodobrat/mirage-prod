@@ -4,6 +4,7 @@ namespace App\Modules\Workflow\Models;
 
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -11,7 +12,7 @@ use Spatie\MediaLibrary\Models\Media;
 
 class Workflow extends Model implements HasMedia
 {
-    use Translatable, HasMediaTrait, NodeTrait;
+    use Translatable, HasMediaTrait, NodeTrait, SoftDeletes;
 
     protected $table = 'workflow';
 

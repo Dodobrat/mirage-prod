@@ -27,7 +27,7 @@ class ProjectsController extends BaseAdministrationController
     {
         $columns = ['id', 'title', 'architect', 'category', 'active', 'created_at', 'action'];
         $table = new AdministrationDatatable($datatable);
-        $table->query(Project::reversed());
+        $table->query(Project::withTrashed()->reversed());
         $table->columns($columns);
         $table->addColumn('active', function ($project) {
             return AdministrationField::switch('active', $project);
@@ -37,7 +37,12 @@ class ProjectsController extends BaseAdministrationController
         });
         $table->addColumn('action', function ($project) {
             $action = AdministrationField::edit(Administration::route('projects.edit', $project->id));
-            $action .= AdministrationField::delete(Administration::route('projects.destroy', $project->id));
+            if (!empty($project->deleted_at)) {
+                $action .= AdministrationField::restore(Administration::route('projects.destroy', $project->id));
+            }
+            else{
+                $action .= AdministrationField::delete(Administration::route('projects.destroy', $project->id));
+            }
             $action .= AdministrationField::media($project, ['media']);
             return $action;
         });
@@ -117,7 +122,7 @@ class ProjectsController extends BaseAdministrationController
      */
     public function edit($id)
     {
-        $project = Project::where('id', $id)->first();
+        $project = Project::withTrashed()->where('id', $id)->first();
         $form = new AdministrationForm();
         $form->route(Administration::route('projects.update', $project->id));
         $form->form(ProjectForm::class);
@@ -155,13 +160,18 @@ class ProjectsController extends BaseAdministrationController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
+     * @throws \Exception
      */
     public function destroy($id)
     {
-        $model = Project::where('id', $id)->first();
-        $model->delete();
+        $model = Project::withTrashed()->where('id', $id)->first();
+        if ($model->trashed()) {
+            $model->restore();
+        } else {
+            $model->delete();
+        }
         return response()->json(['ok'], 200);
     }
 }

@@ -6,11 +6,12 @@ use App\Modules\Projects\Models\Project;
 use App\Modules\Types\Models\Type;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
 
 class Category extends Model
 {
-    use Translatable, NodeTrait;
+    use Translatable, NodeTrait, SoftDeletes;
 
     protected $table = 'categories';
 

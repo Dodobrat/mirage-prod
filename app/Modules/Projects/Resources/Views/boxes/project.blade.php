@@ -33,7 +33,7 @@
                             @if(!empty($media))
                                 <img class="lazy-load" data-src="{{ $media->getUrl() }}" alt="">
                             @else
-                                <img class="lazy-load" data-src="https://via.placeholder.com/300C/O https://placeholder.com/" alt="">
+                                <img class="lazy-load" data-src="{{ asset('/img/placeholder.png') }}" alt="">
                             @endif
                         </div>
                     @endforeach

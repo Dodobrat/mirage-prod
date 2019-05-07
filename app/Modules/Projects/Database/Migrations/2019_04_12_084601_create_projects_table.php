@@ -27,7 +27,7 @@ class CreateProjectsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('project_id')->unsigned();
             $table->string('title');
-            $table->string('architect');
+            $table->string('architect')->nullable();
             $table->string('slug')->nullable();
             $table->string('locale')->index();
 

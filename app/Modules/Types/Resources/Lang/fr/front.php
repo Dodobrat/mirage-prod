@@ -1,6 +1,6 @@
 <?php
 
 return[
-    'all' => 'View All',
-    'no_projects' => 'No projects found!',
+    'all' => 'Tout voir',
+    'no_projects' => 'Aucun projet trouvé!',
 ];
