@@ -17,7 +17,7 @@
 
             {{--PROJECT CATEGORIES--}}
             <ul class="categories-items">
-                <li data-filter="all" class="categories-item active">
+                <li data-filter="all" class="categories-item">
                     <button class="categories-item-link">{{ trans('types::front.all') }}</button>
                 </li>
                 @foreach($selected_type->categories as $category)
@@ -62,6 +62,11 @@
             pagination.removeClass('active');
             let activated_page = $(this).addClass('active');
             let clicked_page = activated_page.attr('href').split('page=')[1];
+            let url = window.location.href;
+            if (url.indexOf('?') > 0) {
+                let clean_url = url.substring(0, url.indexOf("?"));
+                window.history.replaceState({}, document.title, clean_url);
+            }
             let selected_category = $('.categories-items .categories-item.active').data('filter');
             fetchData(clicked_page, selected_category);
         });
@@ -71,6 +76,8 @@
         category.on('click', function (e) {
             e.preventDefault();
             let category_filter = $(this).data('filter');
+            let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?category=' + category_filter;
+            window.history.pushState({path: newurl}, '', newurl);
             category.removeClass('active');
             $(this).addClass('active');
             if ($('.pagination .page-item .active').length > 0) {
@@ -79,6 +86,21 @@
             } else {
                 let pageNum = 1;
                 fetchData(pageNum, category_filter);
+            }
+        });
+
+        $(document).ready(function () {
+            if (window.location.href.indexOf('?category=') > 0) {
+                let category_filter = window.location.href.split('category=')[1];
+                $('.categories-items li[data-filter="'+ category_filter +'"]').addClass('active');
+                let pageNum = 1;
+                let target = $('.categories-items li.active');
+                $('.categories-items').animate({
+                    scrollLeft: $(target).position().left
+                }, 1500);
+                fetchData(pageNum, category_filter);
+            }else{
+                $('.categories-items li:first').addClass('active');
             }
         });
 
@@ -144,7 +166,6 @@
             });
         }
 
-
     </script>
 @endsection
 
@@ -176,12 +197,12 @@
                     project_id: projectId,
                 },
                 beforeSend: function () {
-                    $('.loader-container').show();
+                    $('.loading').slideDown(500);
                 },
 
                 success: function (result) {
                     if (result.errors.length != 0) {
-                        $('.loader-container').hide();
+                        $('.loading').slideUp(500);
                         $(".errors").fadeIn(200);
                         $('.errors .errors-list').empty();
                         $.each(result.errors, function (key, value) {
@@ -191,9 +212,10 @@
                             $(".errors").fadeOut(200);
                         }, 5000);
                     } else {
-                        $('.loader-container').hide();
+                        let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?project=' + projectId;
+                        window.history.pushState({path: newurl}, '', newurl);
                         $modal.fadeIn(300);
-                        $('body').css('overflowY', 'hidden');
+                        // $('body').css('overflowY', 'hidden');
                         $modal.html(result.project_modal);
                         let images = document.querySelectorAll(".lazy-load");
                         for (let i = 0; i < images.length; i++) {
@@ -218,9 +240,23 @@
 
         // Close
         function closeModal() {
+            let url = window.location.href;
+            if (url.indexOf('?') > 0) {
+                let clean_url = url.substring(0, url.indexOf("?"));
+                window.history.replaceState({}, document.title, clean_url);
+            }
             $modal.fadeOut(300);
-            $('body').css('overflowY', 'auto');
+            $('.loading').slideUp(500);
+            // $('body').css('overflowY', 'auto');
         }
+
+        $(document).ready(function () {
+            if (window.location.href.indexOf('?project=') > 0) {
+                let projectId = window.location.href.split('project=')[1];
+                openModal(projectId);
+            }
+        });
+
     </script>
 @endsection
 

@@ -15,6 +15,7 @@ Route::group([
     'prefix' => LaravelLocalization::setLocale(),
 ], function () {
     Route::group([
+        'prefix' => 'type',
         'as' => 'type.',
     ], function () {
         Route::get('/{slug}', [

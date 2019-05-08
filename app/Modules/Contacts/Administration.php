@@ -3,8 +3,6 @@
 namespace App\Modules\Contacts;
 
 use App\Modules\Contacts\Http\Controllers\Admin\ContactsController;
-use App\Modules\Contacts\Models\Contact;
-use Charlotte\Administration\Helpers\Dashboard;
 use Charlotte\Administration\Interfaces\Structure;
 use Illuminate\Support\Facades\Route;
 

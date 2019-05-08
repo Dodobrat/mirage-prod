@@ -68,6 +68,78 @@ $("#mobile-nav-toggler").click(function () {
 });
 
 // -----------------------------------------
+//             CATEGORY SLIDE
+// -----------------------------------------
+
+(function() {
+    let x,newX,left,down;
+
+    let categories = $('.categories-items li');
+
+    function scrolling(){
+        categories.css('pointer-events','none');
+    }
+
+    function clickable(){
+        categories.css('pointer-events','unset');
+    }
+
+    $(".categories-items").mousedown(function(e) {
+        down = true;
+        x = e.pageX;
+        left = $(this).scrollLeft();
+    });
+
+    $(".categories-items").mousemove(function(e) {
+        e.preventDefault();
+        if (down) {
+            scrolling();
+            newX = e.pageX;
+            $(this).scrollLeft(left+x-newX);
+        }
+    });
+
+    $("body").mouseup(function(e) {
+        down=false;
+        clickable();
+    });
+
+    $("body").keydown(function(e) {
+        left = $(".categories-items").scrollLeft();
+        let articleWidth = $('.categories-item').width();
+        let margin = 2*parseInt($('.categories-item').css("marginLeft"));
+        if (e.keyCode == 39)
+            $(".categories-items").scrollLeft(left + articleWidth + margin);
+        if (e.keyCode == 37)
+            $(".categories-items").scrollLeft(left - articleWidth - margin);
+    });
+
+    //MOBILE
+    let slideDiv = $('.categories-items');
+    slideDiv.on('touchstart', function() {
+        let touches = event.changedTouches;
+        down = true;
+        x = touches[0].pageX;
+        left = $('.categories-items').scrollLeft();
+    });
+
+    slideDiv.on('touchmove', function(event){
+        event.stopPropagation();
+        let touches = event.changedTouches;
+        if (down) {
+            scrolling();
+            let newX = touches[0].pageX;
+            $('.categories-items').scrollLeft(left+x-newX);
+        }
+    });
+
+    slideDiv.on('touchend', function(){
+        down = false;
+        clickable();
+    });
+})();
+
+// -----------------------------------------
 //             DIRECTIONAL HOVER
 // -----------------------------------------
 
@@ -254,12 +326,12 @@ if (document.body.contains(contactForm)) {
                     contact_id: self.closest(contactForm).find('input[name="contact_id"]').val(),
                 },
                 beforeSend: function () {
-                    $('.loader-container').show();
+                    $('.loader').show();
                 },
 
                 success: function (result) {
                     if (result.errors) {
-                        $('.loader-container').hide();
+                        $('.loader').hide();
                         $(".errors").fadeIn(200);
                         $('.errors .errors-list').empty();
                         $.each(result.errors, function (key, value) {
@@ -269,7 +341,7 @@ if (document.body.contains(contactForm)) {
                             $(".errors").fadeOut(200);
                         }, 5000);
                     } else {
-                        $('.loader-container').hide();
+                        $('.loader').hide();
                         $('.submit-btn').css('pointer-events','none');
                         $('.submit-btn').css('opacity',0.7);
                         $(".success").fadeIn(200);

@@ -1,82 +1,122 @@
 .custom-wide-container {
-  padding: 0 3vw;
+    padding: 0 3vw;
 
-  .contact-details {
-    .contact-heading {
-      font-weight: $bold;
-      margin-bottom: 30px;
-      width: 65%;
-    }
-
-    .contact-description {
-      font-size: 18px;
-      margin-bottom: 30px;
-      width: 80%;
-    }
-
-    .contact-detail {
-      font-weight: $bold;
-      font-size: 18px;
-      margin-bottom: 18px;
-
-      span {
-        font-size: 16px;
-        font-weight: $regular;
-      }
-    }
-  }
-
-  .contact-form-section {
-    .contact-email-form {
-      .field {
-        width: 100%;
-        height: 50px;
-        padding: 0 15px;
-        margin: 15px 0;
-        border: 1px solid transparent;
-        background: $white;
-        &:focus {
-          outline: none;
+    .contact-details {
+        .contact-heading {
+            font-weight: $bold;
+            margin-bottom: 30px;
+            width: 65%;
         }
-      }
 
-      .comment {
-        width: 100%;
-        height: 250px;
-        padding: 15px;
-        margin: 15px 0;
-        border: none;
-        background: $white;
-        resize: none;
-
-        &:focus {
-          outline: none;
+        .contact-description {
+            font-size: 18px;
+            margin-bottom: 30px;
+            width: 80%;
         }
-      }
 
-      .submit-btn {
-        border: none;
-        background: $bluish;
-        padding: 15px 25px;
-        color: $white;
-        text-transform: uppercase;
-        font-size: 14px;
-        font-weight: $bold;
-        letter-spacing: 1px;
-        width: auto;
+        .contact-detail {
+            font-weight: $bold;
+            font-size: 18px;
+            margin-bottom: 18px;
 
-        &:focus {
-          outline: none;
+            span {
+                font-size: 16px;
+                font-weight: $regular;
+            }
         }
-      }
     }
-  }
 
-  .contact-map {
-    #map {
-      height: 50vh;
-      width: 100%;
-      background-color: #ccc;
+    .contact-form-section {
+        .contact-email-form {
+            .field {
+                width: 100%;
+                height: 50px;
+                padding: 0 15px;
+                margin: 15px 0;
+                border: 1px solid transparent;
+                background: $white;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .comment {
+                width: 100%;
+                height: 250px;
+                padding: 15px;
+                margin: 15px 0;
+                border: none;
+                background: $white;
+                resize: none;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .submit-btn {
+                position: relative;
+                border: none;
+                background: $bluish;
+                padding: 15px 25px;
+                color: $white;
+                text-transform: uppercase;
+                font-size: 14px;
+                font-weight: $bold;
+                letter-spacing: 1px;
+                width: auto;
+
+                .loader {
+                    display: none;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: $bluish;
+                    .spinner{
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        margin-top: -10px;
+                        margin-left: -10px;
+                        width: 20px;
+                        height: 20px;
+                        border: 2px solid transparent;
+                        border-bottom: 2px solid $white;
+                        border-radius: 50%;
+                        animation: rotate 5s infinite;
+                    }
+
+                    @keyframes rotate {
+                        0% {
+                            transform: rotate(0deg);
+                        }
+                        33% {
+                            transform: rotate(900deg);
+                        }
+                        67% {
+                            transform: rotate(-900deg);
+                        }
+                        100% {
+                            transform: rotate(0deg);
+                        }
+                    }
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
     }
-  }
+
+    .contact-map {
+        #map {
+            height: 50vh;
+            width: 100%;
+            background-color: #ccc;
+        }
+    }
 }

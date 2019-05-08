@@ -182,9 +182,7 @@
 <div class="success">
     <h5 class="text-center text-white m-0"></h5>
 </div>
-<div class="loader-container">
-    <div class="loader"></div>
-</div>
+<div class="loading"></div>
 <script src="{{ mix('/js/app.js') }}"></script>
 @yield('projects')
 @yield('project')

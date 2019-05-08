@@ -90,7 +90,11 @@
                                     class="submit-btn"
                                     id="ajaxSubmitCon_{{$contact->id}}">
                                 {{trans('contacts::front.send')}}
+                                <span class="loader">
+                                    <div class="spinner"></div>
+                                </span>
                             </button>
+
                         </form>
                     @endforeach
                 </div>
