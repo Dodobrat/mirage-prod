@@ -31,7 +31,7 @@
                     @foreach($project->getMedia('media') as $media)
                         <div class="carousel-item @if($loop->first) active @endif">
                             @if(!empty($media))
-                                <img class="lazy-load" data-src="{{ $media->getUrl() }}" alt="">
+                                <img class="lazy-load" data-src="{{ $media->getUrl('view') }}" alt="">
                             @else
                                 <img class="lazy-load" data-src="{{ asset('/img/placeholder.png') }}" alt="">
                             @endif

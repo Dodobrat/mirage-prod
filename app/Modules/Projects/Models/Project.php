@@ -46,6 +46,12 @@ class Project extends Model implements HasMedia
             ->height(600)
             ->sharpen(0)
             ->nonOptimized();
+
+        $this->addMediaConversion('view')
+            ->width(1920)
+            ->height(1080)
+            ->sharpen(0)
+            ->nonOptimized();
     }
 
     public function category() {
