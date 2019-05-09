@@ -43,7 +43,9 @@ class TypesController extends Controller
                 ]);
         }
 
-        $available_categories = $selected_type->categories->pluck('id')->toArray();
+        $categories = $selected_type->categories->where('active',1);
+
+        $available_categories = $categories->pluck('id')->toArray();
 
         $projects = Project::active()
             ->with(['media'])
@@ -51,7 +53,7 @@ class TypesController extends Controller
             ->reversed()
             ->paginate(self::$PER_PAGE);
 
-        return view('types::front.index', compact('selected_type', 'projects'));
+        return view('types::front.index', compact('selected_type', 'categories', 'projects'));
     }
 
     public function getProjects(Request $request)
@@ -79,9 +81,11 @@ class TypesController extends Controller
         })->with(['categories'])->first();
 
         if ($request->get('category') == 'all') {
-            $available_categories = $type->categories->pluck('id')->toArray();
+            $categories = $type->categories->where('active',1);
+            $available_categories = $categories->pluck('id')->toArray();
         } else {
-            $available_categories = $type->categories->where('slug', $request->get('category'))->pluck('id')->toArray();
+            $categories = $type->categories->where('active',1)->where('slug' , $request->get('category'));
+            $available_categories = $categories->pluck('id')->toArray();
         }
 
         $projects = Project::active()

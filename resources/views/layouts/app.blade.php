@@ -36,7 +36,8 @@
                 <a href="{{ route('team.index') }}" class="nav-link redirect">{{ trans('front.team') }}</a>
                 <a href="{{ route('contacts.index') }}" class="nav-link redirect">{{ trans('front.contact') }}</a>
                 @if(!empty(session('workflow_slug')))
-                    <a href="{{ route('workflow.index', session('workflow_slug')) }}" class="nav-link redirect">{{ trans('front.workflow') }}</a>
+                    <a href="{{ route('workflow.index', session('workflow_slug')) }}"
+                       class="nav-link redirect">{{ trans('front.workflow') }}</a>
                 @endif
                 <a href="{{ LaravelLocalization::getLocalizedURL('en') }}"
                    class="redirect nav-link @if(App::isLocale('en')) active @endif">{{ trans('front.en') }}</a>
@@ -107,7 +108,8 @@
                 </li>
                 @if(!empty(session('workflow_slug')))
                     <li class="nav-item">
-                        <a class="nav-link redirect" href="{{ route('workflow.index', session('workflow_slug')) }}">{{ trans('front.workflow') }}</a>
+                        <a class="nav-link redirect"
+                           href="{{ route('workflow.index', session('workflow_slug')) }}">{{ trans('front.workflow') }}</a>
                     </li>
                 @endif
                 <li class="nav-item">
@@ -152,20 +154,38 @@
                     <div class="col-lg-6 col-md-12 footer-field">
                         <a href="{{ route('index') }}" class="footer-link redirect">{{ trans('front.home') }}</a>
                         <a href="{{ route('team.index') }}" class="footer-link redirect">{{ trans('front.team') }}</a>
-                        <a href="{{ route('contacts.index') }}" class="footer-link redirect">{{ trans('front.contact') }}</a>
+                        <a href="{{ route('contacts.index') }}"
+                           class="footer-link redirect">{{ trans('front.contact') }}</a>
                     </div>
                     <div class="col-lg-6 col-md-12 footer-field">
-                        <a href="{{ route('type.index', ['architecture']) }}" class="footer-link redirect">{{ trans('front.architecture') }}</a>
-                        <a href="{{ route('type.index', ['real-estate']) }}" class="footer-link redirect">{{ trans('front.real_estate') }}</a>
-                        <a href="{{ route('index') }}" class="footer-link redirect">{{ trans('front.projects') }}</a>
+                        @if(!empty(route('type.index', ['architecture'])))
+                            <a href="{{ route('type.index', ['architecture']) }}"
+                               class="footer-link redirect">{{ trans('front.architecture') }}</a>
+                        @endif
+                        @if(!empty(route('type.index', ['real-estate'])))
+                            <a href="{{ route('type.index', ['real-estate']) }}"
+                               class="footer-link redirect">{{ trans('front.real_estate') }}</a>
+                        @endif
                     </div>
                 </div>
             </div>
             <div class="col-lg-1 col-md-12 footer-field mt-lg-0 mt-3">
-                <a href="{{ \Charlotte\Administration\Helpers\Settings::get('fb_link') }}" target="_blank" class="footer-social-link mb-0">{{ trans('front.fb') }}</a>
-                <a href="{{ \Charlotte\Administration\Helpers\Settings::get('ig_link') }}" target="_blank" class="footer-social-link mb-0">{{ trans('front.ig') }}</a>
-                <a href="{{ \Charlotte\Administration\Helpers\Settings::get('pi_link') }}" target="_blank" class="footer-social-link mb-0">{{ trans('front.pin') }}</a>
-                <a href="{{ \Charlotte\Administration\Helpers\Settings::get('li_link') }}" target="_blank" class="footer-social-link mb-0">{{ trans('front.lin') }}</a>
+                @if(!empty(\Charlotte\Administration\Helpers\Settings::get('fb_link')))
+                    <a href="{{ \Charlotte\Administration\Helpers\Settings::get('fb_link') }}" target="_blank"
+                       class="footer-social-link mb-0">{{ trans('front.fb') }}</a>
+                @endif
+                @if(!empty(\Charlotte\Administration\Helpers\Settings::get('ig_link')))
+                    <a href="{{ \Charlotte\Administration\Helpers\Settings::get('ig_link') }}" target="_blank"
+                       class="footer-social-link mb-0">{{ trans('front.ig') }}</a>
+                @endif
+                @if(!empty(\Charlotte\Administration\Helpers\Settings::get('pi_link')))
+                    <a href="{{ \Charlotte\Administration\Helpers\Settings::get('pi_link') }}" target="_blank"
+                       class="footer-social-link mb-0">{{ trans('front.pin') }}</a>
+                @endif
+                @if(!empty(\Charlotte\Administration\Helpers\Settings::get('li_link')))
+                    <a href="{{ \Charlotte\Administration\Helpers\Settings::get('li_link') }}" target="_blank"
+                       class="footer-social-link mb-0">{{ trans('front.lin') }}</a>
+                @endif
             </div>
         </div>
     </div>

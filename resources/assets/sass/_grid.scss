@@ -5,20 +5,22 @@
         position: relative;
         overflow: hidden;
         list-style-type: none;
+        padding: 0;
         margin: 0 0.25rem;
         text-align: center;
         white-space: nowrap;
         .categories-item{
             display: inline-block;
             .categories-item-link{
-                margin: 0 10px;
+                transition: 0.2s ease-in-out;
+                margin: 0 5px;
                 padding: 10px 15px;
                 background-color: transparent;
                 border: none;
                 text-transform: uppercase;
                 color: #959595;
-                font-size: 24px;
-                font-weight: $regular;
+                font-size: 19px;
+                font-weight: $light;
                 text-decoration: none;
                 cursor: pointer;
                 &:focus{
@@ -27,9 +29,9 @@
             }
             &.active{
                 .categories-item-link{
+                    transition: 0.2s ease-in-out;
                     color: #6b6b6b;
-                    font-size: 24px;
-                    font-weight: $bold;
+                    font-weight: $black;
                 }
             }
         }
@@ -37,9 +39,39 @@
     .divider{
         width: 100%;
         padding: 0 0.25rem;
-        margin: 10px 0 50px 0;
+        margin: 10px 0 30px 0;
         .line{
-            border-bottom: 8px solid #959595;
+            border-bottom: 2px solid #959595;
+        }
+    }
+    .ajax-spinner{
+        z-index: 99998;
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -15px;
+        margin-left: -15px;
+        width: 30px;
+        height: 30px;
+        border: 2px solid transparent;
+        border-bottom: 2px solid $secondary-bg;
+        border-radius: 50%;
+        animation: rotate 5s infinite;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        33% {
+            transform: rotate(900deg);
+        }
+        67% {
+            transform: rotate(-900deg);
+        }
+        100% {
+            transform: rotate(0deg);
         }
     }
     .ajax-parent-overlay{
@@ -56,7 +88,13 @@
         }
         .ajax-projects{
             position: relative;
-            .row{
+            .no-projects{
+                text-transform: uppercase;
+                text-align: center;
+                color: #6b6b6b;
+                font-size: 20px;
+            }
+            .keep-aspect{
                 margin: 0 auto;
                 width: 100%;
                 position: relative;
@@ -68,7 +106,9 @@
                         position: relative;
                         overflow: hidden;
                         margin: 0;
-                        height: 380px;
+                        height: calc(100vw / 4);
+                        min-height: 225px;
+                        max-height: 325px;
                         .project-modal-btn{
                             width: 100%;
                             height: 100%;
@@ -121,14 +161,17 @@
                     transform: translate(-50%, -50%);
                     .page-item{
                         .page-dir{
+                            transition: 0.2s ease-in-out;
                             pointer-events: auto;
                             font-size: 19px;
+                            font-weight: $light;
                             color: $primary-font-color;
                             &:hover{
                                 text-decoration: none;
                             }
                         }
                         .active{
+                            transition: 0.2s ease-in-out;
                             font-weight: $black;
                         }
                     }

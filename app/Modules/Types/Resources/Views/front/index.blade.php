@@ -20,7 +20,7 @@
                 <li data-filter="all" class="categories-item">
                     <button class="categories-item-link">{{ trans('types::front.all') }}</button>
                 </li>
-                @foreach($selected_type->categories as $category)
+                @foreach($categories as $category)
                     <li data-filter="{{ $category->slug }}" class="categories-item">
                         <button class="categories-item-link">{{ $category->title }}</button>
                     </li>
@@ -32,8 +32,10 @@
             </div>
 
             {{--PROJECT GRID--}}
+            <div class="ajax-spinner"></div>
             <div class="ajax-parent-overlay">
-                <div class="projects-loader"></div>
+                <div class="projects-loader">
+                </div>
                 <div class="ajax-projects">
                     @include('types::boxes.projects')
                 </div>
@@ -54,6 +56,7 @@
         // -----------------------------------------
 
         let loader = $('.projects-loader');
+        let loaderSpin = $('.ajax-spinner');
 
         let pagination = $('.pagination a');
 
@@ -109,7 +112,7 @@
             let url = '{{ route('type.getProjects') }}';
             let type = '{{ $selected_type->slug }}';
             let projects = $('.ajax-projects');
-            let no_projects = `<div class="w-100"><h2 class="text-center text-muted">{{ trans('types::front.no_projects') }}</h2></div>`;
+            let no_projects = `<div class="w-100"><p class="no-projects">{{ trans('types::front.no_projects') }}</h2></div>`;
 
             $.ajaxSetup({
                 cache: false,
@@ -127,6 +130,7 @@
                 },
                 beforeSend: function () {
                     loader.fadeIn();
+                    loaderSpin.fadeIn();
                 },
 
                 success: function (result) {
@@ -140,17 +144,20 @@
                         setTimeout(function () {
                             $(".errors").fadeOut(200);
                         }, 5000);
+                        loaderSpin.fadeOut();
                     } else {
                         loader.fadeOut();
-
                         projects.html(result.projects_grid);
+
                         $(function () {
                             $('.gallery-item > .gallery-card').hoverdir();
                         });
-
                         if ($('.ajax-projects .row.align-items-center .gallery-item').length < 1) {
+
                             projects.html(no_projects);
                         }
+
+                        loaderSpin.fadeOut();
 
                         let pagination = $('.pagination a');
                         pagination.on('click', function (e) {

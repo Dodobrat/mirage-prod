@@ -93,7 +93,6 @@ $("#mobile-nav-toggler").click(function () {
     $(".categories-items").mousemove(function(e) {
         e.preventDefault();
         if (down) {
-            scrolling();
             newX = e.pageX;
             $(this).scrollLeft(left+x-newX);
         }

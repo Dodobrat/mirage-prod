@@ -1,18 +1,4 @@
-@media screen and (max-width: 1600px) {
-    .custom-projects-container {
-        .row {
-            .gallery-item {
-                .gallery-card {
-                    height: calc(100vw / 4);
-                }
-            }
-        }
-    }
-
-}
-
 @media screen and (max-width: 1200px) {
-
     .custom-wide-container {
         .contact-details {
             .contact-heading {
@@ -24,21 +10,6 @@
             }
         }
     }
-
-    .members-grid-container {
-        .member-card-container {
-            .member-img-container {
-                .member-photo {
-                    height: 250px;
-                }
-
-                .member-illustration {
-                    height: 250px;
-                }
-            }
-        }
-    }
-
 }
 
 @media screen and (max-width: 992px) {
@@ -85,7 +56,7 @@
         .row {
             .gallery-item {
                 .gallery-card {
-                    height: calc(100vw / 3);
+                    height: calc(100vw / 2);
                 }
             }
         }
@@ -115,7 +86,6 @@
             }
         }
     }
-
 
     .custom-wide-container {
         .contact-details {
@@ -154,11 +124,9 @@
             }
         }
     }
-
 }
 
 @media screen and (max-width: 768px) {
-
     .images{
         #scene{
             height: calc(70vh - 58px);
@@ -175,30 +143,19 @@
         }
     }
 
-    .custom-projects-container {
-        .row {
-            .gallery-item {
-                .gallery-card {
-                    height: calc(100vw / 2);
-                    max-height: 225px;
+    .custom-projects-container{
+        .ajax-parent-overlay{
+            .ajax-projects{
+                .keep-aspect{
+                    .gallery-item{
+                        .gallery-card{
+                            height: calc(100vw / 2);
+                            min-height: unset;
+                        }
+                    }
                 }
             }
         }
     }
-
-    .members-grid-container {
-        .member-card-container {
-            .member-img-container {
-                .member-photo {
-                    height: 200px;
-                }
-
-                .member-illustration {
-                    height: 200px;
-                }
-            }
-        }
-    }
-
 }
 
