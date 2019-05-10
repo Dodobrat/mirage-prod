@@ -25,12 +25,12 @@
                 </a>
             </div>
             <div class="nav-links-container">
-                <a href="{{ route('index') }}" class="nav-link redirect">{{ trans('front.home') }}</a>
-                <a href="{{ route('team.index') }}" class="nav-link redirect">{{ trans('front.team') }}</a>
-                <a href="{{ route('contacts.index') }}" class="nav-link redirect">{{ trans('front.contact') }}</a>
+                <a href="{{ route('index') }}" class="nav-link redirect {{ Route::currentRouteNamed('index') ? 'active' : '' }}">{{ trans('front.home') }}</a>
+                <a href="{{ route('team.index') }}" class="nav-link redirect {{ Route::currentRouteNamed('team.index') ? 'active' : '' }}">{{ trans('front.team') }}</a>
+                <a href="{{ route('contacts.index') }}" class="nav-link redirect {{ Route::currentRouteNamed('contacts.index') ? 'active' : '' }}">{{ trans('front.contact') }}</a>
                 @if(!empty(session('workflow_slug')))
                     <a href="{{ route('workflow.index', session('workflow_slug')) }}"
-                       class="nav-link redirect">{{ trans('front.workflow') }}</a>
+                       class="nav-link redirect {{ Route::currentRouteNamed('workflow.index') ? 'active' : '' }}">{{ trans('front.workflow') }}</a>
                 @endif
                 <a href="{{ LaravelLocalization::getLocalizedURL('en') }}"
                    class="redirect nav-link @if(App::isLocale('en')) active @endif">{{ trans('front.en') }}</a>
@@ -39,6 +39,15 @@
             </div>
         </div>
     </nav>
+    <div class="secondary-nav">
+        <div class="custom-container-nav">
+            <div class="collapse show" id="secondary-nav">
+                @foreach($types as $type)
+                    <a href="{{ route('type.index', [$type->slug] ) }}" class="nav-link redirect">{{ $type->title }}</a>
+                @endforeach
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="mobile-nav-container">
@@ -62,18 +71,30 @@
 
         <div class="collapse navbar-collapse" id="navbarExpand">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <div class="mx-n3" id="homeOptions">
+                    <div class="home-options px-3">
+                        <ul class="navbar-nav mr-auto my-2">
+                            @foreach($types as $type)
+                                <li class="nav-item">
+                                    <a href="{{ route('type.index', [$type->slug] ) }}"
+                                       class="nav-link redirect">{{ $type->title }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
                 <li class="nav-item">
-                    <a class="nav-link redirect" href="{{ route('index') }}">{{ trans('front.home') }}</a>
+                    <a class="nav-link redirect {{ Route::currentRouteNamed('index') ? 'active' : '' }}" href="{{ route('index') }}">{{ trans('front.home') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link redirect" href="{{ route('team.index') }}">{{ trans('front.team') }}</a>
+                    <a class="nav-link redirect {{ Route::currentRouteNamed('team.index') ? 'active' : '' }}" href="{{ route('team.index') }}">{{ trans('front.team') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link redirect" href="{{ route('contacts.index') }}">{{ trans('front.contact') }}</a>
+                    <a class="nav-link redirect {{ Route::currentRouteNamed('contacts.index') ? 'active' : '' }}" href="{{ route('contacts.index') }}">{{ trans('front.contact') }}</a>
                 </li>
                 @if(!empty(session('workflow_slug')))
                     <li class="nav-item">
-                        <a class="nav-link redirect"
+                        <a class="nav-link redirect {{ Route::currentRouteNamed('workflow.index') ? 'active' : '' }}"
                            href="{{ route('workflow.index', session('workflow_slug')) }}">{{ trans('front.workflow') }}</a>
                     </li>
                 @endif
@@ -89,7 +110,7 @@
 </div>
 
 
-<div id="index-content">
+<div id="content">
     @yield('content')
 </div>
 

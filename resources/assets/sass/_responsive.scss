@@ -1,161 +1,183 @@
 @media screen and (max-width: 1200px) {
-    .custom-wide-container {
-        .contact-details {
-            .contact-heading {
-                width: 85%;
-            }
+  .custom-wide-container {
+    .contact-details {
+      .contact-heading {
+        width: 85%;
+      }
 
-            .contact-description {
-                width: 90%;
-            }
-        }
+      .contact-description {
+        width: 90%;
+      }
     }
+  }
 }
 
 @media screen and (max-width: 992px) {
-    .preloader {
-        margin-top: -58px;
+  .preloader {
+    margin-top: -58px;
+  }
+  .pageloader {
+    margin-top: -58px;
+
+    .load-logo {
+      width: 100px;
+      margin-left: -50px;
+      margin-top: -150px;
     }
-    .pageloader {
-        margin-top: -58px;
-        .load-logo {
-            width: 100px;
+  }
+
+  .images {
+    #scene {
+      height: calc(80vh - 58px);
+    }
+
+    #over {
+      height: calc(80vh - 58px);
+    }
+  }
+
+  #content {
+    margin-top: 58px;
+    min-height: calc(100vh - 58px);
+  }
+
+  #index-content {
+    margin-top: 58px;
+    min-height: calc(100vh - 58px);
+  }
+
+  .hide-content-container {
+    height: calc(100vh - 58px);
+  }
+
+  .placement {
+    display: none;
+  }
+
+  .nav-container {
+    display: none;
+  }
+
+  .mobile-nav-container {
+    display: block;
+  }
+
+  .custom-projects-container {
+    .row {
+      .gallery-item {
+        .gallery-card {
+          height: calc(100vw / 2);
         }
+      }
     }
-    .images{
-        #scene{
-            height: calc(80vh - 58px);
+  }
+
+  .project-modal {
+    .project-modal-content {
+      .project-modal-header{
+        .project-modal-title{
+          font-size: 16px;
+          .project-modal-project{
+            font-size: 14px;
+          }
         }
-        #over{
-            height: calc(80vh - 58px);
-        }
-    }
+      }
+      .project-modal-body {
+        .carousel {
+          .carousel-indicators {
+            bottom: -20px;
+          }
 
-    #content {
-        margin-top: 58px;
-        min-height: calc(100vh - 58px);
-    }
-
-    .hide-content-container {
-        height: calc(100vh - 58px);
-    }
-
-    .placement {
-        display: none;
-    }
-
-    .nav-container {
-        display: none;
-    }
-
-    .mobile-nav-container {
-        display: block;
-    }
-
-    .custom-projects-container {
-        .row {
-            .gallery-item {
-                .gallery-card {
-                    height: calc(100vw / 2);
-                }
+          .carousel-inner {
+            .carousel-item {
+              img {
+                padding: 0 20px 15px 20px;
+              }
             }
+          }
+
+          .carousel-control-next {
+            padding: 0;
+          }
+
+          .carousel-control-prev {
+            padding: 0;
+          }
         }
+      }
+    }
+  }
+
+  .custom-wide-container {
+    .contact-details {
+      .contact-heading {
+        font-size: 35px;
+        width: 100%;
+      }
+
+      .contact-description {
+        width: 100%;
+      }
     }
 
-    .project-modal {
-        .project-modal-content {
-            .project-modal-body{
-                .carousel{
-                    .carousel-indicators{
-                        bottom: -20px;
-                    }
-                    .carousel-inner{
-                        .carousel-item{
-                            img{
-                                padding: 0 20px 15px 20px;
-                            }
-                        }
-                    }
-                    .carousel-control-next{
-                        padding: 0;
-                    }
-                    .carousel-control-prev{
-                        padding: 0;
-                    }
-                }
-            }
+    .contact-form-section {
+      .contact-email-form {
+        .field {
+          margin: 10px 0;
         }
+
+        .comment {
+          margin: 10px 0;
+        }
+      }
     }
+  }
 
-    .custom-wide-container {
-        .contact-details {
-            .contact-heading {
-                font-size: 35px;
-                width: 100%;
-            }
+  footer {
+    padding: 50px 10vw;
 
-            .contact-description {
-                width: 100%;
-            }
+    .content-container {
+      .footer-field {
+        .footer-social-link {
+          padding: 8px 16px 8px 0;
+          display: inline;
         }
-
-        .contact-form-section {
-            .contact-email-form {
-                .field {
-                    margin: 10px 0;
-                }
-
-                .comment {
-                    margin: 10px 0;
-                }
-            }
-        }
+      }
     }
-
-    footer {
-        padding: 50px 10vw;
-
-        .content-container {
-            .footer-field {
-                .footer-social-link {
-                    padding: 8px 16px 8px 0;
-                    display: inline;
-                }
-            }
-        }
-    }
+  }
 }
 
 @media screen and (max-width: 768px) {
-    .images{
-        #scene{
-            height: calc(70vh - 58px);
-        }
-        #over{
-            height: calc(70vh - 58px);
-        }
+  .images {
+    #scene {
+      height: calc(70vh - 58px);
     }
 
-    .type-selection-container {
-        .custom-content {
-            min-height: 30vh;
-            justify-content: center;
-        }
+    #over {
+      height: calc(70vh - 58px);
     }
+  }
 
-    .custom-projects-container{
-        .ajax-parent-overlay{
-            .ajax-projects{
-                .keep-aspect{
-                    .gallery-item{
-                        .gallery-card{
-                            height: calc(100vw / 2);
-                            min-height: unset;
-                        }
-                    }
-                }
+  .type-selection-container {
+    .custom-content {
+      min-height: 30vh;
+      justify-content: center;
+    }
+  }
+
+  .custom-projects-container {
+    .ajax-parent-overlay {
+      .ajax-projects {
+        .keep-aspect {
+          .gallery-item {
+            .gallery-card {
+              height: calc(100vw / 2);
+              min-height: unset;
             }
+          }
         }
+      }
     }
+  }
 }
 

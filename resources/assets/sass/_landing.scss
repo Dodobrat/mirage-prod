@@ -3,7 +3,7 @@
     position: relative;
     background-color: $secondary-bg;
     #scene{
-        height: calc(80vh - 180px);
+        height: calc(80vh - 123px);
         overflow: hidden;
         .bg{
             width: 110%;
@@ -15,17 +15,16 @@
     }
     #filter{
         position: absolute;
-        height: calc(80vh - 180px);
+        height: calc(80vh - 123px);
         width: 100%;
         top: 0;
         left: 0;
         overflow: hidden;
-        //background-color: black;
         opacity: 1;
     }
     #over{
         position: absolute;
-        height: calc(80vh - 180px);
+        height: calc(80vh - 123px);
         width: 100%;
         top: 0;
         left: 0;

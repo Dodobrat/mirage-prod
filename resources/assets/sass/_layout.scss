@@ -2,7 +2,7 @@
 .nav-container {
     height: 180px;
     width: 100%;
-    background-color: $body-bg;
+    //background-color: $body-bg;
     position: fixed;
     z-index: 9999;
 
@@ -37,7 +37,7 @@
 
         .nav-links-container {
             float: right;
-            margin-top: 41px;
+            margin-top: 50px;
             right: 5vw;
 
             .nav-link {
@@ -53,6 +53,9 @@
                     outline: none;
                 }
             }
+            .active{
+                font-weight: $black;
+            }
         }
 
     }
@@ -66,8 +69,6 @@
 
         #secondary-nav {
             float: right;
-            //position: absolute;
-            //top: 50%;
             margin-top: 16px;
 
             .nav-link {
@@ -147,6 +148,9 @@
                         &:focus {
                             outline: none;
                         }
+                    }
+                    .active{
+                        font-weight: $black;
                     }
                 }
 

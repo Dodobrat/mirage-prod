@@ -1,4 +1,4 @@
-<div class="row align-items-center keep-aspect">
+<div class="row align-items-center keep-aspect" data-url="{{ route('projects.getProject') }}">
     @foreach($projects as $project)
         <div class="col-lg-3 col-md-4 col-sm-6 col-6 p-1 gallery-item {{ $project->category->slug }}">
 

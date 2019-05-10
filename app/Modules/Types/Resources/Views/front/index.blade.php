@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.full')
 @section('content')
     <div class="custom-container-content">
         {{--    SELECTED PROJECT TYPE--}}
@@ -14,7 +14,6 @@
 
         {{--CUSTOM PROJECTS CONTAINER--}}
         <div class="custom-projects-container">
-
             {{--PROJECT CATEGORIES--}}
             <ul class="categories-items">
                 <li data-filter="all" class="categories-item">
@@ -32,224 +31,18 @@
             </div>
 
             {{--PROJECT GRID--}}
-            <div class="ajax-spinner"></div>
-            <div class="ajax-parent-overlay">
-                <div class="projects-loader">
-                </div>
-                <div class="ajax-projects">
-                    @include('types::boxes.projects')
-                </div>
+            <div class="ajax-projects" data-url="{{ route('type.getProjects') }}"
+                 data-type="{{ $selected_type->slug }}">
+                @include('types::boxes.projects')
             </div>
         </div>
     </div>
 
+    <div class="load-more-projects-loader">
+        <img class="ajax-load-logo" src="{{ \Charlotte\Administration\Helpers\Settings::getFile('pageloader') }}">
+    </div>
     {{--PROJECT MODAL--}}
     <div id="my-modal" class="project-modal"></div>
-
-
-@endsection
-
-@section('projects')
-    <script>
-        // -----------------------------------------
-        //             PROJECTS PAGINATION
-        // -----------------------------------------
-
-        let loader = $('.projects-loader');
-        let loaderSpin = $('.ajax-spinner');
-
-        let fired = false;
-
-        $(window).scroll(function () {
-            if ($(window).scrollTop() + $(window).height() > $(document).height() - 200 && fired === false) {
-                let selected_category = $('.categories-items .categories-item.active').data('filter');
-                let pageNum = parseInt($('#page').val());
-                fetchData(pageNum, selected_category);
-                fired = true;
-            }
-        });
-
-        let category = $(".categories-items li");
-
-        category.on('click', function (e) {
-            e.preventDefault();
-            let projects = $('.ajax-projects');
-            projects.html('');
-            let category_filter = $(this).data('filter');
-            let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?category=' + category_filter;
-            window.history.pushState({path: newurl}, '', newurl);
-            category.removeClass('active');
-            $(this).addClass('active');
-            let pageNum = 1;
-            fetchData(pageNum, category_filter);
-        });
-
-        $(document).ready(function () {
-            if (window.location.href.indexOf('?category=') > 0) {
-                let projects = $('.ajax-projects');
-                projects.html('');
-                let category_filter = window.location.href.split('category=')[1];
-                $('.categories-items li[data-filter="' + category_filter + '"]').addClass('active');
-                let pageNum = 1;
-                let target = $('.categories-items li.active');
-                $('.categories-items').animate({
-                    scrollLeft: $(target).position().left
-                }, 1500);
-                fetchData(pageNum, category_filter);
-            } else {
-                $('.categories-items li:first').addClass('active');
-            }
-        });
-
-        function fetchData(page, cat) {
-            let url = '{{ route('type.getProjects') }}';
-            let type = '{{ $selected_type->slug }}';
-            let projects = $('.ajax-projects');
-            let no_projects = `<div class="w-100"><p class="no-projects">{{ trans('types::front.no_projects') }}</h2></div>`;
-            let no_more_projects = `<div class="w-100"><p class="no-projects py-5 my-5">{{ trans('types::front.no_more_projects') }}</h2></div>`;
-
-            $.ajaxSetup({
-                cache: false,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: url,
-                method: 'post',
-                data: {
-                    page: page,
-                    category: cat,
-                    type: type
-                },
-                beforeSend: function () {
-                    loaderSpin.fadeIn();
-                },
-
-                success: function (result) {
-                    if (result.errors.length !== 0) {
-                        $(".errors").fadeIn(200);
-                        $('.errors .errors-list').empty();
-                        $.each(result.errors, function (key, value) {
-                            $('.errors .errors-list').append('<li>' + value + '</li>');
-                        });
-                        setTimeout(function () {
-                            $(".errors").fadeOut(200);
-                        }, 5000);
-                        loaderSpin.fadeOut();
-                    } else {
-                        projects.append(result.projects_grid);
-
-                        if (result.projects_grid.length > 104) {
-                            $('#page').val(parseInt(page) + 1);
-                            fired = false;
-                        }
-
-                        $(function () {
-                            $('.gallery-item > .gallery-card').hoverdir();
-                        });
-                        if ($('.ajax-projects .row.align-items-center .gallery-item').length < 1) {
-                            projects.html(no_projects);
-                        }
-
-                        loaderSpin.fadeOut();
-                    }
-                }
-            });
-        }
-
-    </script>
-@endsection
-
-@section('project')
-    <script>
-        // -----------------------------------------
-        //             PROJECT MODAL
-        // -----------------------------------------
-
-        let $modal = $('#my-modal');
-        let $modalContent = $('.project-modal-content');
-        let $modalBtn = $('#modal-btn');
-        let $closeBtn = $('.project-modal-close-btn');
-
-        // Open
-        function openModal(id, slug) {
-            let projectId = id;
-            let projectUrl = '{{ route('projects.getProject') }}';
-            $.ajaxSetup({
-                cache: false,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: projectUrl,
-                method: 'post',
-                data: {
-                    project_id: projectId,
-                },
-                beforeSend: function () {
-                    $('.loading').slideDown(500);
-                },
-
-                success: function (result) {
-                    if (result.errors.length !== 0) {
-                        $('.loading').slideUp(500);
-                        $(".errors").fadeIn(200);
-                        $('.errors .errors-list').empty();
-                        $.each(result.errors, function (key, value) {
-                            $('.errors .errors-list').append('<li>' + value + '</li>');
-                        });
-                        setTimeout(function () {
-                            $(".errors").fadeOut(200);
-                        }, 5000);
-                    } else {
-                        let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?project=' + projectId;
-                        window.history.pushState({path: newurl}, '', newurl);
-                        $modal.fadeIn(300);
-                        // $('body').css('overflowY', 'hidden');
-                        $modal.html(result.project_modal);
-                        let images = document.querySelectorAll(".lazy-load");
-                        for (let i = 0; i < images.length; i++) {
-                            images[i].src = images[i].getAttribute('data-src');
-                        }
-                        $(document).keyup(function (e) {
-                            if (e.keyCode === 27) {
-                                closeModal();
-                            }
-                            if (e.keyCode === 37) {
-                                $('a.carousel-control-prev').trigger('click');
-                            }
-                            if (e.keyCode === 39) {
-                                $('a.carousel-control-next').trigger('click');
-                            }
-
-                        });
-                    }
-                }
-            });
-        }
-
-        // Close
-        function closeModal() {
-            let url = window.location.href;
-            if (url.indexOf('?') > 0) {
-                let clean_url = url.substring(0, url.indexOf("?"));
-                window.history.replaceState({}, document.title, clean_url);
-            }
-            $modal.fadeOut(300);
-            $('.loading').slideUp(500);
-            // $('body').css('overflowY', 'auto');
-        }
-
-        $(document).ready(function () {
-            if (window.location.href.indexOf('?project=') > 0) {
-                let projectId = window.location.href.split('project=')[1];
-                openModal(projectId);
-            }
-        });
-
-    </script>
 @endsection
 
 

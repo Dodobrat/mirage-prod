@@ -41,6 +41,11 @@ body {
     margin-top: 180px;
 }
 
+#index-content {
+    min-height: calc(100vh - 123px);
+    margin-top: 123px;
+}
+
 @import 'dynamic_elements';
 
 @import 'layout';
