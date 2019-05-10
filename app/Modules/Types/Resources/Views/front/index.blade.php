@@ -58,61 +58,55 @@
         let loader = $('.projects-loader');
         let loaderSpin = $('.ajax-spinner');
 
-        let pagination = $('.pagination a');
+        let fired = false;
 
-        pagination.on('click', function (e) {
-            e.preventDefault();
-            pagination.removeClass('active');
-            let activated_page = $(this).addClass('active');
-            let clicked_page = activated_page.attr('href').split('page=')[1];
-            let url = window.location.href;
-            if (url.indexOf('?') > 0) {
-                let clean_url = url.substring(0, url.indexOf("?"));
-                window.history.replaceState({}, document.title, clean_url);
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() > $(document).height() - 200 && fired === false) {
+                let selected_category = $('.categories-items .categories-item.active').data('filter');
+                let pageNum = parseInt($('#page').val());
+                fetchData(pageNum, selected_category);
+                fired = true;
             }
-            let selected_category = $('.categories-items .categories-item.active').data('filter');
-            fetchData(clicked_page, selected_category);
         });
 
         let category = $(".categories-items li");
 
         category.on('click', function (e) {
             e.preventDefault();
+            let projects = $('.ajax-projects');
+            projects.html('');
             let category_filter = $(this).data('filter');
             let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?category=' + category_filter;
             window.history.pushState({path: newurl}, '', newurl);
             category.removeClass('active');
             $(this).addClass('active');
-            if ($('.pagination .page-item .active').length > 0) {
-                let pageNum = 1;
-                fetchData(pageNum, category_filter);
-            } else {
-                let pageNum = 1;
-                fetchData(pageNum, category_filter);
-            }
+            let pageNum = 1;
+            fetchData(pageNum, category_filter);
         });
 
         $(document).ready(function () {
             if (window.location.href.indexOf('?category=') > 0) {
+                let projects = $('.ajax-projects');
+                projects.html('');
                 let category_filter = window.location.href.split('category=')[1];
-                $('.categories-items li[data-filter="'+ category_filter +'"]').addClass('active');
+                $('.categories-items li[data-filter="' + category_filter + '"]').addClass('active');
                 let pageNum = 1;
                 let target = $('.categories-items li.active');
                 $('.categories-items').animate({
                     scrollLeft: $(target).position().left
                 }, 1500);
                 fetchData(pageNum, category_filter);
-            }else{
+            } else {
                 $('.categories-items li:first').addClass('active');
             }
         });
 
         function fetchData(page, cat) {
-
             let url = '{{ route('type.getProjects') }}';
             let type = '{{ $selected_type->slug }}';
             let projects = $('.ajax-projects');
             let no_projects = `<div class="w-100"><p class="no-projects">{{ trans('types::front.no_projects') }}</h2></div>`;
+            let no_more_projects = `<div class="w-100"><p class="no-projects py-5 my-5">{{ trans('types::front.no_more_projects') }}</h2></div>`;
 
             $.ajaxSetup({
                 cache: false,
@@ -129,13 +123,11 @@
                     type: type
                 },
                 beforeSend: function () {
-                    loader.fadeIn();
                     loaderSpin.fadeIn();
                 },
 
                 success: function (result) {
-                    if (result.errors.length != 0) {
-                        loader.fadeOut();
+                    if (result.errors.length !== 0) {
                         $(".errors").fadeIn(200);
                         $('.errors .errors-list').empty();
                         $.each(result.errors, function (key, value) {
@@ -146,28 +138,21 @@
                         }, 5000);
                         loaderSpin.fadeOut();
                     } else {
-                        loader.fadeOut();
-                        projects.html(result.projects_grid);
+                        projects.append(result.projects_grid);
+
+                        if (result.projects_grid.length > 104) {
+                            $('#page').val(parseInt(page) + 1);
+                            fired = false;
+                        }
 
                         $(function () {
                             $('.gallery-item > .gallery-card').hoverdir();
                         });
                         if ($('.ajax-projects .row.align-items-center .gallery-item').length < 1) {
-
                             projects.html(no_projects);
                         }
 
                         loaderSpin.fadeOut();
-
-                        let pagination = $('.pagination a');
-                        pagination.on('click', function (e) {
-                            e.preventDefault();
-                            pagination.removeClass('active');
-                            let activated_page = $(this).addClass('active');
-                            let clicked_page = activated_page.attr('href').split('page=')[1];
-                            let selected_category = $('.categories-items .categories-item.active').data('filter');
-                            fetchData(clicked_page, selected_category);
-                        });
                     }
                 }
             });
@@ -208,7 +193,7 @@
                 },
 
                 success: function (result) {
-                    if (result.errors.length != 0) {
+                    if (result.errors.length !== 0) {
                         $('.loading').slideUp(500);
                         $(".errors").fadeIn(200);
                         $('.errors .errors-list').empty();

@@ -20,7 +20,7 @@
     </div>
 
     <div class="members-grid-container">
-        <div class="row justify-content-center custom-container-nav">
+        <div class="row custom-container-nav">
             @foreach($members as $member)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6 px-1 member-col">
                     <div class="member-card-container">

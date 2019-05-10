@@ -55,7 +55,7 @@ var scene = document.getElementById('scene');
 if(document.body.contains(scene)){
     var parallaxInstance = new Parallax(scene,{
         relativeInput: true,
-        hoverOnly: true,
+        hoverOnly: false,
     });
 }
 
