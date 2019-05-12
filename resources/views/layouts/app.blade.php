@@ -25,7 +25,7 @@
                 </a>
             </div>
             <div class="nav-links-container">
-                <a href="{{ route('index') }}" class="nav-link redirect">{{ trans('front.home') }}</a>
+                <a href="{{ route('index') }}" class="nav-link redirect {{ Route::currentRouteNamed('index') ? 'active' : '' }}">{{ trans('front.home') }}</a>
                 <a href="{{ route('team.index') }}" class="nav-link redirect">{{ trans('front.team') }}</a>
                 <a href="{{ route('contacts.index') }}" class="nav-link redirect">{{ trans('front.contact') }}</a>
                 @if(!empty(session('workflow_slug')))
@@ -63,7 +63,7 @@
         <div class="collapse navbar-collapse" id="navbarExpand">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link redirect" href="{{ route('index') }}">{{ trans('front.home') }}</a>
+                    <a class="nav-link redirect {{ Route::currentRouteNamed('index') ? 'active' : '' }}" href="{{ route('index') }}">{{ trans('front.home') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link redirect" href="{{ route('team.index') }}">{{ trans('front.team') }}</a>

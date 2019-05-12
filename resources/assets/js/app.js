@@ -226,7 +226,7 @@ if (document.body.contains(document.querySelector('.ajax-projects'))) {
                     loader.fadeOut();
 
                     projects.append(result.projects_grid);
-                    if (result.projects_grid.length > 162) {
+                    if (result.projects_grid.length > 200) {
                         $('#page').val(parseInt(page) + 1);
                         fired = false;
 
