@@ -6,9 +6,6 @@
                 <button id="modal-btn"
                         onclick="openModal( '{{ $project->id }}','{{ $project->slug }}')"
                         class="project-modal-btn">
-                    @if(!empty($project->getMedia('media')) && $project->getMedia('media')->count() > 1)
-                        <img src="{{ asset('/img/icon-gallery.png') }}" class="multiple-images" alt="">
-                    @endif
                     @if(!empty($project->getFirstMedia('media')))
                         <img src="{{ $project->getFirstMedia('media')->getUrl('thumb') }}"
                              alt="{{ $project->title }}"

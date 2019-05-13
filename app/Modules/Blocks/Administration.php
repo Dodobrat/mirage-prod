@@ -22,8 +22,8 @@ class Administration implements Structure {
     {
         $menu->add(trans('blocks::admin.module_name'), ['icon' => 'fa-file-text-o']);
 
-        $menu->get('blocks')->add(trans('administration::admin.add'), ['url' => \Charlotte\Administration\Helpers\Administration::route('blocks.create') ,'icon' => 'ti-plus']);
-        $menu->get('blocks')->add(trans('administration::admin.view_all'), ['url' => \Charlotte\Administration\Helpers\Administration::route('blocks.index'), 'icon' => 'ti-list']);
+        $menu->get('blocks')->add(trans('administration::admin.view_all'), ['url' => \Charlotte\Administration\Helpers\Administration::route('blocks.index')]);
+        $menu->get('blocks')->add(trans('administration::admin.add'), ['url' => \Charlotte\Administration\Helpers\Administration::route('blocks.create')]);
     }
 
     public function settings($model, $form, $form_model)

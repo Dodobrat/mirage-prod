@@ -23,8 +23,8 @@ class Administration implements Structure {
     {
         $menu->add(trans('workflow::admin.module_name'), ['icon' => 'ti-briefcase']);
 
-        $menu->get('workflow')->add(trans('administration::admin.add'), ['url' => \Charlotte\Administration\Helpers\Administration::route('workflow.create') ,'icon' => 'ti-plus']);
-        $menu->get('workflow')->add(trans('administration::admin.view_all'), ['url' => \Charlotte\Administration\Helpers\Administration::route('workflow.index'), 'icon' => 'ti-list']);
+        $menu->get('workflow')->add(trans('administration::admin.view_all'), ['url' => \Charlotte\Administration\Helpers\Administration::route('workflow.index')]);
+        $menu->get('workflow')->add(trans('administration::admin.add'), ['url' => \Charlotte\Administration\Helpers\Administration::route('workflow.create')]);
     }
 
     public function settings($model, $form, $form_model)

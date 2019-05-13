@@ -30,8 +30,8 @@ class Administration implements Structure {
     {
         $menu->add(trans('categories::admin.module_name'), ['icon' => 'fa-filter']);
 
-        $menu->get('categories')->add(trans('administration::admin.add'), ['url' => \Charlotte\Administration\Helpers\Administration::route('categories.create') ,'icon' => 'ti-plus']);
-        $menu->get('categories')->add(trans('administration::admin.view_all'), ['url' => \Charlotte\Administration\Helpers\Administration::route('categories.index'), 'icon' => 'ti-list']);
+        $menu->get('categories')->add(trans('administration::admin.view_all'), ['url' => \Charlotte\Administration\Helpers\Administration::route('categories.index')]);
+        $menu->get('categories')->add(trans('administration::admin.add'), ['url' => \Charlotte\Administration\Helpers\Administration::route('categories.create')]);
     }
 
     public function settings($model, $form, $form_model)

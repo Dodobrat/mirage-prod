@@ -3,18 +3,18 @@
 
     <section class="images">
         <div id="scene">
-            @if(!empty(\Charlotte\Administration\Helpers\Settings::getFile('index_bg','thumb')))
-                <img class="bg" data-depth="0.05"
-                     src="{{ \Charlotte\Administration\Helpers\Settings::getFile('index_bg','thumb') }}" alt="">
-            @else
-                <img class="bg" data-depth="0.05"
-                     src="{{ asset('/img/placeholder.png') }}" alt="">
-            @endif
+            <img class="bg" data-depth="0.1" src="" alt="">
         </div>
-        <div id="filter"
-             style="background-image: url('{{ \Charlotte\Administration\Helpers\Settings::getFile('index_filter') }}')"></div>
+        <div id="filter" @if(!empty( $index->getFirstMediaUrl('filter') ))
+        style="background-image: url('{{ $index->getFirstMediaUrl('filter') }}')"
+             @else
+             style="background-image: none"
+            @endif
+        ></div>
+
         <div id="over">
-            <img class="grid" src="{{ \Charlotte\Administration\Helpers\Settings::getFile('index_grid') }}" alt="">
+            <img class="grid" @if(!empty($index->getFirstMediaUrl('grid'))) src="{{ $index->getFirstMediaUrl('grid') }}"
+                 @else @endif alt="">
         </div>
     </section>
 
@@ -53,4 +53,28 @@
         </div>
     @endif
 
+@endsection
+
+@section('random')
+    <script>
+        let images = [
+            @foreach($index->getMedia('background') as $img)
+                @if(!empty($img))
+                "{{ $img->getUrl('view') }}",
+            @endif
+            @endforeach
+        ];
+
+        function getImageTag() {
+            let randomIndex = Math.floor(Math.random() * images.length);
+            let img = images[randomIndex];
+            let layer = document.querySelector('#scene .bg');
+            layer.setAttribute('src', img);
+        }
+
+        $(document).ready(function () {
+            getImageTag();
+        });
+
+    </script>
 @endsection

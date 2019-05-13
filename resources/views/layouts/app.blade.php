@@ -167,5 +167,6 @@
 </div>
 <div class="loading"></div>
 <script src="{{ mix('/js/app.js') }}"></script>
+@yield('random')
 </body>
 </html>

@@ -22,8 +22,8 @@ class Administration implements Structure {
     {
         $menu->add(trans('contacts::admin.module_name'), ['icon' => 'ti-email']);
 
-        $menu->get('contacts')->add(trans('administration::admin.add'), ['url' => \Charlotte\Administration\Helpers\Administration::route('contacts.create') ,'icon' => 'ti-plus']);
-        $menu->get('contacts')->add(trans('administration::admin.view_all'), ['url' => \Charlotte\Administration\Helpers\Administration::route('contacts.index'), 'icon' => 'ti-list']);
+        $menu->get('contacts')->add(trans('administration::admin.view_all'), ['url' => \Charlotte\Administration\Helpers\Administration::route('contacts.index')]);
+        $menu->get('contacts')->add(trans('administration::admin.add'), ['url' => \Charlotte\Administration\Helpers\Administration::route('contacts.create')]);
     }
 
     public function settings($model, $form, $form_model)

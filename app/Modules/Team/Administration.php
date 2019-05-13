@@ -30,8 +30,8 @@ class Administration implements Structure {
     {
         $menu->add(trans('team::admin.module_name'), ['icon' => 'ti-user']);
 
-        $menu->get('team')->add(trans('administration::admin.add'), ['url' => \Charlotte\Administration\Helpers\Administration::route('team.create') ,'icon' => 'ti-plus']);
-        $menu->get('team')->add(trans('administration::admin.view_all'), ['url' => \Charlotte\Administration\Helpers\Administration::route('team.index'), 'icon' => 'ti-list']);
+        $menu->get('team')->add(trans('administration::admin.view_all'), ['url' => \Charlotte\Administration\Helpers\Administration::route('team.index')]);
+        $menu->get('team')->add(trans('administration::admin.add'), ['url' => \Charlotte\Administration\Helpers\Administration::route('team.create')]);
     }
 
     public function settings($model, $form, $form_model)

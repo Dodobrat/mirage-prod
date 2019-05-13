@@ -54,7 +54,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 let scene = document.getElementById('scene');
 if (document.body.contains(scene)) {
     let parallaxInstance = new Parallax(scene, {
-        relativeInput: true,
+        invertX: false,
+        invertY: false,
         hoverOnly: true,
     });
 }
@@ -191,7 +192,7 @@ if (document.body.contains(document.querySelector('.ajax-projects'))) {
         let url = $('.ajax-projects').data('url');
         let type = $('.ajax-projects').data('type');
         let projects = $('.ajax-projects');
-        let no_projects = `<div class="w-100"><p class="no-projects">{{ trans('types::front.no_projects') }}</h2></div>`;
+        let no_projects = `<div class="w-100"><p class="no-projects">No Projects!</h2></div>`;
 
         $.ajaxSetup({
             cache: false,
