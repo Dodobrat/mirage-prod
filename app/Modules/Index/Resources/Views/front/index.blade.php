@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
+    @if(!empty($index))
     <section class="images">
         <div id="scene">
             <img class="bg" data-depth="0.1" src="" alt="">
@@ -17,6 +18,17 @@
                  @else @endif alt="">
         </div>
     </section>
+        @else
+        <section class="images">
+            <div id="scene">
+                <img class="bg" data-depth="0.1" src="{{ asset('/img/placeholder.png') }}" alt="">
+            </div>
+            <div id="filter" style="background-image: none"></div>
+            <div id="over">
+                <img class="grid" src="" alt="">
+            </div>
+        </section>
+    @endif
 
     <div class="type-selection-container">
         <div class="custom-content">
@@ -55,6 +67,7 @@
 
 @endsection
 
+@if(!empty($index))
 @section('random')
     <script>
         let images = [
@@ -78,3 +91,4 @@
 
     </script>
 @endsection
+@endif
