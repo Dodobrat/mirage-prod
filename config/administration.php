@@ -45,8 +45,28 @@ return [
 
     //Default fields for settings
     'settings_default_fields' => [
-        'website_title' => [
-            'title' => 'administration::admin.website_name',  //this will be converted to trans
+        'global_email' => [
+            'title' => 'contacts::admin.global_email',  //this will be converted to trans
+            'type' => 'text'
+        ],
+        'global_phone' => [
+            'title' => 'contacts::admin.global_phone',  //this will be converted to trans
+            'type' => 'text'
+        ],
+        'fb_link' => [
+            'title' => 'contacts::admin.fb',  //this will be converted to trans
+            'type' => 'text'
+        ],
+        'ig_link' => [
+            'title' => 'contacts::admin.ig',  //this will be converted to trans
+            'type' => 'text'
+        ],
+        'pi_link' => [
+            'title' => 'contacts::admin.pi',  //this will be converted to trans
+            'type' => 'text'
+        ],
+        'li_link' => [
+            'title' => 'contacts::admin.li',  //this will be converted to trans
             'type' => 'text'
         ]
     ]

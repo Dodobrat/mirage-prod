@@ -36,6 +36,22 @@ class Administration implements Structure {
 
     public function settings($model, $form, $form_model)
     {
-        // TODO: Implement settings() method.
+        $form->add('team_meta_title', 'text', [
+            'title' => trans('administration::admin.meta_title'),
+            'translate' => true,
+            'model' => @$form_model
+        ]);
+
+        $form->add('team_meta_description', 'text', [
+            'title' => trans('administration::admin.meta_description'),
+            'translate' => true,
+            'model' => @$form_model
+        ]);
+
+        $form->add('team_meta_keywords', 'text', [
+            'title' => trans('administration::admin.meta_keywords'),
+            'translate' => true,
+            'model' => @$form_model
+        ]);
     }
 }

@@ -28,28 +28,6 @@ class Administration implements Structure {
 
     public function settings($model, $form, $form_model)
     {
-        $form->add('global_email', 'text', [
-            'title' => trans('contacts::admin.global_email'),
-        ]);
 
-        $form->add('global_phone', 'text', [
-            'title' => trans('contacts::admin.global_phone'),
-        ]);
-
-        $form->add('fb_link', 'text', [
-            'title' => trans('contacts::admin.fb'),
-        ]);
-
-        $form->add('ig_link', 'text', [
-            'title' => trans('contacts::admin.ig'),
-        ]);
-
-        $form->add('pi_link', 'text', [
-            'title' => trans('contacts::admin.pi'),
-        ]);
-
-        $form->add('li_link', 'text', [
-            'title' => trans('contacts::admin.li'),
-        ]);
     }
 }
