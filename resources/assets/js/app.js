@@ -290,7 +290,6 @@ window.openModal = function (id, slug) {
                 let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?project=' + projectId;
                 window.history.pushState({path: newurl}, '', newurl);
                 $modal.fadeIn(300);
-                // $('body').css('overflowY', 'hidden');
                 $modal.html(result.project_modal);
                 let images = document.querySelectorAll(".lazy-load");
                 for (let i = 0; i < images.length; i++) {
@@ -322,7 +321,6 @@ window.closeModal = function () {
     }
     $modal.fadeOut(300);
     $('.loading').slideUp(500);
-    // $('body').css('overflowY', 'auto');
 };
 
 $(document).ready(function () {

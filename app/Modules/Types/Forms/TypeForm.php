@@ -17,9 +17,14 @@ class TypeForm extends Form {
 
         $categories = Category::get()->pluck('title', 'id')->toArray();
 
+        if (!empty($this->model)){
+            $selected_categories = $this->model->categories->pluck('title', 'id')->toArray();
+        }
+
         $this->add('categories', 'multiple',[
             'title' => trans('types::admin.categories'),
-            'choices' => $categories
+            'choices' => $categories,
+            'value' => $selected_categories
         ]);
 
         AdministrationSeo::seoFields($this, $this->model);
