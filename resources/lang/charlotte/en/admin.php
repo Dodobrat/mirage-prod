@@ -11,7 +11,7 @@ return [
 
     //LAYOUT
     'ap' => 'AP',
-    'admin_panel' => 'Administration Panel',
+    'admin_panel' => 'Admin Panel',
     'menu' => 'Menu',
     'dashboard' => 'Dashboard',
     'main_menu' => '--- Main Menu',

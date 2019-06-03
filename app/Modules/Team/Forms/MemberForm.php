@@ -2,21 +2,19 @@
 
 namespace App\Modules\Team\Forms;
 
-use Kris\LaravelFormBuilder\Form;
+use Charlotte\Administration\Forms\AdminForm;
 
-class MemberForm extends Form {
+class MemberForm extends AdminForm {
 
     public function buildForm() {
         $this->add('name', 'text', [
             'title' => trans('team::admin.name'),
-            'translate' => true,
-            'model' => @$this->model
+            'translate' => true
         ]);
 
         $this->add('position', 'text', [
             'title' => trans('team::admin.position'),
-            'translate' => true,
-            'model' => @$this->model
+            'translate' => true
         ]);
 
         $this->add('active', 'switch', [
@@ -24,7 +22,7 @@ class MemberForm extends Form {
         ]);
 
         $this->add('submit', 'button', [
-            'title' => trans('team::admin.submit')
+            'title' => trans('administration::admin.submit')
         ]);
     }
 }

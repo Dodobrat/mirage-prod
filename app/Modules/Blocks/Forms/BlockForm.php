@@ -2,9 +2,9 @@
 
 namespace App\Modules\Blocks\Forms;
 
-use Kris\LaravelFormBuilder\Form;
+use Charlotte\Administration\Forms\AdminForm;
 
-class BlockForm extends Form
+class BlockForm extends AdminForm
 {
     public function buildForm()
     {
@@ -13,9 +13,8 @@ class BlockForm extends Form
         ]);
 
         $this->add('description', 'editor', [
-            'title' => trans('blocks::admin.description'),
-            'translate' => true,
-            'model' => @$this->model
+            'title' => trans('administration::admin.description'),
+            'translate' => true
         ]);
 
         $this->add('active', 'switch', [
@@ -23,7 +22,7 @@ class BlockForm extends Form
         ]);
 
         $this->add('submit', 'button', [
-            'title' => trans('blocks::admin.submit')
+            'title' => trans('administration::admin.submit')
         ]);
 
     }

@@ -3,16 +3,18 @@
 namespace App\Modules\Types\Forms;
 
 use App\Modules\Categories\Models\Category;
+use Charlotte\Administration\Forms\AdminForm;
 use Charlotte\Administration\Helpers\AdministrationSeo;
-use Kris\LaravelFormBuilder\Form;
 
-class TypeForm extends Form {
+class TypeForm extends AdminForm {
 
     public function buildForm() {
         $this->add('title', 'text', [
             'title' => trans('administration::admin.title'),
             'translate' => true,
-            'model' => @$this->model
+            'clone' => [
+                'slug','meta_title'
+            ]
         ]);
 
         $categories = Category::get()->pluck('title', 'id')->toArray();
@@ -30,7 +32,7 @@ class TypeForm extends Form {
         ]);
 
         $this->add('submit', 'button', [
-            'title' => trans('types::admin.submit')
+            'title' => trans('administration::admin.submit')
         ]);
     }
 }

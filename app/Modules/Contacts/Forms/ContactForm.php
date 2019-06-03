@@ -2,47 +2,44 @@
 
 namespace App\Modules\Contacts\Forms;
 
+use Charlotte\Administration\Forms\AdminForm;
 use Charlotte\Administration\Helpers\AdministrationSeo;
-use Kris\LaravelFormBuilder\Form;
 
-class ContactForm extends Form
+class ContactForm extends AdminForm
 {
     public function buildForm()
     {
         $this->add('title', 'text', [
             'title' => trans('administration::admin.title'),
             'translate' => true,
-            'model' => @$this->model
+            'clone' => [
+                'meta_title'
+            ]
         ]);
 
         $this->add('description', 'editor', [
-            'title' => trans('contacts::admin.description'),
-            'translate' => true,
-            'model' => @$this->model
+            'title' => trans('administration::admin.description'),
+            'translate' => true
         ]);
 
         $this->add('working_time', 'text', [
             'title' => trans('contacts::admin.working_time'),
-            'translate' => true,
-            'model' => @$this->model
+            'translate' => true
         ]);
 
         $this->add('address', 'text', [
             'title' => trans('contacts::admin.address'),
-            'translate' => true,
-            'model' => @$this->model
+            'translate' => true
         ]);
 
         $this->add('email', 'text', [
             'title' => trans('contacts::admin.email'),
-            'translate' => true,
-            'model' => @$this->model
+            'translate' => true
         ]);
 
         $this->add('phone', 'text', [
             'title' => trans('contacts::admin.phone'),
-            'translate' => true,
-            'model' => @$this->model
+            'translate' => true
         ]);
 
 
@@ -65,7 +62,7 @@ class ContactForm extends Form
         ]);
 
         $this->add('submit', 'button', [
-            'title' => trans('contacts::admin.submit')
+            'title' => trans('administration::admin.submit')
         ]);
 
     }

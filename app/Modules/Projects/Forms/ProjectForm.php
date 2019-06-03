@@ -3,21 +3,19 @@
 namespace App\Modules\Projects\Forms;
 
 use App\Modules\Categories\Models\Category;
-use Kris\LaravelFormBuilder\Form;
+use Charlotte\Administration\Forms\AdminForm;
 
-class ProjectForm extends Form {
+class ProjectForm extends AdminForm {
 
     public function buildForm() {
         $this->add('title', 'text', [
             'title' => trans('administration::admin.title'),
-            'translate' => true,
-            'model' => @$this->model
+            'translate' => true
         ]);
 
         $this->add('architect', 'text', [
             'title' => trans('projects::admin.architect'),
-            'translate' => true,
-            'model' => @$this->model
+            'translate' => true
         ]);
 
         $categories = Category::active()->get()->pluck('title', 'id')->toArray();
@@ -33,7 +31,7 @@ class ProjectForm extends Form {
         ]);
 
         $this->add('submit', 'button', [
-            'title' => trans('categories::admin.submit')
+            'title' => trans('administration::admin.submit')
         ]);
     }
 

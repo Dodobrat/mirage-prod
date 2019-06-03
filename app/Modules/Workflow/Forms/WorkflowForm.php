@@ -2,21 +2,22 @@
 
 namespace App\Modules\Workflow\Forms;
 
-use Kris\LaravelFormBuilder\Form;
+use Charlotte\Administration\Forms\AdminForm;
 
-class WorkflowForm extends Form {
+class WorkflowForm extends AdminForm {
 
     public function buildForm() {
         $this->add('title', 'text', [
             'title' => trans('administration::admin.title'),
             'translate' => true,
-            'model' => @$this->model
+            'clone' => [
+                'slug'
+            ]
         ]);
 
         $this->add('slug', 'text', [
             'title' => trans('administration::admin.slug'),
-            'translate' => true,
-            'model' => @$this->model
+            'translate' => true
         ]);
 
         $this->add('access_key', 'text', [
@@ -28,7 +29,7 @@ class WorkflowForm extends Form {
         ]);
 
         $this->add('submit', 'button', [
-            'title' => trans('types::admin.submit')
+            'title' => trans('administration::admin.submit')
         ]);
     }
 }

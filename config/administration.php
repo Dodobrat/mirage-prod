@@ -30,7 +30,8 @@ return [
      */
     'admin_supported_locales' => [
         'en',
-        'bg'
+        'bg',
+        'fr'
     ],
 
     /*

@@ -2,15 +2,14 @@
 
 namespace App\Modules\Categories\Forms;
 
-use Kris\LaravelFormBuilder\Form;
+use Charlotte\Administration\Forms\AdminForm;
 
-class CategoryForm extends Form {
+class CategoryForm extends AdminForm {
 
     public function buildForm() {
         $this->add('title', 'text', [
             'title' => trans('administration::admin.title'),
-            'translate' => true,
-            'model' => @$this->model
+            'translate' => true
         ]);
 
         $this->add('active', 'switch', [
@@ -18,7 +17,7 @@ class CategoryForm extends Form {
         ]);
 
         $this->add('submit', 'button', [
-            'title' => trans('categories::admin.submit')
+            'title' => trans('administration::admin.submit')
         ]);
     }
 

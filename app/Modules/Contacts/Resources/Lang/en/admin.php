@@ -2,7 +2,6 @@
 
 return [
     'module_name' => 'Contacts',
-    'description' => 'Description',
     'working_time' => 'Working Time',
     'address' => 'Address',
     'email' => 'E-Mail',
@@ -14,5 +13,4 @@ return [
     'pi' => 'Pinterest Link',
     'li' => 'LinkedIn Link',
     'show_map' => 'Show Map',
-    'submit' => 'Submit'
 ];
