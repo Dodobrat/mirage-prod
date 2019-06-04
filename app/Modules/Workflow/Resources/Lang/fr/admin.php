@@ -1,6 +1,6 @@
 <?php
 
 return[
-    'module_name' => 'Flux de travail',
+    'module_name' => 'Workflow',
     'access_key' => 'Clé d\'accès',
 ];

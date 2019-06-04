@@ -1,6 +1,6 @@
 <?php
 
 return[
-    'module_name' => 'Des blocs',
+    'module_name' => 'Blocks',
     'key' => 'Clé',
 ];

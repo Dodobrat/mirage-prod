@@ -6,6 +6,7 @@ window.Popper = require('popper.js');
 require('bootstrap/dist/js/bootstrap.js');
 global.$ = global.jQuery = require('jquery');
 global.Parallax = require('parallax-js/dist/parallax.min.js');
+global.owlCarousel = require('owl.carousel/dist/owl.carousel.min.js');
 
 // -----------------------------------------
 //             PAGE PRELOAD
@@ -291,19 +292,28 @@ window.openModal = function (id, slug) {
                 window.history.pushState({path: newurl}, '', newurl);
                 $modal.fadeIn(300);
                 $modal.html(result.project_modal);
+                $('.owl-carousel').owlCarousel({
+                    margin: 20,
+                    center: true,
+                    loop:true,
+                    nav:true,
+                    pagination: true,
+                    items:1
+                });
                 let images = document.querySelectorAll(".lazy-load");
                 for (let i = 0; i < images.length; i++) {
                     images[i].src = images[i].getAttribute('data-src');
                 }
+
                 $(document).keyup(function (e) {
                     if (e.keyCode === 27) {
                         closeModal();
                     }
                     if (e.keyCode === 37) {
-                        $('a.carousel-control-prev').trigger('click');
+                        $('button.owl-prev').trigger('click');
                     }
                     if (e.keyCode === 39) {
-                        $('a.carousel-control-next').trigger('click');
+                        $('button.owl-next').trigger('click');
                     }
 
                 });
@@ -373,50 +383,6 @@ function hasScrolled() {
         }
     }
     lastScrollTop = st;
-}
-
-// ---------------------------------------------------
-// CONTENT - ADDED CUSTOM TOUCH SUPPORT FOR CAROUSEL
-// ---------------------------------------------------
-
-let pageWidth = window.innerWidth || document.body.clientWidth;
-let treshold = Math.max(1, Math.floor(0.01 * (pageWidth)));
-let touchstartX = 0;
-let touchstartY = 0;
-let touchendX = 0;
-let touchendY = 0;
-
-const limit = Math.tan(45 * 1.5 / 180 * Math.PI);
-const gestureZone = document.getElementsByTagName('body');
-
-gestureZone[0].addEventListener('touchstart', function (event) {
-    touchstartX = event.changedTouches[0].screenX;
-    touchstartY = event.changedTouches[0].screenY;
-}, false);
-
-gestureZone[0].addEventListener('touchend', function (event) {
-    touchendX = event.changedTouches[0].screenX;
-    touchendY = event.changedTouches[0].screenY;
-    handleGesture(event);
-}, false);
-
-function handleGesture(e) {
-    let x = touchendX - touchstartX;
-    let y = touchendY - touchstartY;
-    let yx = Math.abs(y / x);
-    if (Math.abs(x) > treshold || Math.abs(y) > treshold) {
-        if (yx <= limit) {
-            if (x < 0) {
-                $(function () {
-                    $('.carousel').carousel('next');
-                });
-            } else {
-                $(function () {
-                    $('.carousel').carousel('prev');
-                });
-            }
-        }
-    }
 }
 
 // -----------------------------------------

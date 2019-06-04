@@ -10,7 +10,6 @@ return [
     'auth_failed' => 'Authentication Failed! Please try again.',
 
     //LAYOUT
-    'ap' => 'AP',
     'admin_panel' => 'Admin Panel',
     'menu' => 'Menu',
     'dashboard' => 'Dashboard',
@@ -23,14 +22,13 @@ return [
     'change_theme' => 'Switch Theme',
     'light' => 'Light',
     'dark' => 'Dark',
-    'edit_profile' => 'Profile Settings',
+    'edit_profile' => 'Edit Profile',
     'logout' => 'Logout',
     'schedule' => 'Schedule',
     'error' => 'Error',
     'success' => 'Success',
 
     //DASHBOARD
-    'monthly_log' => 'Monthly Log',
     'see_details' => 'See Details',
     'administrators' => 'Administrators',
     'settings_menu' => 'Settings',
@@ -76,13 +74,10 @@ return [
     'success_update_admin' => 'Administrator updated successfully',
     'settings_updated' => 'Settings updated successfully',
 
-
     //LANGUAGES
     'en' => 'English',
-    'bg' => 'Bulgarian',
-    'fr' => 'French',
-
-
+    'bg' => 'Български',
+    'fr' => 'Français',
 
     //GENERAL
     'website_name' => 'Website name'

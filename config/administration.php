@@ -46,6 +46,16 @@ return [
 
     //Default fields for settings
     'settings_default_fields' => [
+        'website_description' => [
+            'title' => 'index::admin.website_description',  //this will be converted to trans
+            'type' => 'textarea',
+            'translate' => true
+        ],
+        'website_keywords' => [
+            'title' => 'index::admin.website_keywords',  //this will be converted to trans
+            'type' => 'text',
+            'translate' => true
+        ],
         'global_email' => [
             'title' => 'contacts::admin.global_email',  //this will be converted to trans
             'type' => 'text'

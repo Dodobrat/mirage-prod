@@ -1,6 +1,6 @@
 <?php
 
 return[
-    'module_name' => 'Les types',
+    'module_name' => 'Types',
     'categories' => 'Les catégories',
 ];

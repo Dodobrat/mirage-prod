@@ -7,6 +7,7 @@ use App\Modules\Team\Models\Member;
 use App\Http\Controllers\Controller;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Charlotte\Administration\Helpers\Settings;
 
 class TeamController extends Controller
@@ -15,10 +16,9 @@ class TeamController extends Controller
 
         $members = Member::active()->reversed()->with(['media'])->get();
 
-        SEOMeta::setTitle(config('app.name') . ' - ' . Settings::getTranslated('team_meta_title'));
-        SEOMeta::setDescription(Settings::getTranslated('team_meta_description'));
+        SEOTools::setTitle(config('app.name') . ' - ' . Settings::getTranslated('team_meta_title'));
+        SEOTools::setDescription(Settings::getTranslated('team_meta_description'));
         SEOMeta::addKeyword(explode(', ', Settings::getTranslated('team_meta_keywords')));
-        OpenGraph::addImage(asset('/img/MV.png'), ['height' => 300, 'width' => 300]);
 
         return view('team::front.index', compact('members'));
     }

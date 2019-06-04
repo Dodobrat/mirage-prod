@@ -7,5 +7,7 @@ return [
     'filter' => 'Landing page Image filter Overlay',
     'bg' => 'Landing page background',
     'success_updated' => 'Successfully updated!',
-    'success_create' => 'Successfully created!'
+    'success_create' => 'Successfully created!',
+    'website_description' => 'Meta Description',
+    'website_keywords' => 'Meta Keywords',
 ];

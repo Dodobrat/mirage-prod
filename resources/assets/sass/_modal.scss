@@ -46,35 +46,77 @@
             }
         }
         .project-modal-body{
-            .carousel{
-                .carousel-indicators{
-                    li{
-                        background-color: $secondary-bg;
+            height: calc(100vh - 60px);
+            .owl-carousel{
+                height: calc(100vh - 60px);
+                .owl-gallery-item{
+                    .lazy-load{
+                        width: 100%;
+                        height: calc(100vh - 80px);
+                        object-fit: contain;
+                        padding: 0 55px;
                     }
                 }
-                .carousel-inner{
-                    .carousel-item{
-                        img{
-                            width: 100%;
-                            height: calc(100vh - 60px);
-                            object-fit: contain;
-                            padding: 0 55px 55px 55px;
+                .owl-nav{
+                    margin-top: 0;
+                    position: absolute;
+                    top: 50%;
+                    width: 100%;
+                    transform: translateY(-50%);
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .owl-prev{
+                        text-align: left;
+                        &:focus{
+                            outline: none;
+                        }
+                        &:hover{
+                            background: none;
+                            color: black;
+                        }
+                        span{
+                            padding: 20px;
+                            font-size: 25px;
+                        }
+                    }
+                    .owl-next{
+                        text-align: right;
+                        &:focus{
+                            outline: none;
+                        }
+                        &:hover{
+                            background: none;
+                            color: black;
+                        }
+                        span{
+                            padding: 20px;
+                            font-size: 25px;
                         }
                     }
                 }
-                .carousel-control-next{
-                    justify-content: flex-end;
-                    padding: 15px;
-                    .carousel-control-next-icon{
-                        transform: rotate(180deg);
-                        background-image: url('../img/chevron.svg');
-                    }
-                }
-                .carousel-control-prev{
-                    justify-content: flex-start;
-                    padding: 15px;
-                    .carousel-control-prev-icon{
-                        background-image: url('../img/chevron.svg');
+
+                .owl-dots{
+                    .owl-dot{
+                        &:focus{
+                            outline: 0;
+                        }
+                        span{
+                            -webkit-border-radius: 0;
+                            -moz-border-radius: 0;
+                            border-radius: 0;
+                            width: 20px;
+                            height: 3px;
+                            margin-left: 2px;
+                            margin-right: 2px;
+                            background: #ccc;
+                            border:none;
+                        }
+                        &.active{
+                            span{
+                                background: #333;
+                            }
+                        }
                     }
                 }
             }

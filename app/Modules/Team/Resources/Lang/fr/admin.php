@@ -1,7 +1,7 @@
 <?php
 
 return[
-    'module_name' => 'Équipe',
+    'module_name' => 'Team',
     'name' => 'Nom',
     'position' => 'Position',
 ];

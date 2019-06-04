@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Modules\Types\Models\TypeTranslation;
 use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 
 class TypesController extends Controller
@@ -55,10 +56,9 @@ class TypesController extends Controller
             ->reversed()
             ->paginate(self::$PER_PAGE);
 
-        SEOMeta::setTitle(config('app.name', 'Mirage Visulisation') . ' - ' . $selected_type->title);
-        SEOMeta::setDescription($selected_type->meta_description);
+        SEOTools::setTitle(config('app.name', 'Mirage Visulisation') . ' - ' . $selected_type->title);
+        SEOTools::setDescription($selected_type->meta_description);
         SEOMeta::addKeyword(explode(', ', $selected_type->meta_keywords));
-        OpenGraph::addImage(asset('/img/MV.png'), ['height' => 300, 'width' => 300]);
 
         return view('types::front.index', compact('selected_type', 'categories', 'projects'));
     }

@@ -7,8 +7,8 @@ use App\Modules\Contacts\Models\Contact;
 use App\Modules\Contacts\Http\Requests\SendContactRequest;
 
 use App\Http\Controllers\Controller;
-use Artesaos\SEOTools\Facades\OpenGraph;
 use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -18,10 +18,9 @@ class ContactsController extends Controller
 
         $contacts = Contact::active()->reversed()->get();
 
-        SEOMeta::setTitle( config('app.name') . ' - ' . $contacts->first()->meta_title);
-        SEOMeta::setDescription($contacts->first()->meta_description);
+        SEOTools::setTitle(config('app.name') . ' - ' . $contacts->first()->meta_title);
+        SEOTools::setDescription($contacts->first()->meta_description);
         SEOMeta::addKeyword(explode(', ', $contacts->first()->meta_keywords));
-        OpenGraph::addImage(asset('/img/MV.png'), ['height' => 300, 'width' => 300]);
 
         return view('contacts::front.index', compact('contacts'));
     }

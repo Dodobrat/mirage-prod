@@ -17,39 +17,19 @@
         </div>
 
         <div class="project-modal-body">
-            <div id="projectCarousel_{{ $project->slug }}" class="carousel slide" data-ride="carousel">
 
-                <ol class="carousel-indicators">
-                    @foreach($project->getMedia('media') as $thumb)
-                        <li data-target="#projectCarousel_{{ $project->slug }}"
-                            data-slide-to="{{ $loop->index }}"
-                            class="{{ $loop->first ? 'active' : '' }}"></li>
-                    @endforeach
-                </ol>
-
-                <div class="carousel-inner">
-                    @foreach($project->getMedia('media') as $media)
-                        <div class="carousel-item @if($loop->first) active @endif">
-                            @if(!empty($media))
-                                <img class="lazy-load" data-src="{{ $media->getUrl('view') }}" alt="">
-                            @else
-                                <img class="lazy-load" data-src="{{ asset('/img/placeholder.png') }}" alt="">
-                            @endif
-                        </div>
-                    @endforeach
-                </div>
-                <a class="carousel-control-prev" href="#projectCarousel_{{ $project->slug }}" role="button"
-                   data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#projectCarousel_{{ $project->slug }}" role="button"
-                   data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-
+            <div class="owl-carousel owl-theme">
+                @foreach($project->getMedia('media') as $media)
+                    <div class="owl-gallery-item">
+                        @if(!empty($media))
+                            <img class="lazy-load" data-src="{{ $media->getUrl('view') }}" alt="">
+                        @else
+                            <img class="lazy-load" data-src="{{ asset('/img/placeholder.png') }}" alt="">
+                        @endif
+                    </div>
+                @endforeach
             </div>
+
         </div>
 
     </div>
