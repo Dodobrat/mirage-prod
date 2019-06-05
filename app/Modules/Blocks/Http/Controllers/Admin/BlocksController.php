@@ -46,7 +46,7 @@ class BlocksController extends BaseAdministrationController
         $table->filter(function ($query) use ($request) {
             if ($request->has('search')) {
                 $query->whereHas('translations', function ($sub_q) use ($request) {
-                    $sub_q->where('title', 'LIKE', '%' . $request->search["value"] . '%');
+                    $sub_q->where('key', 'LIKE', '%' . $request->search["value"] . '%');
                 });
             }
         });
