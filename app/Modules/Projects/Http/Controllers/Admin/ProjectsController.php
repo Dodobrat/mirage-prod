@@ -47,12 +47,15 @@ class ProjectsController extends BaseAdministrationController
             return $action;
         });
 
-        $table->smart(true);
-        $table->filterColumn('title',  function($query, $keyword) {
-            $query->whereHas('translations', function ($sub_q) use ($keyword) {
-                $sub_q->where('title', 'LIKE', '%'. $keyword .'%');
-            });
+        $request = $datatable->getRequest();
+        $table->filter(function ($query) use ($request) {
+            if ($request->has('search')) {
+                $query->whereHas('translations', function ($sub_q) use ($request) {
+                    $sub_q->where('title', 'LIKE', '%' . $request->search["value"] . '%');
+                });
+            }
         });
+
         $table->rawColumns(['active', 'action']);
 
         Administration::setTitle(trans('projects::admin.module_name'));
