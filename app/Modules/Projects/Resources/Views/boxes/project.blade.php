@@ -4,7 +4,7 @@
         <div class="project-modal-header">
             <div class="row align-items-center">
                 <div class="col-lg-11 col-md-11 col-sm-10 col-10">
-                    <h5 class="project-modal-title">{{ $project->title }} - <span
+                    <h5 class="project-modal-title">{{ $project->title }} <span
                             class="project-modal-project">{{ $project->architect }}</span>
                     </h5>
                 </div>
@@ -18,7 +18,7 @@
 
         <div class="project-modal-body">
 
-            <div class="owl-carousel owl-theme">
+            <div class="owl-carousel owl-theme" data-slider="{{ $project->title }}">
                 @foreach($project->getMedia('media') as $media)
                     <div class="owl-gallery-item">
                         @if(!empty($media))

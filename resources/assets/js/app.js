@@ -292,7 +292,12 @@ window.openModal = function (id, slug) {
                 window.history.pushState({path: newurl}, '', newurl);
                 $modal.fadeIn(300);
                 $modal.html(result.project_modal);
-                $('.owl-carousel').owlCarousel({
+                let images = document.querySelectorAll(".lazy-load");
+                for (let i = 0; i < images.length; i++) {
+                    images[i].src = images[i].getAttribute('data-src');
+                }
+                let $owl = $( '.owl-carousel' );
+                $owl.owlCarousel({
                     margin: 20,
                     center: true,
                     loop:true,
@@ -300,22 +305,16 @@ window.openModal = function (id, slug) {
                     pagination: true,
                     items:1
                 });
-                let images = document.querySelectorAll(".lazy-load");
-                for (let i = 0; i < images.length; i++) {
-                    images[i].src = images[i].getAttribute('data-src');
-                }
-
-                $(document).keyup(function (e) {
+                $(document).on('keydown', function( e ) {
                     if (e.keyCode === 27) {
                         closeModal();
                     }
                     if (e.keyCode === 37) {
-                        $('button.owl-prev').trigger('click');
+                        $owl.trigger('prev.owl.carousel');
                     }
                     if (e.keyCode === 39) {
-                        $('button.owl-next').trigger('click');
+                        $owl.trigger('next.owl.carousel');
                     }
-
                 });
             }
         }

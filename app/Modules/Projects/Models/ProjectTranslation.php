@@ -23,6 +23,7 @@ class ProjectTranslation extends Model
     public function getSlugOptions(): SlugOptions {
         return SlugOptions::create()
             ->generateSlugsFrom('title')
-            ->saveSlugsTo('slug');
+            ->saveSlugsTo('slug')
+            ->doNotGenerateSlugsOnUpdate();
     }
 }
