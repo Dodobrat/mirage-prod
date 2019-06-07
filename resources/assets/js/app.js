@@ -398,6 +398,7 @@ if (document.body.contains(contactForm)) {
     let subjectField = document.querySelector('.subject');
     let emailField = document.querySelector('.field.email');
     let commentField = document.querySelector('.comment');
+    let captchaField = document.querySelector('#recaptcha-token');
     let submitBtn = document.querySelector('.submit-btn');
 
     nameField.addEventListener('blur', validateName);
@@ -480,6 +481,7 @@ if (document.body.contains(contactForm)) {
                     subject: self.closest(contactForm).find('input[name="subject"]').val(),
                     email: self.closest(contactForm).find('input[name="email"]').val(),
                     comment: self.closest(contactForm).find('textarea[name="comment"]').val(),
+                    recaptcha: self.closest(contactForm).find('input[id="g-recaptcha-response"]').val(),
                     contact_id: self.closest(contactForm).find('input[name="contact_id"]').val(),
                 },
                 beforeSend: function () {

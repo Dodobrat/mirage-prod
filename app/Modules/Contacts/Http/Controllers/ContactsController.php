@@ -32,8 +32,9 @@ class ContactsController extends Controller
             'email' => 'required|email',
             'subject' => 'required|max:75',
             'comment' => 'required|max:300|min:1',
-            'g-recaptcha-response' => 'required|captcha'
+            'recaptcha' => 'required|captcha'
         ]);
+
         if ($validator->fails())
         {
             return response()->json(['errors'=>$validator->errors()->all()]);
