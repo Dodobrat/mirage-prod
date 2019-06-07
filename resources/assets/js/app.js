@@ -481,7 +481,7 @@ if (document.body.contains(contactForm)) {
                     subject: self.closest(contactForm).find('input[name="subject"]').val(),
                     email: self.closest(contactForm).find('input[name="email"]').val(),
                     comment: self.closest(contactForm).find('textarea[name="comment"]').val(),
-                    recaptcha: $('#g-recaptcha-response').val(),
+                    recaptcha: $('#recaptcha-token').val(),
                     contact_id: self.closest(contactForm).find('input[name="contact_id"]').val(),
                 },
                 beforeSend: function () {
