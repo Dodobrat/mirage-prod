@@ -83,7 +83,6 @@
                                     </div>
                                 </div>
                                 <div class="col-12 mb-3">
-                                    {!! NoCaptcha::renderJs() !!}
                                     {!! NoCaptcha::display() !!}
                                 </div>
                             </div>

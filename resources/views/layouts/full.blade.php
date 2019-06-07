@@ -7,6 +7,7 @@
     {!! SEO::generate() !!}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Mirage Visualisation') }}</title>
+    {!! NoCaptcha::renderJs() !!}
     <!-- Google Analytics -->
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
