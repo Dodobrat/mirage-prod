@@ -51,7 +51,9 @@ class ContactForm extends AdminForm
 
         ]);
 
-        AdministrationSeo::seoFields($this, $this->model);
+        AdministrationSeo::seoFields($this, [
+            'meta_description' => ['live-count' => 250, 'maxlength' => '250']
+        ]);
 
         $this->add('active', 'switch', [
             'title' => trans('administration::admin.active')

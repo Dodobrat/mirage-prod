@@ -25,7 +25,9 @@ class TypeForm extends AdminForm {
             'value' => (!empty($this->model) && !empty($this->model->categories)) ? $this->model->categories->pluck('id')->toArray() : null,
         ]);
 
-        AdministrationSeo::seoFields($this, $this->model);
+        AdministrationSeo::seoFields($this, [
+            'meta_description' => ['live-count' => 250, 'maxlength' => '250']
+        ]);
 
         $this->add('active', 'switch', [
             'title' => trans('administration::admin.active')

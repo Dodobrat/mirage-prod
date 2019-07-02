@@ -22,6 +22,7 @@ return[
     'change_theme' => 'Changer de theme',
     'light' => 'Light',
     'dark' => 'Dark',
+    'go_to_website' => 'Aller sur un site Internet',
     'edit_profile' => 'Editer le profil',
     'logout' => 'Se deconnecter',
     'schedule' => 'Emploi du temps',

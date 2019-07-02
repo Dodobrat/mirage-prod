@@ -49,7 +49,12 @@ return [
         'website_description' => [
             'title' => 'index::admin.website_description',  //this will be converted to trans
             'type' => 'textarea',
-            'translate' => true
+            'translate' => true,
+            'attr' => [
+                'live-count' => 250,
+                'maxlength' => '250'
+            ]
+
         ],
         'website_keywords' => [
             'title' => 'index::admin.website_keywords',  //this will be converted to trans

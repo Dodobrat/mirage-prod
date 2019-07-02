@@ -45,7 +45,11 @@ class Administration implements Structure {
         $form->add('team_meta_description', 'text', [
             'title' => trans('administration::admin.meta_description'),
             'translate' => true,
-            'model' => @$form_model
+            'model' => @$form_model,
+            'attr' => [
+                'live-count' => 250,
+                'maxlength' => '250'
+            ]
         ]);
 
         $form->add('team_meta_keywords', 'text', [

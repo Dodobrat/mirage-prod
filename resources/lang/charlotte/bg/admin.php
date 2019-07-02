@@ -22,6 +22,7 @@ return [
     'change_theme' => 'Смяна на тема',
     'light' => 'Светла',
     'dark' => 'Тъмна',
+    'go_to_website' => 'Към Сайта',
     'edit_profile' => 'Редактиране на профил',
     'logout' => 'Изход',
     'schedule' => 'График',
