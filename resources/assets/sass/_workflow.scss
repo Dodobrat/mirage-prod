@@ -40,4 +40,215 @@
 
 #workflow_content{
     display: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.full-screen-btn-container{
+    position: absolute;
+    max-width: 1760px !important;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    .full-screen-btn{
+        background: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        vertical-align: center;
+        z-index: 99;
+        margin: 10px 10px 0 0;
+        padding: 10px;
+        &:focus{
+            outline: none;
+        }
+        i{
+            font-size: 20px;
+            color: $primary-font-color;
+        }
+    }
+}
+
+.owl-workflow{
+    height: calc(100vh - 180px);
+    .owl-workflow-item{
+        height: calc(100vh - 200px);
+        .workflow-load{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 0 55px;
+        }
+    }
+    .owl-nav{
+        margin-top: 0;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        pointer-events: none;
+        .owl-prev{
+            pointer-events: auto;
+            text-align: left;
+            &:focus{
+                outline: none;
+            }
+            &:hover{
+                background: none;
+                color: black;
+            }
+            span{
+                padding: 20px;
+                font-size: 25px;
+            }
+        }
+        .owl-next{
+            pointer-events: auto;
+            text-align: right;
+            &:focus{
+                outline: none;
+            }
+            &:hover{
+                background: none;
+                color: black;
+            }
+            span{
+                padding: 20px;
+                font-size: 25px;
+            }
+        }
+    }
+
+    .owl-dots{
+        .owl-dot{
+            &:focus{
+                outline: 0;
+            }
+            span{
+                -webkit-border-radius: 0;
+                -moz-border-radius: 0;
+                border-radius: 0;
+                width: 20px;
+                height: 3px;
+                margin-left: 2px;
+                margin-right: 2px;
+                background: #ccc;
+                border:none;
+            }
+            &.active{
+                span{
+                    background: #333;
+                }
+            }
+        }
+    }
+}
+
+.workflow-modal-container{
+    z-index: 99999;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: white;
+    .workflow-modal-content{
+        height: 100%;
+        width: 100%;
+        .close-workflow-modal{
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: transparent;
+            border: none;
+            padding: 15px;
+            z-index: 99999;
+            &:focus{
+                outline: none;
+            }
+        }
+        .owl-modal-workflow{
+            height: 100vh;
+            .owl-modal-workflow-item{
+                height: calc(100vh - 20px);
+                .modal-workflow-load{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    padding: 0 55px;
+                }
+            }
+            .owl-nav{
+                margin-top: 0;
+                position: absolute;
+                top: 50%;
+                width: 100%;
+                transform: translateY(-50%);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                pointer-events: none;
+                .owl-prev{
+                    pointer-events: auto;
+                    text-align: left;
+                    &:focus{
+                        outline: none;
+                    }
+                    &:hover{
+                        background: none;
+                        color: black;
+                    }
+                    span{
+                        padding: 20px;
+                        font-size: 25px;
+                    }
+                }
+                .owl-next{
+                    pointer-events: auto;
+                    text-align: right;
+                    &:focus{
+                        outline: none;
+                    }
+                    &:hover{
+                        background: none;
+                        color: black;
+                    }
+                    span{
+                        padding: 20px;
+                        font-size: 25px;
+                    }
+                }
+            }
+
+            .owl-dots{
+                .owl-dot{
+                    &:focus{
+                        outline: 0;
+                    }
+                    span{
+                        -webkit-border-radius: 0;
+                        -moz-border-radius: 0;
+                        border-radius: 0;
+                        width: 20px;
+                        height: 3px;
+                        margin-left: 2px;
+                        margin-right: 2px;
+                        background: #ccc;
+                        border:none;
+                    }
+                    &.active{
+                        span{
+                            background: #333;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

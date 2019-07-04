@@ -44,5 +44,11 @@ class Workflow extends Model implements HasMedia
             ->height(240)
             ->sharpen(0)
             ->nonOptimized();
+
+        $this->addMediaConversion('view')
+            ->width(1920)
+            ->height(1080)
+            ->sharpen(0)
+            ->nonOptimized();
     }
 }

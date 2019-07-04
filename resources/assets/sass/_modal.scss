@@ -47,7 +47,7 @@
         }
         .project-modal-body{
             height: calc(100vh - 60px);
-            .owl-carousel{
+            .owl-modal-gallery{
                 height: calc(100vh - 60px);
                 .owl-gallery-item{
                     .lazy-load{
@@ -66,7 +66,9 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    pointer-events: none;
                     .owl-prev{
+                        pointer-events: auto;
                         text-align: left;
                         &:focus{
                             outline: none;
@@ -81,6 +83,7 @@
                         }
                     }
                     .owl-next{
+                        pointer-events: auto;
                         text-align: right;
                         &:focus{
                             outline: none;

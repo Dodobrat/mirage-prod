@@ -1,15 +1,44 @@
 @if(!empty($workflow))
 
-    <div class="container my-5 py-5">
-        <div class="row justify-content-center">
-            <div class="col-6">
-                <div class="card text-white bg-danger mb-3">
-                    <div class="card-header text-center">{{ $workflow->title }}</div>
-                    <div class="card-body">
-                        <h5 class="card-title">Under Construction!</h5>
-                        <p class="card-text">Sorry for the inconvenience</p>
-                    </div>
+    <div class="custom-container-content">
+        <div class="full-screen-btn-container">
+            <button class="full-screen-btn"
+                    id="workflow-modal">
+                <i class="ti-fullscreen"></i>
+            </button>
+        </div>
+        <div class="owl-carousel owl-theme owl-workflow">
+
+            @foreach($workflow->getMedia('comic') as $media)
+                <div class="owl-workflow-item">
+                    @if(!empty($media))
+                        <img class="workflow-load" data-src="{{ $media->getUrl('view') }}" alt="">
+                    @else
+                        <img class="workflow-load" data-src="{{ asset('/img/placeholder.png') }}" alt="">
+                    @endif
                 </div>
+            @endforeach
+
+        </div>
+    </div>
+
+    <div class="workflow-modal-container">
+        <div class="workflow-modal-content">
+            <button class="close-workflow-modal">
+                <i class="ti-close"></i>
+            </button>
+            <div class="owl-carousel owl-theme owl-modal-workflow">
+
+                @foreach($workflow->getMedia('comic') as $media)
+                    <div class="owl-modal-workflow-item">
+                        @if(!empty($media))
+                            <img class="modal-workflow-load" data-src="{{ $media->getUrl('view') }}" alt="">
+                        @else
+                            <img class="modal-workflow-load" data-src="{{ asset('/img/placeholder.png') }}" alt="">
+                        @endif
+                    </div>
+                @endforeach
+
             </div>
         </div>
     </div>

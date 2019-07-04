@@ -13,7 +13,7 @@ global.owlCarousel = require('owl.carousel/dist/owl.carousel.min.js');
 // -----------------------------------------
 
 function isIE() {
-    let ua = navigator.userAgent;
+    let ua = navigator.userAgent;0
     /* MSIE used to detect old browsers and Trident used to newer ones*/
     return ua.indexOf("MSIE ") > -1 || ua.indexOf("Trident/") > -1;
 }
@@ -26,20 +26,20 @@ if (isIE()) {
 
 let redirectors = document.querySelectorAll('.redirect');
 
-redirectors.forEach(function (redirector) {
-    redirector.addEventListener('click', function (e) {
+for (let i = 0; i < redirectors.length; i++) {
+    redirectors[i].addEventListener('click', function (e) {
         e.preventDefault();
-        let url = redirector.getAttribute('href');
+        let url = this.getAttribute('href');
         $preloader.fadeIn(300);
         setTimeout(() => {
             window.location.href = url;
         }, 300);
     })
-});
+}
 
 $preloader = $('.preloader');
 $pageloader = $('.pageloader');
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', (e) => {
     $preloader.hide();
     setTimeout(() => {
         $pageloader.fadeOut(500);
@@ -291,12 +291,13 @@ window.openModal = function (id, slug) {
                 let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?project=' + projectId;
                 window.history.pushState({path: newurl}, '', newurl);
                 $modal.fadeIn(300);
+                $('body').css('overflow','hidden');
                 $modal.html(result.project_modal);
                 let images = document.querySelectorAll(".lazy-load");
                 for (let i = 0; i < images.length; i++) {
                     images[i].src = images[i].getAttribute('data-src');
                 }
-                let $owl = $( '.owl-carousel' );
+                let $owl = $( '.owl-modal-gallery' );
                 $owl.owlCarousel({
                     margin: 20,
                     center: true,
@@ -329,6 +330,7 @@ window.closeModal = function () {
         window.history.replaceState({}, document.title, clean_url);
     }
     $modal.fadeOut(300);
+    $('body').css('overflow','auto');
     $('.loading').slideUp(500);
 };
 
@@ -398,7 +400,6 @@ if (document.body.contains(contactForm)) {
     let subjectField = document.querySelector('.subject');
     let emailField = document.querySelector('.field.email');
     let commentField = document.querySelector('.comment');
-    let captchaField = document.querySelector('#recaptcha-token');
     let submitBtn = document.querySelector('.submit-btn');
 
     nameField.addEventListener('blur', validateName);
@@ -609,6 +610,69 @@ window.getWorkflow = function (id, slug, url) {
                 setTimeout(function () {
                     $(workflowContent).fadeIn(500);
                 }, 350);
+                // -----------------------------------------
+                //             WORKFLOW GALLERY
+                // -----------------------------------------
+                let images = document.querySelectorAll(".workflow-load");
+                for (let i = 0; i < images.length; i++) {
+                    images[i].src = images[i].getAttribute('data-src');
+                }
+                $('.owl-workflow').owlCarousel({
+                    margin: 10,
+                    center: true,
+                    loop:true,
+                    nav:true,
+                    pagination: true,
+                    items:1
+                });
+                $(document).on('keydown', function( e ) {
+                    if (e.keyCode === 70) {
+                        openWorkflowModal();
+                    }
+                    if (e.keyCode === 37) {
+                        $('.owl-workflow').trigger('prev.owl.carousel');
+                    }
+                    if (e.keyCode === 39) {
+                        $('.owl-workflow').trigger('next.owl.carousel');
+                    }
+                });
+                let full_screen_expander = $('#workflow-modal');
+                let workflow_modal = $('.workflow-modal-container');
+                full_screen_expander.on('click', openWorkflowModal);
+
+                function openWorkflowModal() {
+                    $('body').css('overflow','hidden');
+                    workflow_modal.fadeIn(200);
+                    let modal_images = document.querySelectorAll(".modal-workflow-load");
+                    for (let i = 0; i < modal_images.length; i++) {
+                        modal_images[i].src = modal_images[i].getAttribute('data-src');
+                    }
+                    $('.owl-modal-workflow').owlCarousel({
+                        margin: 10,
+                        center: true,
+                        loop:true,
+                        nav:true,
+                        pagination: true,
+                        items:1
+                    });
+                    $(document).on('keydown', function( e ) {
+                        if (e.keyCode === 27) {
+                            workflow_modal.fadeOut(200);
+                            $('body').css('overflow','auto');
+                        }
+                        if (e.keyCode === 37) {
+                            $('.owl-modal-workflow').trigger('prev.owl.carousel');
+                        }
+                        if (e.keyCode === 39) {
+                            $('.owl-modal-workflow').trigger('next.owl.carousel');
+                        }
+                    });
+                };
+                let close_workflow_modal = $('.close-workflow-modal');
+                close_workflow_modal.on('click', function () {
+                    workflow_modal.fadeOut(200);
+                    $('body').css('overflow','auto');
+                })
             }
         }
     });

@@ -115,6 +115,57 @@
         }
     }
 
+    .owl-workflow{
+        height: calc(100vh - 58px);
+        .owl-workflow-item{
+            height: calc(100vh - 80px);
+            .workflow-load{
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                padding: 0;
+            }
+            .owl-nav {
+                .owl-prev {
+                    span {
+                        padding: 20px 20px 20px 5px;
+                    }
+                }
+
+                .owl-next {
+                    span {
+                        padding: 20px 5px 20px 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    .workflow-modal-container{
+        .workflow-modal-content{
+            .owl-modal-workflow{
+                .owl-modal-workflow-item{
+                    .modal-workflow-load{
+                        padding: 15px 0 0 0;
+                    }
+                }
+                .owl-nav {
+                    .owl-prev {
+                        span {
+                            padding: 20px 20px 20px 5px;
+                        }
+                    }
+
+                    .owl-next {
+                        span {
+                            padding: 20px 5px 20px 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     .custom-wide-container {
         .contact-details {
             .contact-heading {

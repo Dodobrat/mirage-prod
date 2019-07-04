@@ -10,7 +10,7 @@
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-2 col-2 text-right">
                     <button class="project-modal-close-btn" onclick="closeModal()">
-                        <img class="lazy-load" data-src="{{ asset('/img/x.svg') }}" alt="">
+                        <i class="ti-close"></i>
                     </button>
                 </div>
             </div>
@@ -18,7 +18,7 @@
 
         <div class="project-modal-body">
 
-            <div class="owl-carousel owl-theme" data-slider="{{ $project->title }}">
+            <div class="owl-carousel owl-theme owl-modal-gallery" data-slider="{{ $project->title }}">
                 @foreach($project->getMedia('media') as $media)
                     <div class="owl-gallery-item">
                         @if(!empty($media))

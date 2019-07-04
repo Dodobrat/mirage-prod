@@ -40,7 +40,7 @@ class WorkflowController extends BaseAdministrationController
             else{
                 $action .= AdministrationField::delete(Administration::route('workflow.destroy', $flow->id));
             }
-            $action .= AdministrationField::media($flow, ['access']);
+            $action .= AdministrationField::media($flow, ['access','comic']);
             return $action;
         });
 
